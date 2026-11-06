@@ -7,26 +7,26 @@
 <style>
 /* Layout: cột tham số bên trái, vùng làm việc bên phải. Hình chính là đường thời gian lương/thưởng, bên dưới là máy kiểm tra từng lần tính thuế. */
 :root{
-  --bg:#F1F4F7; --surface:#FFFFFF; --surface2:#E7ECF1; --ink:#12202D; --muted:#586A7B; --line:#D2DAE2;
-  --inc:#2B6CB0; --ded:#23946A; --tn:#B97F0C; --tax:#C9382E; --bonus:#AB2B7B;
-  --accent:#12202D; --on-accent:#FFFFFF; --hl:#FFF0BA; --ok:#1E7F58; --warn:#9A5B00;
-  --paper:#FFFFFF; --paper-ink:#1A2430;
-  --font-ui:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  --font-mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
+	--bg:#F1F4F7; --surface:#FFFFFF; --surface2:#E7ECF1; --ink:#12202D; --muted:#586A7B; --line:#D2DAE2;
+	--inc:#2B6CB0; --ded:#23946A; --tn:#B97F0C; --tax:#C9382E; --bonus:#AB2B7B;
+	--accent:#12202D; --on-accent:#FFFFFF; --hl:#FFF0BA; --ok:#1E7F58; --warn:#9A5B00;
+	--paper:#FFFFFF; --paper-ink:#1A2430;
+	--font-ui:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+	--font-mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,Consolas,monospace;
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0D141B; --surface:#151F29; --surface2:#1F2B37; --ink:#E5ECF3; --muted:#92A3B4; --line:#2A3846;
-    --inc:#5C9DE3; --ded:#45C493; --tn:#E3AE3A; --tax:#F0695F; --bonus:#E36BB2;
-    --accent:#E5ECF3; --on-accent:#0D141B; --hl:#3B3314; --ok:#52CF9C; --warn:#E3AE3A;
-    --paper:#1A2531; --paper-ink:#E5ECF3; color-scheme:dark;
-  }
+	:root:not([data-theme="light"]){
+		--bg:#0D141B; --surface:#151F29; --surface2:#1F2B37; --ink:#E5ECF3; --muted:#92A3B4; --line:#2A3846;
+		--inc:#5C9DE3; --ded:#45C493; --tn:#E3AE3A; --tax:#F0695F; --bonus:#E36BB2;
+		--accent:#E5ECF3; --on-accent:#0D141B; --hl:#3B3314; --ok:#52CF9C; --warn:#E3AE3A;
+		--paper:#1A2531; --paper-ink:#E5ECF3; color-scheme:dark;
+	}
 }
 :root[data-theme="dark"]{
-  --bg:#0D141B; --surface:#151F29; --surface2:#1F2B37; --ink:#E5ECF3; --muted:#92A3B4; --line:#2A3846;
-  --inc:#5C9DE3; --ded:#45C493; --tn:#E3AE3A; --tax:#F0695F; --bonus:#E36BB2;
-  --accent:#E5ECF3; --on-accent:#0D141B; --hl:#3B3314; --ok:#52CF9C; --warn:#E3AE3A;
-  --paper:#1A2531; --paper-ink:#E5ECF3; color-scheme:dark;
+	--bg:#0D141B; --surface:#151F29; --surface2:#1F2B37; --ink:#E5ECF3; --muted:#92A3B4; --line:#2A3846;
+	--inc:#5C9DE3; --ded:#45C493; --tn:#E3AE3A; --tax:#F0695F; --bonus:#E36BB2;
+	--accent:#E5ECF3; --on-accent:#0D141B; --hl:#3B3314; --ok:#52CF9C; --warn:#E3AE3A;
+	--paper:#1A2531; --paper-ink:#E5ECF3; color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 var(--font-ui);-webkit-text-size-adjust:100%}
@@ -117,6 +117,8 @@ h1{margin:0;font-size:clamp(20px,2.5vw,29px);line-height:1.2;font-weight:700;let
 .note{font-size:12.5px;color:var(--muted);margin:8px 0 0}
 .note.warnbox{border:1px solid var(--warn);color:var(--ink);border-radius:8px;padding:8px 10px;background:var(--bg)}
 .note.warnbox b{color:var(--warn)}
+.leave{margin:0 0 12px;padding:12px 14px;border:1px solid var(--tax);border-radius:10px;background:var(--surface);font-size:13.5px;display:grid;gap:4px}.leave b{font-family:var(--font-mono);font-weight:600;white-space:nowrap}.leave h4{margin:0 0 2px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--tax)}
+.sal{display:grid;grid-template-columns:1fr 1fr;gap:6px}.sal label{display:grid;gap:2px;font-size:11px;color:var(--muted);min-width:0}.sal input{width:100%;min-width:0;border:1px solid var(--line);border-radius:6px;background:var(--bg);padding:6px 8px;font-size:12.5px}.sal input[data-ov]{border-color:var(--inc);background:var(--surface)}
 ol.steps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:13px}
 code,.code{font-family:var(--font-mono);font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:0 4px}
 pre.sql{margin:0 0 10px;padding:9px 11px;background:var(--bg);border:1px solid var(--line);border-radius:8px;font:12px/1.5 var(--font-mono);overflow-x:auto;color:var(--ink)}
@@ -222,159 +224,161 @@ footer li b{color:var(--ink)}
 </style>
 
 <header class="top"><div class="top-in wrap">
-  <div>
-    <p class="eyebrow">Mô hình nghiệp vụ · FAST HRM Online</p>
-    <h1>Thuế TNCN từ lương và thưởng, qua một chu kỳ quyết toán</h1>
-    <p class="lede">Chỉnh tham số bên trái, bấm từng sự kiện trên đường thời gian để xem hệ thống tính thuế, tính lại khi chi thưởng, ghi vào bảng nào và lên tờ khai ra sao.</p>
-  </div>
-  <ul class="refs" aria-label="Căn cứ pháp lý">
-    <li><b>Luật 109/2025/QH15</b></li>
-    <li><b>NĐ 253/2026</b> · <b>TT 87/2026</b></li>
-    <li>Hiệu lực <b>01/07/2026</b></li>
-    <li>Biểu <b>5 bậc</b> · GT <b>15,5tr</b> / <b>6,2tr</b></li>
-    <li>Cập nhật 11/2026</li>
-  </ul>
+	<div>
+		<p class="eyebrow">Mô hình nghiệp vụ · FAST HRM Online</p>
+		<h1>Thuế TNCN từ lương và thưởng, qua một chu kỳ quyết toán</h1>
+		<p class="lede">Chỉnh tham số bên trái, bấm từng sự kiện trên đường thời gian để xem hệ thống tính thuế, tính lại khi chi thưởng, ghi vào bảng nào và lên tờ khai ra sao.</p>
+	</div>
+	<ul class="refs" aria-label="Căn cứ pháp lý">
+		<li><b>Luật 109/2025/QH15</b></li>
+		<li><b>NĐ 253/2026</b> · <b>TT 87/2026</b></li>
+		<li>Hiệu lực <b>01/07/2026</b></li>
+		<li>Biểu <b>5 bậc</b> · GT <b>15,5tr</b> / <b>6,2tr</b></li>
+		<li>Cập nhật 11/2026</li>
+	</ul>
 </div></header>
 
 <div class="layout wrap">
 <details class="params" id="paramsWrap" open>
 <summary>Tham số mô phỏng</summary>
 <form id="params" onsubmit="return false" autocomplete="off">
-  <div class="grp">
-    <h3>Chu kỳ &amp; cơ chế tính thuế</h3>
-    <div class="row2">
-      <label class="f"><span>Từ tháng</span><input type="month" id="p-from"></label>
-      <label class="f"><span>Đến tháng</span><input type="month" id="p-to"></label>
-    </div>
-    <div class="seg" role="radiogroup" aria-label="Cơ chế tính thuế">
-      <label><input type="radio" name="mode" value="1"><b>Theo thực chi</b><small>t_tncn_thuc_chi = 1 · thu nhập chịu thuế ở tháng chi tiền</small></label>
-      <label><input type="radio" name="mode" value="0"><b>Theo kỳ lương</b><small>t_tncn_thuc_chi = 0 · thưởng quay về tính lại kỳ lương gốc</small></label>
-    </div>
-    <div class="btns" id="presets">
-      <button class="btn" type="button" data-preset="default">Mặc định</button>
-      <button class="btn" type="button" data-preset="y2027">Năm dương lịch 2027</button>
-      <button class="btn" type="button" data-preset="nva">Ví dụ NV A (thưởng T9)</button>
-      <button class="btn" type="button" data-preset="leave">Nghỉ việc giữa chu kỳ</button>
-    </div>
-  </div>
-  <div class="grp">
-    <h3>Lương</h3>
-    <label class="f"><span>Thu nhập chịu thuế từ lương / tháng (đ)</span><input class="num" id="p-salary" inputmode="numeric"></label>
-    <label class="f"><span>Bảo hiểm bắt buộc NLĐ đóng / tháng (đ)</span><input class="num" id="p-bh" inputmode="numeric"></label>
-    <div class="row2">
-      <label class="f"><span>Ngày chi lương</span><input class="num" type="number" id="p-payday" min="1" max="31"></label>
-      <label class="f"><span>Chi vào</span><select id="p-delay"><option value="0">Cùng tháng</option><option value="1">Tháng sau</option><option value="2">2 tháng sau</option></select></label>
-    </div>
-  </div>
-  <div class="grp">
-    <h3>Nhân viên &amp; giảm trừ</h3>
-    <div class="row2">
-      <label class="f"><span>Ngày vào làm</span><input type="date" id="p-join"></label>
-      <label class="f"><span>Ngày nghỉ việc</span><input type="date" id="p-leave"></label>
-    </div>
-    <div class="row2">
-      <label class="f"><span>Giảm trừ bản thân (đ/tháng)</span><input class="num" id="p-gtbt" inputmode="numeric"></label>
-      <label class="f"><span>Giảm trừ mỗi NPT (đ/tháng)</span><input class="num" id="p-gtnpt" inputmode="numeric"></label>
-    </div>
-    <div class="row2">
-      <label class="f"><span>Số người phụ thuộc</span><input class="num" type="number" id="p-npt" min="0" max="9"></label>
-      <label class="f"><span>NPT giảm trừ từ tháng</span><input type="month" id="p-nptfrom"></label>
-    </div>
-    <label class="chk"><input type="checkbox" id="p-uq"><span>Ủy quyền công ty quyết toán thay (uy_quyen_yn)</span></label>
-    <label class="chk"><input type="checkbox" id="p-gtafter"><span>Vẫn tính giảm trừ ở tháng đã nghỉ việc nếu còn nhận thu nhập</span></label>
-  </div>
-  <div class="grp">
-    <h3>Các đợt thưởng</h3>
-    <div id="bonusList"></div>
-    <button class="btn" type="button" id="addBonus">+ Thêm khoản thưởng</button>
-    <p class="hint" style="margin-top:8px">“Thuộc kỳ lương” chỉ dùng ở cơ chế theo kỳ lương.</p>
-  </div>
-  <div class="grp">
-    <details>
-      <summary style="cursor:pointer;font-weight:600">Biểu thuế lũy tiến (tdmthuelt)</summary>
-      <div class="brs" id="brs" style="margin-top:10px"></div>
-      <p class="hint" style="margin-top:8px">Ngưỡng tính theo thu nhập tính thuế / tháng, đơn vị triệu đồng.</p>
-    </details>
-  </div>
+	<div class="grp">
+		<h3>Chu kỳ &amp; cơ chế tính thuế</h3>
+		<div class="row2">
+			<label class="f"><span>Từ tháng</span><input type="month" id="p-from"></label>
+			<label class="f"><span>Đến tháng</span><input type="month" id="p-to"></label>
+		</div>
+		<div class="seg" role="radiogroup" aria-label="Cơ chế tính thuế">
+			<label><input type="radio" name="mode" value="1"><b>Theo thực chi</b><small>t_tncn_thuc_chi = 1 · thu nhập chịu thuế ở tháng chi tiền</small></label>
+			<label><input type="radio" name="mode" value="0"><b>Theo kỳ lương</b><small>t_tncn_thuc_chi = 0 · thưởng quay về tính lại kỳ lương gốc</small></label>
+		</div>
+		<div class="btns" id="presets">
+			<button class="btn" type="button" data-preset="default">Mặc định</button>
+			<button class="btn" type="button" data-preset="y2027">Năm dương lịch 2027</button>
+			<button class="btn" type="button" data-preset="nva">Ví dụ NV A (thưởng T9)</button>
+			<button class="btn" type="button" data-preset="leave">Nghỉ việc giữa chu kỳ</button>
+		</div>
+	</div>
+	<div class="grp">
+		<h3>Lương</h3>
+		<label class="f"><span>Lương mặc định mỗi tháng (đ)</span><input class="num" id="p-salary" inputmode="numeric"></label>
+		<label class="f"><span>Bảo hiểm bắt buộc NLĐ đóng / tháng (đ)</span><input class="num" id="p-bh" inputmode="numeric"></label>
+		<div class="row2">
+			<label class="f"><span>Ngày chi lương</span><input class="num" type="number" id="p-payday" min="1" max="31"></label>
+			<label class="f"><span>Chi vào</span><select id="p-delay"><option value="0">Cùng tháng</option><option value="1">Tháng sau</option><option value="2">2 tháng sau</option></select></label>
+		</div>
+		<details id="salDet" open><summary style="cursor:pointer;font-weight:600;font-size:13px;margin-bottom:8px">Lương từng tháng</summary><div class="sal" id="salGrid"></div><div class="btns" style="margin-top:8px"><button class="btn" type="button" id="salReset">Đặt lại về mặc định</button></div><p class="hint" style="margin-top:8px">Ô viền xanh là tháng đã sửa riêng. Tháng ghi là tháng phát sinh lương, không phải tháng chi.</p></details>
+	</div>
+	<div class="grp">
+		<h3>Nhân viên &amp; giảm trừ</h3>
+		<div class="row2">
+			<label class="f"><span>Ngày vào làm</span><input type="date" id="p-join"></label>
+			<label class="f"><span>Ngày nghỉ việc</span><input type="date" id="p-leave"></label>
+		</div>
+		<div class="row2">
+			<label class="f"><span>Giảm trừ bản thân (đ/tháng)</span><input class="num" id="p-gtbt" inputmode="numeric"></label>
+			<label class="f"><span>Giảm trừ mỗi NPT (đ/tháng)</span><input class="num" id="p-gtnpt" inputmode="numeric"></label>
+		</div>
+		<div class="row2">
+			<label class="f"><span>Số người phụ thuộc</span><input class="num" type="number" id="p-npt" min="0" max="9"></label>
+			<label class="f"><span>NPT giảm trừ từ tháng</span><input type="month" id="p-nptfrom"></label>
+		</div>
+		<label class="chk"><input type="checkbox" id="p-uq"><span>Ủy quyền công ty quyết toán thay (uy_quyen_yn)</span></label>
+		<label class="chk"><input type="checkbox" id="p-gtafter"><span>Vẫn tính giảm trừ ở tháng đã nghỉ việc nếu còn nhận thu nhập</span></label>
+	</div>
+	<div class="grp">
+		<h3>Các đợt thưởng</h3>
+		<div id="bonusList"></div>
+		<button class="btn" type="button" id="addBonus">+ Thêm khoản thưởng</button>
+		<p class="hint" style="margin-top:8px">“Thuộc kỳ lương” chỉ dùng ở cơ chế theo kỳ lương.</p>
+	</div>
+	<div class="grp">
+		<details>
+			<summary style="cursor:pointer;font-weight:600">Biểu thuế lũy tiến (tdmthuelt)</summary>
+			<div class="brs" id="brs" style="margin-top:10px"></div>
+			<p class="hint" style="margin-top:8px">Ngưỡng tính theo thu nhập tính thuế / tháng, đơn vị triệu đồng.</p>
+		</details>
+	</div>
 </form>
 </details>
 
 <main class="work">
-  <div class="kpis" id="kpis" aria-live="polite"></div>
-  <div class="tabs" role="tablist" aria-label="Nội dung">
-    <button class="tab" role="tab" id="t-dien-tien" data-tab="dien-tien">Diễn tiến lương &amp; thưởng</button>
-    <button class="tab" role="tab" id="t-du-lieu" data-tab="du-lieu">Bảng dữ liệu FAST</button>
-    <button class="tab" role="tab" id="t-to-khai-thang" data-tab="to-khai-thang">Tờ khai tháng</button>
-    <button class="tab" role="tab" id="t-quyet-toan" data-tab="quyet-toan">Quyết toán</button>
-  </div>
+	<div class="kpis" id="kpis" aria-live="polite"></div>
+	<div class="tabs" role="tablist" aria-label="Nội dung">
+		<button class="tab" role="tab" id="t-dien-tien" data-tab="dien-tien">Diễn tiến lương &amp; thưởng</button>
+		<button class="tab" role="tab" id="t-du-lieu" data-tab="du-lieu">Bảng dữ liệu FAST</button>
+		<button class="tab" role="tab" id="t-to-khai-thang" data-tab="to-khai-thang">Tờ khai tháng</button>
+		<button class="tab" role="tab" id="t-quyet-toan" data-tab="quyet-toan">Quyết toán</button>
+	</div>
 
-  <section id="panel-dien-tien" role="tabpanel" aria-labelledby="t-dien-tien">
-    <div class="player">
-      <button class="btn" type="button" id="btnFirst" aria-label="Về sự kiện đầu">⏮</button>
-      <button class="btn" type="button" id="btnPrev">◀ Trước</button>
-      <button class="btn pri" type="button" id="btnPlay">▶ Phát</button>
-      <button class="btn" type="button" id="btnNext">Sau ▶</button>
-      <span class="cnt" id="stepLabel"></span>
-      <input type="range" id="stepRange" min="0" max="0" value="0" aria-label="Chọn sự kiện">
-    </div>
-    <p class="narr" id="narr"></p>
-    <div class="tl" id="tlWrap"></div>
-    <div class="legend">
-      <span><i class="b-inc"></i>Lương</span>
-      <span><i class="b-bonus"></i>Thưởng</span>
-      <span><i style="background:repeating-linear-gradient(45deg,var(--ded) 0 2px,transparent 2px 5px);border:1px solid var(--ded)"></i>Phần được giảm trừ (không chịu thuế)</span>
-      <span><i class="b-tax"></i>Thuế khấu trừ (thang đo riêng)</span>
-      <span>Chấm tròn = chi lương · thoi = chi thưởng · vùng sọc = ngoài chu kỳ</span>
-    </div>
-    <div class="insp" id="inspector"></div>
-    <div class="card" style="margin-top:14px"><h3>Toàn bộ sự kiện trong chu kỳ</h3><p class="sub">Bấm một dòng để xem lại bước tính tương ứng.</p><div class="tbl-wrap"><div id="evTable"></div></div></div>
-  </section>
+	<section id="panel-dien-tien" role="tabpanel" aria-labelledby="t-dien-tien">
+		<div class="player">
+			<button class="btn" type="button" id="btnFirst" aria-label="Về sự kiện đầu">⏮</button>
+			<button class="btn" type="button" id="btnPrev">◀ Trước</button>
+			<button class="btn pri" type="button" id="btnPlay">▶ Phát</button>
+			<button class="btn" type="button" id="btnNext">Sau ▶</button>
+			<span class="cnt" id="stepLabel"></span>
+			<input type="range" id="stepRange" min="0" max="0" value="0" aria-label="Chọn sự kiện">
+		</div>
+		<p class="narr" id="narr"></p>
+		<div id="leaveInfo"></div>
+		<div class="tl" id="tlWrap"></div>
+		<div class="legend">
+			<span><i class="b-inc"></i>Lương</span>
+			<span><i class="b-bonus"></i>Thưởng</span>
+			<span><i style="background:repeating-linear-gradient(45deg,var(--ded) 0 2px,transparent 2px 5px);border:1px solid var(--ded)"></i>Phần được giảm trừ (không chịu thuế)</span>
+			<span><i class="b-tax"></i>Thuế khấu trừ (thang đo riêng)</span>
+			<span>Chấm tròn = chi lương · thoi = chi thưởng · vùng sọc = ngoài chu kỳ</span>
+		</div>
+		<div class="insp" id="inspector"></div>
+		<div class="card" style="margin-top:14px"><h3>Toàn bộ sự kiện trong chu kỳ</h3><p class="sub">Bấm một dòng để xem lại bước tính tương ứng.</p><div class="tbl-wrap"><div id="evTable"></div></div></div>
+	</section>
 
-  <section id="panel-du-lieu" role="tabpanel" aria-labelledby="t-du-lieu" hidden>
-    <div class="card">
-      <h3>Dữ liệu FAST HRM ghi lại sau khi tính thuế</h3>
-      <p class="sub" id="dataSub"></p>
-      <div class="ctl">
-        <div class="pill" id="tblPick" role="group" aria-label="Chọn bảng"></div>
-        <label>Kỳ thuế <select id="tblMonth"></select></label>
-      </div>
-      <div id="dataBody"></div>
-    </div>
-  </section>
+	<section id="panel-du-lieu" role="tabpanel" aria-labelledby="t-du-lieu" hidden>
+		<div class="card">
+			<h3>Dữ liệu FAST HRM ghi lại sau khi tính thuế</h3>
+			<p class="sub" id="dataSub"></p>
+			<div class="ctl">
+				<div class="pill" id="tblPick" role="group" aria-label="Chọn bảng"></div>
+				<label>Kỳ thuế <select id="tblMonth"></select></label>
+			</div>
+			<div id="dataBody"></div>
+		</div>
+	</section>
 
-  <section id="panel-to-khai-thang" role="tabpanel" aria-labelledby="t-to-khai-thang" hidden>
-    <div class="card">
-      <h3>Tờ khai khấu trừ thuế TNCN của đơn vị trả thu nhập</h3>
-      <p class="sub">Số liệu lấy từ hrt02$ của kỳ được chọn, theo logic thủ tục hs_rpt02KK.</p>
-      <div class="ctl">
-        <div class="pill" id="fKind" role="group" aria-label="Kỳ khai">
-          <button type="button" data-k="thang" aria-pressed="true">Theo tháng</button>
-          <button type="button" data-k="quy" aria-pressed="false">Theo quý</button>
-        </div>
-        <label>Kỳ khai <select id="fPeriod"></select></label>
-      </div>
-      <div id="formBody"></div>
-    </div>
-  </section>
+	<section id="panel-to-khai-thang" role="tabpanel" aria-labelledby="t-to-khai-thang" hidden>
+		<div class="card">
+			<h3>Tờ khai khấu trừ thuế TNCN của đơn vị trả thu nhập</h3>
+			<p class="sub">Số liệu lấy từ hrt02$ của kỳ được chọn, theo logic thủ tục hs_rpt02KK.</p>
+			<div class="ctl">
+				<div class="pill" id="fKind" role="group" aria-label="Kỳ khai">
+					<button type="button" data-k="thang" aria-pressed="true">Theo tháng</button>
+					<button type="button" data-k="quy" aria-pressed="false">Theo quý</button>
+				</div>
+				<label>Kỳ khai <select id="fPeriod"></select></label>
+			</div>
+			<div id="formBody"></div>
+		</div>
+	</section>
 
-  <section id="panel-quyet-toan" role="tabpanel" aria-labelledby="t-quyet-toan" hidden>
-    <div class="stack" id="settleBody"></div>
-  </section>
+	<section id="panel-quyet-toan" role="tabpanel" aria-labelledby="t-quyet-toan" hidden>
+		<div class="stack" id="settleBody"></div>
+	</section>
 </main>
 </div>
 
 <footer class="wrap">
-  <details>
-    <summary>Nguồn, giả định và điểm cần đối chiếu</summary>
-    <ul>
-      <li><b>Có trong tài liệu dự án:</b> luật 109/2025/QH15, NĐ 253/2026, TT 87/2026 (hiệu lực 01/07/2026); giảm trừ 15,5tr và 6,2tr; thuế suất 5-10-20-30-35%; bảng options, hrt00$/hrt01$/hrt02$/hrt03$/hrt9; luồng hs_CalcPersonalIncomeTax, hs_CalcPersonalIncomeTax4Year; chỉ tiêu của hs_rpt02KK và hs_rpt05KK.</li>
-      <li><b>Ngưỡng bậc thuế:</b> tài liệu dự án chưa ghi ngưỡng. Lấy từ Điều 9 Luật 2025 (tra cứu web): đến 10, trên 10-30, 30-60 triệu/tháng; bậc 60-100 triệu (30%) và trên 100 triệu (35%) suy ra từ biểu năm. Cần kiểm tra lại trong tdmthuelt của khách.</li>
-      <li><b>Cách ghi bảng hrt9 (hrt09):</b> tên cột theo tài liệu thiết kế thực chi (tn_ct, tien_gt, tn_tt, thue, thue_cl). Ý nghĩa thue = thuế tính lại lũy kế tháng, thue_cl = thuế khấu trừ thêm ở đợt chi là cách mô phỏng. Source thủ tục xử lý thực chi chưa có trong tài liệu, cần đối chiếu với DB thật. Phân bổ giảm trừ trong hrt01$ cũng là minh họa.</li>
-      <li><b>Mẫu tờ khai:</b> hồ sơ khai thuế dùng mẫu theo TT 89/2026/TT-BTC (thay TT 80/2021 từ 01/07/2026). Tổ chức trả thu nhập khai bằng mẫu 05/KK-TNCN; tài liệu dự án gọi thủ tục hs_rpt02KK là mẫu 02/KK-TNCN, trong khi 02/KK-TNCN là mẫu cá nhân tự khai. Mã chỉ tiêu trên trang theo thủ tục trong tài liệu và mẫu 05/QTT-TNCN hiện hành; chưa đối chiếu được file mẫu chính thức của TT 89 nên cần kiểm tra trước khi dùng với khách.</li>
-      <li><b>Kỳ quyết toán:</b> theo luật mặc định là năm dương lịch (dùng nút “Năm dương lịch 2027”). Chu kỳ 14 tháng ở cấu hình mặc định chỉ để minh họa: biểu quyết toán được nhân với số tháng của chu kỳ.</li>
-      <li><b>Đơn giản hóa:</b> cá nhân cư trú, HĐLĐ từ 3 tháng, một nơi trả thu nhập; chưa có khoản miễn thuế, giảm trừ y tế, giáo dục, từ thiện; lương tháng vào làm hoặc nghỉ việc chia theo ngày lịch. Dữ liệu NV A, đơn vị, mã số thuế là giả định để minh họa, không dùng để nộp.</li>
-    </ul>
-  </details>
+	<details>
+		<summary>Nguồn, giả định và điểm cần đối chiếu</summary>
+		<ul>
+			<li><b>Có trong tài liệu dự án:</b> luật 109/2025/QH15, NĐ 253/2026, TT 87/2026 (hiệu lực 01/07/2026); giảm trừ 15,5tr và 6,2tr; thuế suất 5-10-20-30-35%; bảng options, hrt00$/hrt01$/hrt02$/hrt03$/hrt9; luồng hs_CalcPersonalIncomeTax, hs_CalcPersonalIncomeTax4Year; chỉ tiêu của hs_rpt02KK và hs_rpt05KK.</li>
+			<li><b>Ngưỡng bậc thuế:</b> tài liệu dự án chưa ghi ngưỡng. Lấy từ Điều 9 Luật 2025 (tra cứu web): đến 10, trên 10-30, 30-60 triệu/tháng; bậc 60-100 triệu (30%) và trên 100 triệu (35%) suy ra từ biểu năm. Cần kiểm tra lại trong tdmthuelt của khách.</li>
+			<li><b>Cách ghi bảng hrt9 (hrt09):</b> tên cột theo tài liệu thiết kế thực chi (tn_ct, tien_gt, tn_tt, thue, thue_cl). Ý nghĩa thue = thuế tính lại lũy kế tháng, thue_cl = thuế khấu trừ thêm ở đợt chi là cách mô phỏng. Source thủ tục xử lý thực chi chưa có trong tài liệu, cần đối chiếu với DB thật. Phân bổ giảm trừ trong hrt01$ cũng là minh họa.</li>
+			<li><b>Mẫu tờ khai:</b> hồ sơ khai thuế dùng mẫu theo TT 89/2026/TT-BTC (thay TT 80/2021 từ 01/07/2026). Tổ chức trả thu nhập khai bằng mẫu 05/KK-TNCN; tài liệu dự án gọi thủ tục hs_rpt02KK là mẫu 02/KK-TNCN, trong khi 02/KK-TNCN là mẫu cá nhân tự khai. Mã chỉ tiêu trên trang theo thủ tục trong tài liệu và mẫu 05/QTT-TNCN hiện hành; chưa đối chiếu được file mẫu chính thức của TT 89 nên cần kiểm tra trước khi dùng với khách.</li>
+			<li><b>Kỳ quyết toán:</b> theo luật mặc định là năm dương lịch (dùng nút “Năm dương lịch 2027”). Chu kỳ 14 tháng ở cấu hình mặc định chỉ để minh họa: biểu quyết toán được nhân với số tháng của chu kỳ.</li>
+			<li><b>Đơn giản hóa:</b> cá nhân cư trú, HĐLĐ từ 3 tháng, một nơi trả thu nhập; chưa có khoản miễn thuế, giảm trừ y tế, giáo dục, từ thiện; lương tháng vào làm hoặc nghỉ việc chia theo ngày lịch. Dữ liệu NV A, đơn vị, mã số thuế là giả định để minh họa, không dùng để nộp.</li>
+		</ul>
+	</details>
 </footer>
 
 <script>
@@ -405,110 +409,120 @@ var monthEnd=function(i){var y=idxY(i),m=idxM(i);return mkDate(y,m,dim(y,m))};
 
 /* ========== Tham số mặc định ========== */
 function defaults(){
-  return {
-    from:'2026-11', to:'2027-12', mode:1,
-    salary:20000000, bh:0, payDay:5, delay:1,
-    join:'2025-03-01', leave:'', gtBT:15500000, gtNPT:6200000, npt:0, nptFrom:'2026-11', gtAfter:false, uq:true,
-    bonuses:[
-      {id:1,on:true,name:'Thưởng phép năm 2026',amount:6000000,date:'2026-12-25',period:'2026-12'},
-      {id:2,on:true,name:'Lương tháng 13 (2026)',amount:20000000,date:'2027-01-20',period:'2026-12'},
-      {id:3,on:true,name:'Thưởng SXKD quý 4/2026',amount:25000000,date:'2027-01-28',period:'2026-12'},
-      {id:4,on:true,name:'Thưởng phép năm 2027',amount:6000000,date:'2027-12-25',period:'2027-12'}
-    ],
-    brackets:[{to:10e6,rate:5},{to:30e6,rate:10},{to:60e6,rate:20},{to:100e6,rate:30},{to:null,rate:35}]
-  };
+	return {
+		from:'2026-11', to:'2027-12', mode:1,
+		salary:20000000, salMap:{}, bh:0, payDay:5, delay:1,
+		join:'2025-03-01', leave:'', gtBT:15500000, gtNPT:6200000, npt:0, nptFrom:'2026-11', gtAfter:false, uq:true,
+		bonuses:[
+			{id:1,on:true,name:'Thưởng phép năm 2026',amount:6000000,date:'2026-12-25',period:'2026-12'},
+			{id:2,on:true,name:'Lương tháng 13 (2026)',amount:20000000,date:'2027-01-20',period:'2026-12'},
+			{id:3,on:true,name:'Thưởng SXKD quý 4/2026',amount:25000000,date:'2027-01-28',period:'2026-12'},
+			{id:4,on:true,name:'Thưởng phép năm 2027',amount:6000000,date:'2027-12-25',period:'2027-12'}
+		],
+		brackets:[{to:10e6,rate:5},{to:30e6,rate:10},{to:60e6,rate:20},{to:100e6,rate:30},{to:null,rate:35}]
+	};
 }
 
 /* ========== Engine tính thuế ========== */
 function normBr(b){return b.map(function(x,i){return {to:i===b.length-1?null:(Number(x.to)||0),rate:Number(x.rate)||0}})}
 function taxDetail(x,br,scale){
-  scale=scale||1;var prev=0,tot=0,rows=[];
-  br.forEach(function(b,k){
-    var up=b.to==null?Infinity:b.to*scale;
-    var amt=Math.max(0,Math.min(x,up)-prev);
-    var t=Math.round(amt*b.rate/100);
-    rows.push({k:k,lo:prev,up:up,rate:b.rate,amt:amt,tax:t});
-    tot+=t;prev=up;
-  });
-  return {tot:tot,rows:rows};
+	scale=scale||1;var prev=0,tot=0,rows=[];
+	br.forEach(function(b,k){
+		var up=b.to==null?Infinity:b.to*scale;
+		var amt=Math.max(0,Math.min(x,up)-prev);
+		var t=Math.round(amt*b.rate/100);
+		rows.push({k:k,lo:prev,up:up,rate:b.rate,amt:amt,tax:t});
+		tot+=t;prev=up;
+	});
+	return {tot:tot,rows:rows};
 }
 function empDays(i,J,L){
-  var y=idxY(i),m=idxM(i),n=dim(y,m),a=1,b=n;
-  if(J){if(J.idx>i)return 0;if(J.idx===i)a=J.d}
-  if(L&&(!J||L.key>=J.key)){if(L.idx<i)return 0;if(L.idx===i)b=L.d}
-  return Math.max(0,b-a+1);
+	var y=idxY(i),m=idxM(i),n=dim(y,m),a=1,b=n;
+	if(J){if(J.idx>i)return 0;if(J.idx===i)a=J.d}
+	if(L&&(!J||L.key>=J.key)){if(L.idx<i)return 0;if(L.idx===i)b=L.d}
+	return Math.max(0,b-a+1);
 }
+function salOf(P,i){var k=idxY(i)+'-'+pad(idxM(i));var v=P.salMap&&P.salMap[k];return (v===undefined||v===null)?P.salary:v}
 function run(P){
-  var F=parseYM(P.from),T=parseYM(P.to);
-  if(!isFinite(F))F=ymIdx(2026,11);
-  if(!isFinite(T)||T<F)T=F;
-  if(T-F>35)T=F+35;
-  var N=T-F+1;
-  var J=P.join?parseDate(P.join):null,Lv=P.leave?parseDate(P.leave):null;
-  var br=normBr(P.brackets);
-  var nptFrom=P.nptFrom?parseYM(P.nptFrom):F;
-  var delay=+P.delay||0;
-  var evs=[],seq=0;
-  function add(o){o.seq=seq++;o.id='e'+o.seq;o.out=o.taxIdx<F||o.taxIdx>T;o.far=o.taxIdx<F-1||o.taxIdx>T+1;evs.push(o)}
-  for(var i=F-2-delay;i<=T+2;i++){
-    var days=empDays(i,J,Lv);if(days<=0)continue;
-    var y=idxY(i),m=idxM(i),n=dim(y,m);
-    var amt=Math.round(P.salary*days/n);if(amt<=0)continue;
-    var pIdx=i+delay,py=idxY(pIdx),pm=idxM(pIdx);
-    var pay=mkDate(py,pm,Math.min(clamp(+P.payDay||1,1,31),dim(py,pm)));
-    var taxIdx=P.mode===1?pIdx:i;
-    var taxKey=P.mode===1?pay.key:(y*10000+m*100+n);
-    add({type:'L',name:'Lương '+ymLabel(i),tnct:amt,bh:Math.round(P.bh*days/n),pay:pay,kyIdx:i,taxIdx:taxIdx,taxKey:taxKey,partial:days<n});
-  }
-  P.bonuses.forEach(function(b,k){
-    if(!b.on||!b.date||!(b.amount>0))return;
-    var pay=parseDate(b.date);if(!pay)return;
-    var per=b.period?parseYM(b.period):pay.idx;
-    add({type:'B',name:b.name||('Thưởng '+(k+1)),tnct:b.amount,bh:0,pay:pay,kyIdx:per,taxIdx:P.mode===1?pay.idx:per,taxKey:pay.key,bonusNo:k+1});
-  });
-  evs.sort(function(a,b){return a.taxKey-b.taxKey||(a.type===b.type?0:(a.type==='L'?-1:1))||a.seq-b.seq});
-  var steps=evs.filter(function(e){return !e.out});
-  var groups=new Map();
-  steps.forEach(function(e){if(!groups.has(e.taxIdx))groups.set(e.taxIdx,[]);groups.get(e.taxIdx).push(e)});
-  var months=new Map();
-  groups.forEach(function(list,idx){
-    list=list.slice().sort(function(a,b){return (a.type===b.type?0:(a.type==='L'?-1:1))||a.taxKey-b.taxKey||a.seq-b.seq});
-    var d=empDays(idx,J,Lv);
-    var gtOn=d>0||!!P.gtAfter;
-    var gtB=gtOn?P.gtBT:0;
-    var gtN=(gtOn&&P.npt>0&&idx>=nptFrom)?P.npt*P.gtNPT:0;
-    var cT=0,cB=0,w=0,first=true;
-    list.forEach(function(e){
-      var preT=cT,preB=cB;
-      var preGt=preT>0?gtB+gtN:0;
-      var preTn=Math.max(0,preT-preB-preGt);
-      e.pre={tnct:preT,bh:preB,gtB:preT>0?gtB:0,gtN:preT>0?gtN:0,tntt:preTn,thue:w};
-      cT+=e.tnct;cB+=e.bh;
-      var tn=Math.max(0,cT-cB-gtB-gtN);
-      var th=taxDetail(tn,br,1).tot;
-      e.post={tnct:cT,bh:cB,gtB:gtB,gtN:gtN,tntt:tn,thueRecalc:th};
-      e.thueEv=th-w;w=th;e.first=first;first=false;
-    });
-    months.set(idx,{idx:idx,events:list,tnct:cT,bh:cB,gtB:gtB,gtN:gtN,tntt:Math.max(0,cT-cB-gtB-gtN),thue:w});
-  });
-  var tnct=0,bh=0,thue=0,nBT=0,nPT=0;
-  for(var k=F;k<=T;k++){
-    var mo=months.get(k);
-    if(mo){tnct+=mo.tnct;bh+=mo.bh;thue+=mo.thue}
-    var on=empDays(k,J,Lv)>0||(P.gtAfter&&!!mo);
-    if(on){nBT++;if(P.npt>0&&k>=nptFrom)nPT++}
-  }
-  var gtBTall=nBT*P.gtBT,gtNPTall=nPT*P.npt*P.gtNPT;
-  var tntt=Math.max(0,tnct-bh-gtBTall-gtNPTall);
-  var qt=taxDetail(tntt,br,N);
-  var diff=qt.tot-thue;
-  var endKey=monthEnd(T).key;
-  var employedAtEnd=!Lv||Lv.key>=endKey;
-  var uq=!!P.uq&&employedAtEnd;
-  var mien=(diff>0&&diff<=50000)?diff:0;
-  var sett={N:N,tnct:tnct,bh:bh,thue:thue,nBT:nBT,nPT:nPT,gtBT:gtBTall,gtNPT:gtNPTall,tntt:tntt,thueQT:qt.tot,qtRows:qt.rows,diff:diff,
-    thua:diff<0?-diff:0,conNop:diff>0?diff:0,mien:mien,uq:uq,uqWanted:!!P.uq,employedAtEnd:employedAtEnd,npt:P.npt};
-  return {P:P,F:F,T:T,N:N,br:br,J:J,Lv:Lv,mode:P.mode,evs:evs,steps:steps,months:months,sett:sett,year:idxY(T)};
+	var F=parseYM(P.from),T=parseYM(P.to);
+	if(!isFinite(F))F=ymIdx(2026,11);
+	if(!isFinite(T)||T<F)T=F;
+	if(T-F>35)T=F+35;
+	var N=T-F+1;
+	var J=P.join?parseDate(P.join):null,Lv=P.leave?parseDate(P.leave):null;
+	var br=normBr(P.brackets);
+	var nptFrom=P.nptFrom?parseYM(P.nptFrom):F;
+	var delay=+P.delay||0;
+	var evs=[],seq=0;
+	function add(o){o.seq=seq++;o.id='e'+o.seq;o.out=o.taxIdx<F||o.taxIdx>T;o.far=o.taxIdx<F-1||o.taxIdx>T+1;evs.push(o)}
+	for(var i=F-2-delay;i<=T+2;i++){
+		var days=empDays(i,J,Lv);if(days<=0)continue;
+		var y=idxY(i),m=idxM(i),n=dim(y,m);
+		var amt=Math.round(salOf(P,i)*days/n);if(amt<=0)continue;
+		var pIdx=i+delay,py=idxY(pIdx),pm=idxM(pIdx);
+		var pay=mkDate(py,pm,Math.min(clamp(+P.payDay||1,1,31),dim(py,pm)));
+		var taxIdx=P.mode===1?pIdx:i;
+		var taxKey=P.mode===1?pay.key:(y*10000+m*100+n);
+		add({type:'L',name:'Lương '+ymLabel(i),tnct:amt,bh:Math.round(P.bh*days/n),pay:pay,kyIdx:i,taxIdx:taxIdx,taxKey:taxKey,partial:days<n});
+	}
+	P.bonuses.forEach(function(b,k){
+		if(!b.on||!b.date||!(b.amount>0))return;
+		var pay=parseDate(b.date);if(!pay)return;
+		var per=b.period?parseYM(b.period):pay.idx;
+		add({type:'B',name:b.name||('Thưởng '+(k+1)),tnct:b.amount,bh:0,pay:pay,kyIdx:per,taxIdx:P.mode===1?pay.idx:per,taxKey:pay.key,bonusNo:k+1});
+	});
+	evs.sort(function(a,b){return a.taxKey-b.taxKey||(a.type===b.type?0:(a.type==='L'?-1:1))||a.seq-b.seq});
+	var steps=evs.filter(function(e){return !e.out});
+	var groups=new Map();
+	steps.forEach(function(e){if(!groups.has(e.taxIdx))groups.set(e.taxIdx,[]);groups.get(e.taxIdx).push(e)});
+	var months=new Map();
+	groups.forEach(function(list,idx){
+		list=list.slice().sort(function(a,b){return (a.type===b.type?0:(a.type==='L'?-1:1))||a.taxKey-b.taxKey||a.seq-b.seq});
+		var d=empDays(idx,J,Lv);
+		var gtOn=d>0||!!P.gtAfter;
+		var gtB=gtOn?P.gtBT:0;
+		var gtN=(gtOn&&P.npt>0&&idx>=nptFrom)?P.npt*P.gtNPT:0;
+		var cT=0,cB=0,w=0,first=true;
+		list.forEach(function(e){
+			var preT=cT,preB=cB;
+			var preGt=preT>0?gtB+gtN:0;
+			var preTn=Math.max(0,preT-preB-preGt);
+			e.pre={tnct:preT,bh:preB,gtB:preT>0?gtB:0,gtN:preT>0?gtN:0,tntt:preTn,thue:w};
+			cT+=e.tnct;cB+=e.bh;
+			var tn=Math.max(0,cT-cB-gtB-gtN);
+			var th=taxDetail(tn,br,1).tot;
+			e.post={tnct:cT,bh:cB,gtB:gtB,gtN:gtN,tntt:tn,thueRecalc:th};
+			e.thueEv=th-w;w=th;e.first=first;first=false;
+		});
+		months.set(idx,{idx:idx,events:list,tnct:cT,bh:cB,gtB:gtB,gtN:gtN,tntt:Math.max(0,cT-cB-gtB-gtN),thue:w});
+	});
+	var cT0=0,cX0=0;steps.forEach(function(e){cT0+=e.tnct;cX0+=e.thueEv;e.cumT=cT0;e.cumX=cX0});
+	var leaveInfo=null;
+	if(Lv){
+		var f1=mkDate(idxY(F),idxM(F),1),startD=(J&&J.key>f1.key)?J:f1;
+		var upTo=steps.filter(function(e){return e.pay.key<=Lv.key}),aft=steps.filter(function(e){return e.pay.key>Lv.key});
+		var sm=function(a,f){return a.reduce(function(x,e){return x+e[f]},0)};
+		var gm=0;for(var q=F;q<=Math.min(T,Lv.idx);q++){if(empDays(q,J,Lv)>0)gm++}
+		leaveInfo={leave:Lv,start:startD,before:Lv.key<f1.key,tnct:sm(upTo,'tnct'),thue:sm(upTo,'thueEv'),n:upTo.length,gm:gm,afterT:sm(aft,'tnct'),afterX:sm(aft,'thueEv'),afterN:aft.length};
+	}
+	var tnct=0,bh=0,thue=0,nBT=0,nPT=0;
+	for(var k=F;k<=T;k++){
+		var mo=months.get(k);
+		if(mo){tnct+=mo.tnct;bh+=mo.bh;thue+=mo.thue}
+		var on=empDays(k,J,Lv)>0||(P.gtAfter&&!!mo);
+		if(on){nBT++;if(P.npt>0&&k>=nptFrom)nPT++}
+	}
+	var gtBTall=nBT*P.gtBT,gtNPTall=nPT*P.npt*P.gtNPT;
+	var tntt=Math.max(0,tnct-bh-gtBTall-gtNPTall);
+	var qt=taxDetail(tntt,br,N);
+	var diff=qt.tot-thue;
+	var endKey=monthEnd(T).key;
+	var employedAtEnd=!Lv||Lv.key>=endKey;
+	var uq=!!P.uq&&employedAtEnd;
+	var mien=(diff>0&&diff<=50000)?diff:0;
+	var sett={N:N,tnct:tnct,bh:bh,thue:thue,nBT:nBT,nPT:nPT,gtBT:gtBTall,gtNPT:gtNPTall,tntt:tntt,thueQT:qt.tot,qtRows:qt.rows,diff:diff,
+		thua:diff<0?-diff:0,conNop:diff>0?diff:0,mien:mien,uq:uq,uqWanted:!!P.uq,employedAtEnd:employedAtEnd,npt:P.npt};
+	return {P:P,F:F,T:T,N:N,br:br,J:J,Lv:Lv,leaveInfo:leaveInfo,mode:P.mode,evs:evs,steps:steps,months:months,sett:sett,year:idxY(T)};
 }
 
 /* ========== Trạng thái ========== */
@@ -516,626 +530,666 @@ var P=defaults(),R=null,sel=null,tab='dien-tien',tblSel='hrt9',tblMonth=null,fKi
 
 function recompute(){R=run(P);ensureSel();renderAll()}
 function ensureSel(){
-  if(sel&&R.steps.some(function(e){return e.id===sel}))return;
-  var b=R.steps.filter(function(e){return e.type==='B'})[0];
-  sel=b?b.id:(R.steps[0]?R.steps[0].id:null);
+	if(sel&&R.steps.some(function(e){return e.id===sel}))return;
+	var b=R.steps.filter(function(e){return e.type==='B'})[0];
+	sel=b?b.id:(R.steps[0]?R.steps[0].id:null);
 }
 function curEv(){return R.steps.filter(function(e){return e.id===sel})[0]||null}
 
 /* ========== Form tham số ========== */
 function setMoney(el,n){el.value=n?n.toLocaleString('vi-VN'):'0'}
 function syncInputs(){
-  $('#p-from').value=P.from;$('#p-to').value=P.to;
-  $$('input[name=mode]').forEach(function(r){r.checked=(+r.value===P.mode)});
-  setMoney($('#p-salary'),P.salary);setMoney($('#p-bh'),P.bh);
-  $('#p-payday').value=P.payDay;$('#p-delay').value=String(P.delay);
-  $('#p-join').value=P.join;$('#p-leave').value=P.leave;
-  setMoney($('#p-gtbt'),P.gtBT);setMoney($('#p-gtnpt'),P.gtNPT);
-  $('#p-npt').value=P.npt;$('#p-nptfrom').value=P.nptFrom;
-  $('#p-uq').checked=P.uq;$('#p-gtafter').checked=P.gtAfter;
-  renderBonuses();renderBrackets();
+	$('#p-from').value=P.from;$('#p-to').value=P.to;
+	$$('input[name=mode]').forEach(function(r){r.checked=(+r.value===P.mode)});
+	setMoney($('#p-salary'),P.salary);setMoney($('#p-bh'),P.bh);
+	$('#p-payday').value=P.payDay;$('#p-delay').value=String(P.delay);
+	$('#p-join').value=P.join;$('#p-leave').value=P.leave;
+	setMoney($('#p-gtbt'),P.gtBT);setMoney($('#p-gtnpt'),P.gtNPT);
+	$('#p-npt').value=P.npt;$('#p-nptfrom').value=P.nptFrom;
+	$('#p-uq').checked=P.uq;$('#p-gtafter').checked=P.gtAfter;
+	renderBonuses();renderBrackets();renderSalGrid();
+}
+function salMonths(){
+	var F=parseYM(P.from),T=parseYM(P.to);if(!isFinite(F))return [];if(!isFinite(T)||T<F)T=F;if(T-F>35)T=F+35;
+	var d=+P.delay||0,a=P.mode===1?F-d:F,b=P.mode===1?T-d:T,out=[];
+	for(var i=a;i<=b;i++)out.push(i);return out;
+}
+function renderSalGrid(){
+	$('#salGrid').innerHTML=salMonths().map(function(i){
+		var k=idxY(i)+'-'+pad(idxM(i)),ov=P.salMap[k]!==undefined;
+		return '<label>Lương '+ymLabel(i)+'<input type="text" class="num sal-in" inputmode="numeric" data-k="'+k+'"'+(ov?' data-ov="1"':'')+' value="'+vn(ov?P.salMap[k]:P.salary)+'"></label>';
+	}).join('');
 }
 function renderBonuses(){
-  $('#bonusList').innerHTML=P.bonuses.map(function(b){
-    return '<div class="bn'+(b.on?'':' off')+'" data-id="'+b.id+'">'+
-      '<div class="bn-h"><input type="checkbox" class="bn-on" aria-label="Tính khoản này"'+(b.on?' checked':'')+'><input type="text" class="bn-name" value="'+esc(b.name)+'" aria-label="Tên khoản thưởng"><button type="button" class="bn-del" aria-label="Xóa khoản thưởng">×</button></div>'+
-      '<div class="bn-g"><label>Số tiền (đ)<input type="text" class="num bn-amt" inputmode="numeric" value="'+vn(b.amount)+'"></label>'+
-      '<label>Ngày chi<input type="date" class="bn-date" value="'+esc(b.date)+'"></label>'+
-      '<label class="wide">Thuộc kỳ lương<input type="month" class="bn-period" value="'+esc(b.period)+'"></label></div></div>';
-  }).join('');
+	$('#bonusList').innerHTML=P.bonuses.map(function(b){
+		return '<div class="bn'+(b.on?'':' off')+'" data-id="'+b.id+'">'+
+			'<div class="bn-h"><input type="checkbox" class="bn-on" aria-label="Tính khoản này"'+(b.on?' checked':'')+'><input type="text" class="bn-name" value="'+esc(b.name)+'" aria-label="Tên khoản thưởng"><button type="button" class="bn-del" aria-label="Xóa khoản thưởng">×</button></div>'+
+			'<div class="bn-g"><label>Số tiền (đ)<input type="text" class="num bn-amt" inputmode="numeric" value="'+vn(b.amount)+'"></label>'+
+			'<label>Ngày chi<input type="date" class="bn-date" value="'+esc(b.date)+'"></label>'+
+			'<label class="wide">Thuộc kỳ lương<input type="month" class="bn-period" value="'+esc(b.period)+'"></label></div></div>';
+	}).join('');
 }
 function renderBrackets(){
-  var h='';
-  P.brackets.forEach(function(b,i){
-    var last=i===P.brackets.length-1,prevTo=i?P.brackets[i-1].to/1e6:0;
-    h+='<span>Bậc '+(i+1)+'</span>'+
-      (last?'<span id="brLast" style="text-align:right">trên '+prevTo+'</span>':'<input type="number" class="br-to" data-i="'+i+'" value="'+(b.to/1e6)+'" min="0" step="1" aria-label="Ngưỡng trên bậc '+(i+1)+' (triệu)">')+
-      '<span>tr</span><input type="number" class="br-rate" data-i="'+i+'" value="'+b.rate+'" min="0" max="100" step="1" aria-label="Thuế suất bậc '+(i+1)+'"><span>%</span>';
-  });
-  $('#brs').innerHTML=h;
+	var h='';
+	P.brackets.forEach(function(b,i){
+		var last=i===P.brackets.length-1,prevTo=i?P.brackets[i-1].to/1e6:0;
+		h+='<span>Bậc '+(i+1)+'</span>'+
+			(last?'<span id="brLast" style="text-align:right">trên '+prevTo+'</span>':'<input type="number" class="br-to" data-i="'+i+'" value="'+(b.to/1e6)+'" min="0" step="1" aria-label="Ngưỡng trên bậc '+(i+1)+' (triệu)">')+
+			'<span>tr</span><input type="number" class="br-rate" data-i="'+i+'" value="'+b.rate+'" min="0" max="100" step="1" aria-label="Thuế suất bậc '+(i+1)+'"><span>%</span>';
+	});
+	$('#brs').innerHTML=h;
 }
 function moneyInput(el,set){
-  el.addEventListener('input',function(){
-    var pos=el.selectionStart,left=el.value.slice(0,pos).replace(/\D/g,'').length;
-    var raw=el.value.replace(/\D/g,''),n=raw?Number(raw):0;
-    set(n);
-    el.value=raw?n.toLocaleString('vi-VN'):'';
-    var c=0,np=0;for(;np<el.value.length&&c<left;np++){if(/\d/.test(el.value[np]))c++}
-    try{el.setSelectionRange(np,np)}catch(e){}
-    recompute();
-  });
-  el.addEventListener('blur',function(){if(!el.value)el.value='0'});
+	el.addEventListener('input',function(){
+		var pos=el.selectionStart,left=el.value.slice(0,pos).replace(/\D/g,'').length;
+		var raw=el.value.replace(/\D/g,''),n=raw?Number(raw):0;
+		set(n);
+		el.value=raw?n.toLocaleString('vi-VN'):'';
+		var c=0,np=0;for(;np<el.value.length&&c<left;np++){if(/\d/.test(el.value[np]))c++}
+		try{el.setSelectionRange(np,np)}catch(e){}
+		recompute();
+	});
+	el.addEventListener('blur',function(){if(!el.value)el.value='0'});
 }
 function wireParams(){
-  $('#p-from').addEventListener('input',function(e){if(e.target.value){P.from=e.target.value;recompute()}});
-  $('#p-to').addEventListener('input',function(e){if(e.target.value){P.to=e.target.value;recompute()}});
-  $$('input[name=mode]').forEach(function(r){r.addEventListener('change',function(){P.mode=+r.value;recompute()})});
-  moneyInput($('#p-salary'),function(n){P.salary=n});
-  moneyInput($('#p-bh'),function(n){P.bh=n});
-  moneyInput($('#p-gtbt'),function(n){P.gtBT=n});
-  moneyInput($('#p-gtnpt'),function(n){P.gtNPT=n});
-  $('#p-payday').addEventListener('input',function(e){P.payDay=clamp(+e.target.value||1,1,31);recompute()});
-  $('#p-delay').addEventListener('change',function(e){P.delay=+e.target.value;recompute()});
-  $('#p-join').addEventListener('input',function(e){P.join=e.target.value;recompute()});
-  $('#p-leave').addEventListener('input',function(e){P.leave=e.target.value;recompute()});
-  $('#p-npt').addEventListener('input',function(e){P.npt=clamp(+e.target.value||0,0,9);recompute()});
-  $('#p-nptfrom').addEventListener('input',function(e){if(e.target.value){P.nptFrom=e.target.value;recompute()}});
-  $('#p-uq').addEventListener('change',function(e){P.uq=e.target.checked;recompute()});
-  $('#p-gtafter').addEventListener('change',function(e){P.gtAfter=e.target.checked;recompute()});
-  var bl=$('#bonusList');
-  function bonusOf(t){var row=t.closest('.bn');return row?P.bonuses.filter(function(b){return String(b.id)===row.dataset.id})[0]:null}
-  bl.addEventListener('input',function(e){
-    var b=bonusOf(e.target);if(!b)return;var t=e.target;
-    if(t.classList.contains('bn-name'))b.name=t.value;
-    else if(t.classList.contains('bn-amt')){
-      var raw=t.value.replace(/\D/g,'');b.amount=raw?Number(raw):0;t.value=raw?b.amount.toLocaleString('vi-VN'):'';
-    }
-    else if(t.classList.contains('bn-date'))b.date=t.value;
-    else if(t.classList.contains('bn-period'))b.period=t.value;
-    recompute();
-  });
-  bl.addEventListener('change',function(e){
-    var b=bonusOf(e.target);if(!b)return;
-    if(e.target.classList.contains('bn-on')){b.on=e.target.checked;e.target.closest('.bn').classList.toggle('off',!b.on);recompute()}
-  });
-  bl.addEventListener('click',function(e){
-    if(!e.target.classList.contains('bn-del'))return;
-    var b=bonusOf(e.target);P.bonuses=P.bonuses.filter(function(x){return x!==b});renderBonuses();recompute();
-  });
-  $('#addBonus').addEventListener('click',function(){
-    var base=parseYM(P.to);
-    P.bonuses.push({id:nextId++,on:true,name:'Thưởng mới',amount:5000000,date:idxY(base)+'-'+pad(idxM(base))+'-15',period:idxY(base)+'-'+pad(idxM(base))});
-    renderBonuses();recompute();
-  });
-  $('#brs').addEventListener('input',function(e){
-    var t=e.target,i=+t.dataset.i;
-    if(t.classList.contains('br-to'))P.brackets[i].to=(+t.value||0)*1e6;
-    else if(t.classList.contains('br-rate'))P.brackets[i].rate=+t.value||0;
-    var lastLbl=$('#brLast');
-    if(lastLbl&&t.classList.contains('br-to')&&i===P.brackets.length-2)lastLbl.textContent='trên '+(P.brackets[i].to/1e6);
-    recompute();
-  });
-  $('#presets').addEventListener('click',function(e){
-    var b=e.target.closest('[data-preset]');if(!b)return;
-    var k=b.dataset.preset;P=defaults();
-    if(k==='y2027'){P.from='2027-01';P.to='2027-12';P.nptFrom='2027-01'}
-    if(k==='nva'){
-      P.from='2026-10';P.to='2026-10';P.nptFrom='2026-10';
-      P.bonuses=[{id:1,on:true,name:'Thưởng năng suất T9/2026',amount:5000000,date:'2026-10-15',period:'2026-09'}];
-    }
-    if(k==='leave'){P.leave='2027-06-15'}
-    sel=null;syncInputs();recompute();
-  });
+	$('#p-from').addEventListener('input',function(e){if(e.target.value){P.from=e.target.value;renderSalGrid();recompute()}});
+	$('#p-to').addEventListener('input',function(e){if(e.target.value){P.to=e.target.value;renderSalGrid();recompute()}});
+	$$('input[name=mode]').forEach(function(r){r.addEventListener('change',function(){P.mode=+r.value;renderSalGrid();recompute()})});
+	moneyInput($('#p-salary'),function(n){P.salary=n;$$('#salGrid .sal-in').forEach(function(x){if(!x.dataset.ov)x.value=vn(n)})});
+	$('#salGrid').addEventListener('input',function(e){
+		var t=e.target;if(!t.classList.contains('sal-in'))return;
+		var raw=t.value.replace(/\D/g,''),n=raw?Number(raw):0;
+		P.salMap[t.dataset.k]=n;t.dataset.ov='1';t.value=raw?n.toLocaleString('vi-VN'):'';recompute();
+	});
+	$('#salReset').addEventListener('click',function(){P.salMap={};renderSalGrid();recompute()});
+	moneyInput($('#p-bh'),function(n){P.bh=n});
+	moneyInput($('#p-gtbt'),function(n){P.gtBT=n});
+	moneyInput($('#p-gtnpt'),function(n){P.gtNPT=n});
+	$('#p-payday').addEventListener('input',function(e){P.payDay=clamp(+e.target.value||1,1,31);recompute()});
+	$('#p-delay').addEventListener('change',function(e){P.delay=+e.target.value;renderSalGrid();recompute()});
+	$('#p-join').addEventListener('input',function(e){P.join=e.target.value;recompute()});
+	$('#p-leave').addEventListener('input',function(e){P.leave=e.target.value;recompute()});
+	$('#p-npt').addEventListener('input',function(e){P.npt=clamp(+e.target.value||0,0,9);recompute()});
+	$('#p-nptfrom').addEventListener('input',function(e){if(e.target.value){P.nptFrom=e.target.value;recompute()}});
+	$('#p-uq').addEventListener('change',function(e){P.uq=e.target.checked;recompute()});
+	$('#p-gtafter').addEventListener('change',function(e){P.gtAfter=e.target.checked;recompute()});
+	var bl=$('#bonusList');
+	function bonusOf(t){var row=t.closest('.bn');return row?P.bonuses.filter(function(b){return String(b.id)===row.dataset.id})[0]:null}
+	bl.addEventListener('input',function(e){
+		var b=bonusOf(e.target);if(!b)return;var t=e.target;
+		if(t.classList.contains('bn-name'))b.name=t.value;
+		else if(t.classList.contains('bn-amt')){
+			var raw=t.value.replace(/\D/g,'');b.amount=raw?Number(raw):0;t.value=raw?b.amount.toLocaleString('vi-VN'):'';
+		}
+		else if(t.classList.contains('bn-date'))b.date=t.value;
+		else if(t.classList.contains('bn-period'))b.period=t.value;
+		recompute();
+	});
+	bl.addEventListener('change',function(e){
+		var b=bonusOf(e.target);if(!b)return;
+		if(e.target.classList.contains('bn-on')){b.on=e.target.checked;e.target.closest('.bn').classList.toggle('off',!b.on);recompute()}
+	});
+	bl.addEventListener('click',function(e){
+		if(!e.target.classList.contains('bn-del'))return;
+		var b=bonusOf(e.target);P.bonuses=P.bonuses.filter(function(x){return x!==b});renderBonuses();recompute();
+	});
+	$('#addBonus').addEventListener('click',function(){
+		var base=parseYM(P.to);
+		P.bonuses.push({id:nextId++,on:true,name:'Thưởng mới',amount:5000000,date:idxY(base)+'-'+pad(idxM(base))+'-15',period:idxY(base)+'-'+pad(idxM(base))});
+		renderBonuses();recompute();
+	});
+	$('#brs').addEventListener('input',function(e){
+		var t=e.target,i=+t.dataset.i;
+		if(t.classList.contains('br-to'))P.brackets[i].to=(+t.value||0)*1e6;
+		else if(t.classList.contains('br-rate'))P.brackets[i].rate=+t.value||0;
+		var lastLbl=$('#brLast');
+		if(lastLbl&&t.classList.contains('br-to')&&i===P.brackets.length-2)lastLbl.textContent='trên '+(P.brackets[i].to/1e6);
+		recompute();
+	});
+	$('#presets').addEventListener('click',function(e){
+		var b=e.target.closest('[data-preset]');if(!b)return;
+		var k=b.dataset.preset;P=defaults();
+		if(k==='y2027'){P.from='2027-01';P.to='2027-12';P.nptFrom='2027-01'}
+		if(k==='nva'){
+			P.from='2026-10';P.to='2026-10';P.nptFrom='2026-10';
+			P.bonuses=[{id:1,on:true,name:'Thưởng năng suất T9/2026',amount:5000000,date:'2026-10-15',period:'2026-09'}];
+		}
+		if(k==='leave'){P.leave='2027-06-15'}
+		sel=null;syncInputs();recompute();
+	});
 }
 
 /* ========== Dựng bảng dữ liệu FAST ========== */
 function incomeCode(e){return e.type==='L'?'LUONG':'THUONG.'+pad(e.bonusNo||0)}
 function tblHrt9(){
-  return R.steps.map(function(e){
-    var dGt=(e.post.gtB+e.post.gtN)-(e.pre.gtB+e.pre.gtN);
-    return {_ev:[e.id],stt_rec:'NV_A',ngay_ct:dfmt(e.pay),so_ct:'CN3-'+pad(e.seq+1),ma_ct:'CN3',loai_ct:3,ma_tn:incomeCode(e),
-      tn_ct:e.tnct,tien_gt:e.bh+dGt,tn_tt:e.post.tntt-e.pre.tntt,thue:e.post.thueRecalc,thue_cl:e.thueEv,ky:ymLabel(e.taxIdx)};
-  });
+	return R.steps.map(function(e){
+		var dGt=(e.post.gtB+e.post.gtN)-(e.pre.gtB+e.pre.gtN);
+		return {_ev:[e.id],stt_rec:'NV_A',ngay_ct:dfmt(e.pay),so_ct:'CN3-'+pad(e.seq+1),ma_ct:'CN3',loai_ct:3,ma_tn:incomeCode(e),
+			tn_ct:e.tnct,tien_gt:e.bh+dGt,tn_tt:e.post.tntt-e.pre.tntt,thue:e.post.thueRecalc,thue_cl:e.thueEv,ky:ymLabel(e.taxIdx)};
+	});
 }
 function tblHrt00(idx){
-  var mo=R.months.get(idx);if(!mo)return [];
-  var rows=[],m1=R.mode===1,end=dfmt(monthEnd(idx));
-  mo.events.forEach(function(e){
-    rows.push({_ev:[e.id],ma_dvcs:'DV01',loai_ct:m1?'3':'1',ma_ct:m1?'CN3':'LUONG',ngay_ct:m1?dfmt(e.pay):end,so_ct:m1?'CN3-'+pad(e.seq+1):'1LUONG',stt_rec:'NV_A',
-      ma_tn:incomeCode(e),loai_tn:e.type==='L'?'T01':'T02',tn_ct:e.tnct,tien_gt:0,tn_tt:0,thue:0});
-  });
-  var all=mo.events.map(function(e){return e.id}),firstId=[mo.events[0].id];
-  if(mo.bh>0)rows.push({_ev:all,ma_dvcs:'DV01',loai_ct:'1',ma_ct:'LUONG',ngay_ct:end,so_ct:'3BH',stt_rec:'NV_A',ma_tn:'BHXH,BHYT,BHTN',loai_tn:'K02',tn_ct:0,tien_gt:mo.bh,tn_tt:0,thue:0});
-  if(mo.gtB>0)rows.push({_ev:firstId,ma_dvcs:'DV01',loai_ct:'1',ma_ct:'LUONG',ngay_ct:end,so_ct:'1GTBT',stt_rec:'NV_A',ma_tn:'GT.BT',loai_tn:'K01',tn_ct:0,tien_gt:mo.gtB,tn_tt:0,thue:0});
-  if(mo.gtN>0)rows.push({_ev:firstId,ma_dvcs:'DV01',loai_ct:'1',ma_ct:'LUONG',ngay_ct:end,so_ct:'2GTNPT',stt_rec:'NV_A',ma_tn:'GT.PT',loai_tn:'K01',tn_ct:0,tien_gt:mo.gtN,tn_tt:0,thue:0});
-  return rows;
+	var mo=R.months.get(idx);if(!mo)return [];
+	var rows=[],m1=R.mode===1,end=dfmt(monthEnd(idx));
+	mo.events.forEach(function(e){
+		rows.push({_ev:[e.id],ma_dvcs:'DV01',loai_ct:m1?'3':'1',ma_ct:m1?'CN3':'LUONG',ngay_ct:m1?dfmt(e.pay):end,so_ct:m1?'CN3-'+pad(e.seq+1):'1LUONG',stt_rec:'NV_A',
+			ma_tn:incomeCode(e),loai_tn:e.type==='L'?'T01':'T02',tn_ct:e.tnct,tien_gt:0,tn_tt:0,thue:0});
+	});
+	var all=mo.events.map(function(e){return e.id}),firstId=[mo.events[0].id];
+	if(mo.bh>0)rows.push({_ev:all,ma_dvcs:'DV01',loai_ct:'1',ma_ct:'LUONG',ngay_ct:end,so_ct:'3BH',stt_rec:'NV_A',ma_tn:'BHXH,BHYT,BHTN',loai_tn:'K02',tn_ct:0,tien_gt:mo.bh,tn_tt:0,thue:0});
+	if(mo.gtB>0)rows.push({_ev:firstId,ma_dvcs:'DV01',loai_ct:'1',ma_ct:'LUONG',ngay_ct:end,so_ct:'1GTBT',stt_rec:'NV_A',ma_tn:'GT.BT',loai_tn:'K01',tn_ct:0,tien_gt:mo.gtB,tn_tt:0,thue:0});
+	if(mo.gtN>0)rows.push({_ev:firstId,ma_dvcs:'DV01',loai_ct:'1',ma_ct:'LUONG',ngay_ct:end,so_ct:'2GTNPT',stt_rec:'NV_A',ma_tn:'GT.PT',loai_tn:'K01',tn_ct:0,tien_gt:mo.gtN,tn_tt:0,thue:0});
+	return rows;
 }
 function tblHrt01(idx){
-  var mo=R.months.get(idx);if(!mo)return [];
-  var gt=mo.bh+mo.gtB+mo.gtN,rows=[];
-  var L=mo.events.filter(function(e){return e.type==='L'}),B=mo.events.filter(function(e){return e.type==='B'});
-  var sumT=function(a){return a.reduce(function(s,e){return s+e.tnct},0)},sumX=function(a){return a.reduce(function(s,e){return s+e.thueEv},0)};
-  var tL=sumT(L),tB=sumT(B),gL=Math.min(gt,tL),gB=Math.min(gt-gL,tB);
-  if(L.length)rows.push({_ev:L.map(function(e){return e.id}),stt_rec:'NV_A',loai_tn:'T01',ten:'Lương',tn_ct:tL,tien_gt:gL,tn_tt:tL-gL,thue:sumX(L)});
-  if(B.length)rows.push({_ev:B.map(function(e){return e.id}),stt_rec:'NV_A',loai_tn:'T02',ten:'Thưởng',tn_ct:tB,tien_gt:gB,tn_tt:tB-gB,thue:sumX(B)});
-  return rows;
+	var mo=R.months.get(idx);if(!mo)return [];
+	var gt=mo.bh+mo.gtB+mo.gtN,rows=[];
+	var L=mo.events.filter(function(e){return e.type==='L'}),B=mo.events.filter(function(e){return e.type==='B'});
+	var sumT=function(a){return a.reduce(function(s,e){return s+e.tnct},0)},sumX=function(a){return a.reduce(function(s,e){return s+e.thueEv},0)};
+	var tL=sumT(L),tB=sumT(B),gL=Math.min(gt,tL),gB=Math.min(gt-gL,tB);
+	if(L.length)rows.push({_ev:L.map(function(e){return e.id}),stt_rec:'NV_A',loai_tn:'T01',ten:'Lương',tn_ct:tL,tien_gt:gL,tn_tt:tL-gL,thue:sumX(L)});
+	if(B.length)rows.push({_ev:B.map(function(e){return e.id}),stt_rec:'NV_A',loai_tn:'T02',ten:'Thưởng',tn_ct:tB,tien_gt:gB,tn_tt:tB-gB,thue:sumX(B)});
+	return rows;
 }
 function tblHrt02(idx){
-  var mo=R.months.get(idx);if(!mo)return [];
-  return [{_ev:mo.events.map(function(e){return e.id}),ma_dvcs:'DV01',stt_rec:'NV_A',tn_ct:mo.tnct,tien_gt:mo.bh+mo.gtB+mo.gtN,tn_tt:mo.tntt,tn_tt_sqd:mo.tntt,thue:mo.thue}];
+	var mo=R.months.get(idx);if(!mo)return [];
+	return [{_ev:mo.events.map(function(e){return e.id}),ma_dvcs:'DV01',stt_rec:'NV_A',tn_ct:mo.tnct,tien_gt:mo.bh+mo.gtB+mo.gtN,tn_tt:mo.tntt,tn_tt_sqd:mo.tntt,thue:mo.thue}];
 }
 var F03=[
-  ['f003','Cư trú (1) / không cư trú (0)',function(S){return 1}],
-  ['f004','HĐLĐ từ 3 tháng (1) / khác (0)',function(S){return 1}],
-  ['f005','Tổng thu nhập chịu thuế',function(S){return S.tnct}],
-  ['f008','Thuế phát sinh phải nộp cả kỳ quyết toán',function(S){return S.thueQT}],
-  ['f009','Thuế đã khấu trừ',function(S){return S.thue}],
-  ['f010','Thuế nộp thừa',function(S){return S.thua}],
-  ['f015','Thuế còn phải nộp thêm',function(S){return S.conNop}],
-  ['f018','Số NPT được giảm trừ',function(S){return S.nPT?S.npt:0}],
-  ['f021','Số tháng tính giảm trừ bản thân',function(S){return S.nBT}],
-  ['f022','Ủy quyền quyết toán thay (1/0)',function(S){return S.uq?1:0}],
-  ['f037','Giảm trừ bản thân cả kỳ (f021 × t_gt_bt)',function(S){return S.gtBT}],
-  ['f038','Giảm trừ NPT cả kỳ',function(S){return S.gtNPT}],
-  ['f039','Từ thiện, nhân đạo, khuyến học',function(S){return 0}],
-  ['f040','Bảo hiểm bắt buộc trừ vào lương',function(S){return S.bh}]
+	['f003','Cư trú (1) / không cư trú (0)',function(S){return 1}],
+	['f004','HĐLĐ từ 3 tháng (1) / khác (0)',function(S){return 1}],
+	['f005','Tổng thu nhập chịu thuế',function(S){return S.tnct}],
+	['f008','Thuế phát sinh phải nộp cả kỳ quyết toán',function(S){return S.thueQT}],
+	['f009','Thuế đã khấu trừ',function(S){return S.thue}],
+	['f010','Thuế nộp thừa',function(S){return S.thua}],
+	['f015','Thuế còn phải nộp thêm',function(S){return S.conNop}],
+	['f018','Số NPT được giảm trừ',function(S){return S.nPT?S.npt:0}],
+	['f021','Số tháng tính giảm trừ bản thân',function(S){return S.nBT}],
+	['f022','Ủy quyền quyết toán thay (1/0)',function(S){return S.uq?1:0}],
+	['f037','Giảm trừ bản thân cả kỳ (f021 × t_gt_bt)',function(S){return S.gtBT}],
+	['f038','Giảm trừ NPT cả kỳ',function(S){return S.gtNPT}],
+	['f039','Từ thiện, nhân đạo, khuyến học',function(S){return 0}],
+	['f040','Bảo hiểm bắt buộc trừ vào lương',function(S){return S.bh}]
 ];
 
 /* ========== Render: KPI ========== */
 function renderKpi(){
-  var S=R.sett;
-  var res=S.diff<0?{l:'Nộp thừa khi quyết toán',v:S.thua,c:'c-ded'}:(S.diff>0?{l:'Còn phải nộp thêm',v:S.conNop,c:'c-tax'}:{l:'Chênh lệch quyết toán',v:0,c:''});
-  $('#kpis').innerHTML=
-    '<div class="kpi"><small>Chu kỳ</small><b>'+ymShort(R.F)+' → '+ymShort(R.T)+'</b><em>'+S.N+' tháng · '+(R.mode===1?'thực chi':'theo kỳ lương')+'</em></div>'+
-    '<div class="kpi"><small>Thu nhập chịu thuế</small><b class="c-inc">'+vn(S.tnct)+'</b><em>'+R.steps.length+' đợt chi trong chu kỳ</em></div>'+
-    '<div class="kpi"><small>Thuế đã khấu trừ hàng tháng</small><b class="c-tax">'+vn(S.thue)+'</b><em>cộng các kỳ thuế</em></div>'+
-    '<div class="kpi"><small>Thuế theo quyết toán</small><b>'+vn(S.thueQT)+'</b><em>TNTT '+short(S.tntt)+'</em></div>'+
-    '<div class="kpi"><small>'+res.l+'</small><b class="'+res.c+'">'+vn(res.v)+'</b><em>'+(S.uq?'công ty quyết toán thay':'cá nhân tự quyết toán')+'</em></div>';
+	var S=R.sett;
+	var res=S.diff<0?{l:'Nộp thừa khi quyết toán',v:S.thua,c:'c-ded'}:(S.diff>0?{l:'Còn phải nộp thêm',v:S.conNop,c:'c-tax'}:{l:'Chênh lệch quyết toán',v:0,c:''});
+	$('#kpis').innerHTML=
+		'<div class="kpi"><small>Chu kỳ</small><b>'+ymShort(R.F)+' → '+ymShort(R.T)+'</b><em>'+S.N+' tháng · '+(R.mode===1?'thực chi':'theo kỳ lương')+'</em></div>'+
+		'<div class="kpi"><small>Thu nhập chịu thuế</small><b class="c-inc">'+vn(S.tnct)+'</b><em>'+R.steps.length+' đợt chi trong chu kỳ</em></div>'+
+		'<div class="kpi"><small>Thuế đã khấu trừ hàng tháng</small><b class="c-tax">'+vn(S.thue)+'</b><em>cộng các kỳ thuế</em></div>'+
+		'<div class="kpi"><small>Thuế theo quyết toán</small><b>'+vn(S.thueQT)+'</b><em>TNTT '+short(S.tntt)+'</em></div>'+
+		'<div class="kpi"><small>'+res.l+'</small><b class="'+res.c+'">'+vn(res.v)+'</b><em>'+(S.uq?'công ty quyết toán thay':'cá nhân tự quyết toán')+'</em></div>';
 }
 
 /* ========== Render: Diễn tiến ========== */
-function narrative(e){
-  var M=ymLong(e.taxIdx),b=function(v,c){return '<b class="'+c+'">'+vn(v)+'</b>'};
-  var head='<b>'+dfmt(e.pay)+'</b> · '+esc(e.name)+' ('+b(e.tnct,e.type==='L'?'c-inc':'c-bonus')+'). ';
-  if(e.first){
-    return head+(R.mode===1?'Chi tiền mở kỳ thuế '+M+': ':'Tính lương kỳ '+ymLong(e.kyIdx)+': ')+'TNCT '+b(e.post.tnct,'c-inc')+' − giảm trừ '+b(e.post.bh+e.post.gtB+e.post.gtN,'c-ded')+' = TNTT '+b(e.post.tntt,'c-tn')+'. Thuế theo biểu '+b(e.post.thueRecalc,'c-tax')+', khấu trừ ngay '+b(e.thueEv,'c-tax')+'.';
-  }
-  var pct=e.tnct>0?Math.round(e.thueEv/e.tnct*1000)/10:0;
-  return head+'Tính lại '+(R.mode===1?'kỳ thuế ':'kỳ lương ')+M+': TNCT lũy kế '+b(e.post.tnct,'c-inc')+', TNTT '+b(e.pre.tntt,'c-tn')+' → '+b(e.post.tntt,'c-tn')+'. Thuế tính lại '+b(e.post.thueRecalc,'c-tax')+', đã khấu trừ '+b(e.pre.thue,'c-tax')+', nên khấu trừ thêm '+b(e.thueEv,'c-tax')+' (khoảng '+String(pct).replace('.',',')+'% của khoản này).';
+function narrative(e){return narrative0(e)+'<br><span style="color:var(--muted);font-size:13px">Lũy kế từ đầu chu kỳ đến ngày này: thu nhập chịu thuế <b>'+vn(e.cumT)+'</b>, thuế đã khấu trừ <b>'+vn(e.cumX)+'</b>.</span>'}
+function narrative0(e){
+	var M=ymLong(e.taxIdx),b=function(v,c){return '<b class="'+c+'">'+vn(v)+'</b>'};
+	var head='<b>'+dfmt(e.pay)+'</b> · '+esc(e.name)+' ('+b(e.tnct,e.type==='L'?'c-inc':'c-bonus')+'). ';
+	if(e.first){
+		return head+(R.mode===1?'Chi tiền mở kỳ thuế '+M+': ':'Tính lương kỳ '+ymLong(e.kyIdx)+': ')+'TNCT '+b(e.post.tnct,'c-inc')+' − giảm trừ '+b(e.post.bh+e.post.gtB+e.post.gtN,'c-ded')+' = TNTT '+b(e.post.tntt,'c-tn')+'. Thuế theo biểu '+b(e.post.thueRecalc,'c-tax')+', khấu trừ ngay '+b(e.thueEv,'c-tax')+'.';
+	}
+	var pct=e.tnct>0?Math.round(e.thueEv/e.tnct*1000)/10:0;
+	return head+'Tính lại '+(R.mode===1?'kỳ thuế ':'kỳ lương ')+M+': TNCT lũy kế '+b(e.post.tnct,'c-inc')+', TNTT '+b(e.pre.tntt,'c-tn')+' → '+b(e.post.tntt,'c-tn')+'. Thuế tính lại '+b(e.post.thueRecalc,'c-tax')+', đã khấu trừ '+b(e.pre.thue,'c-tax')+', nên khấu trừ thêm '+b(e.thueEv,'c-tax')+' (khoảng '+String(pct).replace('.',',')+'% của khoản này).';
 }
 
 function timelineSVG(){
-  var F=R.F,T=R.T,colW=94,Lm=76,cols=T-F+3;
-  var W=Lm+cols*colW+10,H=376;
-  var X=function(i){return Lm+(i-(F-1))*colW},CX=function(i){return X(i)+colW/2};
-  var cur=curEv();
-  var s='<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" role="group" aria-label="Đường thời gian lương và thưởng">';
-  s+='<defs><pattern id="ghostP" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" style="fill:var(--bg)"/><rect width="1.4" height="8" style="fill:var(--line)"/></pattern>'+
-     '<pattern id="hatchP" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" style="fill:var(--ded);fill-opacity:.18"/><rect width="2" height="6" style="fill:var(--ded)"/></pattern></defs>';
-  // nền cột + nhãn tháng
-  for(var i=F-1;i<=T+1;i++){
-    var ghost=i<F||i>T,isSel=cur&&cur.taxIdx===i;
-    var mo=R.months.get(i),last=mo?mo.events[mo.events.length-1].id:'';
-    s+='<rect class="'+(ghost?'col-ghost':(isSel?'col-sel':'col'))+'" x="'+X(i)+'" y="22" width="'+colW+'" height="'+(H-22)+'"/>';
-    s+='<line class="ln" x1="'+X(i)+'" y1="22" x2="'+X(i)+'" y2="'+H+'"/>';
-    s+='<text class="t-m" x="'+CX(i)+'" y="15" text-anchor="middle">'+ymShort(i)+'</text>';
-    if(ghost)s+='<text class="t-s" x="'+CX(i)+'" y="250" text-anchor="middle">ngoài chu kỳ</text>';
-    if(last)s+='<rect class="hit" data-ev="'+last+'" x="'+X(i)+'" y="170" width="'+colW+'" height="'+(H-170)+'"><title>Kỳ thuế '+ymLabel(i)+'</title></rect>';
-  }
-  s+='<line class="ln" x1="'+X(T+1)+'" y1="22" x2="'+X(T+1)+'" y2="'+H+'"/>';
-  s+='<text class="t-s" x="6" y="52">Kỳ phát sinh</text><text class="t-s" x="6" y="136">Ngày chi</text><text class="t-s" x="6" y="268">Kỳ thuế</text><text class="t-s" x="6" y="364">Thuế khấu trừ</text>';
-  // chip kỳ phát sinh
-  var drawn={};
-  var vis=R.evs.filter(function(e){return !e.far});
-  function chip(key,idx,type,label,y){
-    if(drawn[key])return;drawn[key]=1;
-    if(idx<F-1||idx>T+1)return;
-    s+='<g><rect class="'+(type==='L'?'f-chipL':'f-chipB')+'" x="'+(X(idx)+6)+'" y="'+y+'" width="'+(colW-12)+'" height="20" rx="10"/><text class="t-s" style="fill:var(--ink)" x="'+CX(idx)+'" y="'+(y+14)+'" text-anchor="middle">'+esc(label)+'</text></g>';
-  }
-  var bonusPerCount={};
-  vis.forEach(function(e){if(e.type==='B')bonusPerCount[e.kyIdx]=(bonusPerCount[e.kyIdx]||0)+1});
-  vis.forEach(function(e){
-    if(e.type==='L')chip('L'+e.kyIdx,e.kyIdx,'L','Lương '+ymShort(e.kyIdx).replace('/','/'),38);
-    else chip('B'+e.kyIdx,e.kyIdx,'B',bonusPerCount[e.kyIdx]>1?'Thưởng ×'+bonusPerCount[e.kyIdx]:'Thưởng '+ymShort(e.kyIdx),62);
-  });
-  // vị trí marker
-  var mk=vis.map(function(e){
-    var n=dim(e.pay.y,e.pay.m),x=X(e.pay.idx)+11+(e.pay.d-1)/Math.max(1,n-1)*(colW-22);
-    return {e:e,x:x};
-  }).sort(function(a,b){return a.x-b.x});
-  var lastX=-99,flip=0;
-  mk.forEach(function(o){if(o.x-lastX<36){flip=1-flip}else{flip=0}o.flip=flip;lastX=o.x});
-  // cung từ chip đến marker + khuỷu thuế
-  mk.forEach(function(o){
-    var e=o.e,on=cur&&cur.id===e.id;
-    if(e.kyIdx>=F-1&&e.kyIdx<=T+1){
-      var y0=e.type==='L'?58:82,y1=122,cxx=CX(e.kyIdx);
-      s+='<path class="arc '+e.type+(on?' on':'')+'" d="M'+cxx+' '+y0+' C'+cxx+' '+(y0+34)+' '+o.x+' '+(y1-34)+' '+o.x+' '+y1+'"/>';
-    }
-    if(!e.out&&e.taxIdx!==e.pay.idx&&e.taxIdx>=F-1&&e.taxIdx<=T+1){
-      s+='<path class="elbow" d="M'+o.x+' 142 L'+o.x+' 176 L'+CX(e.taxIdx)+' 176 L'+CX(e.taxIdx)+' 186"/>';
-    }
-  });
-  // đường trục ngày chi
-  s+='<line class="ln" x1="'+Lm+'" y1="132" x2="'+(W-10)+'" y2="132" style="stroke:var(--muted)"/>';
-  mk.forEach(function(o){
-    var e=o.e,on=cur&&cur.id===e.id,y=132;
-    var shape=e.type==='L'?'<circle class="f-inc" cx="'+o.x+'" cy="'+y+'" r="7"/>':'<path class="f-bonus" d="M'+o.x+' '+(y-9)+' L'+(o.x+9)+' '+y+' L'+o.x+' '+(y+9)+' L'+(o.x-9)+' '+y+' Z"/>';
-    var halo=e.type==='L'?'<circle class="halo" cx="'+o.x+'" cy="'+y+'" r="11"/>':'<path class="halo" d="M'+o.x+' '+(y-14)+' L'+(o.x+14)+' '+y+' L'+o.x+' '+(y+14)+' L'+(o.x-14)+' '+y+' Z"/>';
-    var ly=o.flip?96:112,ny=o.flip?162:150;
-    s+='<g class="mk'+(on?' on':'')+(e.out?' out':'')+'" data-ev="'+e.id+'" tabindex="0" role="button" aria-label="'+esc(e.name)+' '+dfmt(e.pay)+'">'+halo+shape+
-       '<text class="t-v" x="'+o.x+'" y="'+ly+'" text-anchor="middle">'+short(e.tnct)+'</text>'+
-       '<text class="t-s" x="'+o.x+'" y="'+ny+'" text-anchor="middle">'+pad(e.pay.d)+'/'+pad(e.pay.m)+'</text>'+
-       '<rect class="hit" x="'+(o.x-16)+'" y="'+(y-18)+'" width="32" height="36"/></g>';
-  });
-  // cột thu nhập
-  var base=344,maxH=150,maxT=1,maxX=1;
-  R.months.forEach(function(m){if(m.idx>=F&&m.idx<=T){maxT=Math.max(maxT,m.tnct);maxX=Math.max(maxX,m.thue)}});
-  var sc=maxH/maxT,sx=(maxH*0.9)/maxX;
-  R.months.forEach(function(mo){
-    if(mo.idx<F||mo.idx>T)return;
-    var bx=CX(mo.idx)-19,bw=30,y=base;
-    mo.events.forEach(function(e,k){
-      var h=e.tnct*sc;y-=h;
-      var on=cur&&cur.id===e.id;
-      s+='<rect class="'+(e.type==='L'?'f-inc':'f-bonus')+'" x="'+bx+'" y="'+y+'" width="'+bw+'" height="'+h+'" style="'+(e.type==='B'?'fill-opacity:'+(1-(k%3)*0.15):'')+'"'+(on?' stroke="var(--ink)" stroke-width="2"':' stroke="var(--surface)" stroke-width="1"')+'><title>'+esc(e.name)+': '+vn(e.tnct)+'</title></rect>';
-    });
-    var ded=Math.min(mo.bh+mo.gtB+mo.gtN,mo.tnct)*sc;
-    if(ded>0)s+='<rect x="'+bx+'" y="'+(base-ded)+'" width="'+bw+'" height="'+ded+'" fill="url(#hatchP)" stroke="var(--ded)" stroke-width="1"/>';
-    s+='<text class="t-v" x="'+(bx+bw/2)+'" y="'+(base-mo.tnct*sc-6)+'" text-anchor="middle">'+short(mo.tnct)+'</text>';
-    var th=Math.max(mo.thue>0?3:0,mo.thue*sx);
-    s+='<rect class="f-tax" x="'+(bx+bw+4)+'" y="'+(base-th)+'" width="7" height="'+th+'" rx="1"/>';
-    s+='<text class="t-tax" x="'+CX(mo.idx)+'" y="364" text-anchor="middle">'+short(mo.thue)+'</text>';
-  });
-  s+='<line class="ln" x1="'+Lm+'" y1="'+base+'" x2="'+(W-10)+'" y2="'+base+'" style="stroke:var(--muted)"/>';
-  s+='</svg>';
-  return s;
+	var F=R.F,T=R.T,colW=94,Lm=76,cols=T-F+3;
+	var W=Lm+cols*colW+10,H=376;
+	var X=function(i){return Lm+(i-(F-1))*colW},CX=function(i){return X(i)+colW/2};
+	var cur=curEv();
+	var s='<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'" role="group" aria-label="Đường thời gian lương và thưởng">';
+	s+='<defs><pattern id="ghostP" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" style="fill:var(--bg)"/><rect width="1.4" height="8" style="fill:var(--line)"/></pattern>'+
+		 '<pattern id="hatchP" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" style="fill:var(--ded);fill-opacity:.18"/><rect width="2" height="6" style="fill:var(--ded)"/></pattern></defs>';
+	// nền cột + nhãn tháng
+	for(var i=F-1;i<=T+1;i++){
+		var ghost=i<F||i>T,isSel=cur&&cur.taxIdx===i;
+		var mo=R.months.get(i),last=mo?mo.events[mo.events.length-1].id:'';
+		s+='<rect class="'+(ghost?'col-ghost':(isSel?'col-sel':'col'))+'" x="'+X(i)+'" y="22" width="'+colW+'" height="'+(H-22)+'"/>';
+		s+='<line class="ln" x1="'+X(i)+'" y1="22" x2="'+X(i)+'" y2="'+H+'"/>';
+		s+='<text class="t-m" x="'+CX(i)+'" y="15" text-anchor="middle">'+ymShort(i)+'</text>';
+		if(ghost)s+='<text class="t-s" x="'+CX(i)+'" y="250" text-anchor="middle">ngoài chu kỳ</text>';
+		if(last)s+='<rect class="hit" data-ev="'+last+'" x="'+X(i)+'" y="170" width="'+colW+'" height="'+(H-170)+'"><title>Kỳ thuế '+ymLabel(i)+'</title></rect>';
+	}
+	s+='<line class="ln" x1="'+X(T+1)+'" y1="22" x2="'+X(T+1)+'" y2="'+H+'"/>';
+	if(R.Lv&&R.leaveInfo&&R.Lv.idx>=F-1&&R.Lv.idx<=T+1){
+		var Lv2=R.Lv,lx=X(Lv2.idx)+11+(Lv2.d-1)/Math.max(1,dim(Lv2.y,Lv2.m)-1)*(colW-22);
+		var sd=R.leaveInfo.start,sx=sd.idx<F-1?Lm:Math.max(Lm,X(sd.idx)+11+(sd.d-1)/Math.max(1,dim(sd.y,sd.m)-1)*(colW-22));
+		s+='<rect x="'+lx+'" y="22" width="'+Math.max(0,W-lx)+'" height="'+(H-22)+'" style="fill:var(--tax);fill-opacity:.07"/>';
+		s+='<line x1="'+sx+'" x2="'+lx+'" y1="24" y2="24" style="stroke:var(--tax)" stroke-width="4"/>';
+		s+='<line x1="'+lx+'" x2="'+lx+'" y1="22" y2="'+H+'" style="stroke:var(--tax)" stroke-width="2" stroke-dasharray="5 4"/>';
+		s+='<text x="'+(lx+5)+'" y="35" style="font:700 10.5px var(--font-ui);fill:var(--tax)">Nghỉ việc '+pad(Lv2.d)+'/'+pad(Lv2.m)+'</text>';
+	}
+	s+='<text class="t-s" x="6" y="52">Kỳ phát sinh</text><text class="t-s" x="6" y="136">Ngày chi</text><text class="t-s" x="6" y="268">Kỳ thuế</text><text class="t-s" x="6" y="364">Thuế khấu trừ</text>';
+	// chip kỳ phát sinh
+	var drawn={};
+	var vis=R.evs.filter(function(e){return !e.far});
+	function chip(key,idx,type,label,y){
+		if(drawn[key])return;drawn[key]=1;
+		if(idx<F-1||idx>T+1)return;
+		s+='<g><rect class="'+(type==='L'?'f-chipL':'f-chipB')+'" x="'+(X(idx)+6)+'" y="'+y+'" width="'+(colW-12)+'" height="20" rx="10"/><text class="t-s" style="fill:var(--ink)" x="'+CX(idx)+'" y="'+(y+14)+'" text-anchor="middle">'+esc(label)+'</text></g>';
+	}
+	var bonusPerCount={};
+	vis.forEach(function(e){if(e.type==='B')bonusPerCount[e.kyIdx]=(bonusPerCount[e.kyIdx]||0)+1});
+	vis.forEach(function(e){
+		if(e.type==='L')chip('L'+e.kyIdx,e.kyIdx,'L','Lương '+ymShort(e.kyIdx).replace('/','/'),38);
+		else chip('B'+e.kyIdx,e.kyIdx,'B',bonusPerCount[e.kyIdx]>1?'Thưởng ×'+bonusPerCount[e.kyIdx]:'Thưởng '+ymShort(e.kyIdx),62);
+	});
+	// vị trí marker
+	var mk=vis.map(function(e){
+		var n=dim(e.pay.y,e.pay.m),x=X(e.pay.idx)+11+(e.pay.d-1)/Math.max(1,n-1)*(colW-22);
+		return {e:e,x:x};
+	}).sort(function(a,b){return a.x-b.x});
+	var lastX=-99,flip=0;
+	mk.forEach(function(o){if(o.x-lastX<36){flip=1-flip}else{flip=0}o.flip=flip;lastX=o.x});
+	// cung từ chip đến marker + khuỷu thuế
+	mk.forEach(function(o){
+		var e=o.e,on=cur&&cur.id===e.id;
+		if(e.kyIdx>=F-1&&e.kyIdx<=T+1){
+			var y0=e.type==='L'?58:82,y1=122,cxx=CX(e.kyIdx);
+			s+='<path class="arc '+e.type+(on?' on':'')+'" d="M'+cxx+' '+y0+' C'+cxx+' '+(y0+34)+' '+o.x+' '+(y1-34)+' '+o.x+' '+y1+'"/>';
+		}
+		if(!e.out&&e.taxIdx!==e.pay.idx&&e.taxIdx>=F-1&&e.taxIdx<=T+1){
+			s+='<path class="elbow" d="M'+o.x+' 142 L'+o.x+' 176 L'+CX(e.taxIdx)+' 176 L'+CX(e.taxIdx)+' 186"/>';
+		}
+	});
+	// đường trục ngày chi
+	s+='<line class="ln" x1="'+Lm+'" y1="132" x2="'+(W-10)+'" y2="132" style="stroke:var(--muted)"/>';
+	mk.forEach(function(o){
+		var e=o.e,on=cur&&cur.id===e.id,y=132;
+		var shape=e.type==='L'?'<circle class="f-inc" cx="'+o.x+'" cy="'+y+'" r="7"/>':'<path class="f-bonus" d="M'+o.x+' '+(y-9)+' L'+(o.x+9)+' '+y+' L'+o.x+' '+(y+9)+' L'+(o.x-9)+' '+y+' Z"/>';
+		var halo=e.type==='L'?'<circle class="halo" cx="'+o.x+'" cy="'+y+'" r="11"/>':'<path class="halo" d="M'+o.x+' '+(y-14)+' L'+(o.x+14)+' '+y+' L'+o.x+' '+(y+14)+' L'+(o.x-14)+' '+y+' Z"/>';
+		var ly=o.flip?96:112,ny=o.flip?162:150;
+		s+='<g class="mk'+(on?' on':'')+(e.out?' out':'')+'" data-ev="'+e.id+'" tabindex="0" role="button" aria-label="'+esc(e.name)+' '+dfmt(e.pay)+'">'+halo+shape+
+			 '<text class="t-v" x="'+o.x+'" y="'+ly+'" text-anchor="middle">'+short(e.tnct)+'</text>'+
+			 '<text class="t-s" x="'+o.x+'" y="'+ny+'" text-anchor="middle">'+pad(e.pay.d)+'/'+pad(e.pay.m)+'</text>'+
+			 '<rect class="hit" x="'+(o.x-16)+'" y="'+(y-18)+'" width="32" height="36"/></g>';
+	});
+	// cột thu nhập
+	var base=344,maxH=150,maxT=1,maxX=1;
+	R.months.forEach(function(m){if(m.idx>=F&&m.idx<=T){maxT=Math.max(maxT,m.tnct);maxX=Math.max(maxX,m.thue)}});
+	var sc=maxH/maxT,sx=(maxH*0.9)/maxX;
+	R.months.forEach(function(mo){
+		if(mo.idx<F||mo.idx>T)return;
+		var bx=CX(mo.idx)-19,bw=30,y=base;
+		mo.events.forEach(function(e,k){
+			var h=e.tnct*sc;y-=h;
+			var on=cur&&cur.id===e.id;
+			s+='<rect class="'+(e.type==='L'?'f-inc':'f-bonus')+'" x="'+bx+'" y="'+y+'" width="'+bw+'" height="'+h+'" style="'+(e.type==='B'?'fill-opacity:'+(1-(k%3)*0.15):'')+'"'+(on?' stroke="var(--ink)" stroke-width="2"':' stroke="var(--surface)" stroke-width="1"')+'><title>'+esc(e.name)+': '+vn(e.tnct)+'</title></rect>';
+		});
+		var ded=Math.min(mo.bh+mo.gtB+mo.gtN,mo.tnct)*sc;
+		if(ded>0)s+='<rect x="'+bx+'" y="'+(base-ded)+'" width="'+bw+'" height="'+ded+'" fill="url(#hatchP)" stroke="var(--ded)" stroke-width="1"/>';
+		s+='<text class="t-v" x="'+(bx+bw/2)+'" y="'+(base-mo.tnct*sc-6)+'" text-anchor="middle">'+short(mo.tnct)+'</text>';
+		var th=Math.max(mo.thue>0?3:0,mo.thue*sx);
+		s+='<rect class="f-tax" x="'+(bx+bw+4)+'" y="'+(base-th)+'" width="7" height="'+th+'" rx="1"/>';
+		s+='<text class="t-tax" x="'+CX(mo.idx)+'" y="364" text-anchor="middle">'+short(mo.thue)+'</text>';
+	});
+	s+='<line class="ln" x1="'+Lm+'" y1="'+base+'" x2="'+(W-10)+'" y2="'+base+'" style="stroke:var(--muted)"/>';
+	s+='</svg>';
+	return s;
 }
 
 function ladderSVG(preX,postX,type,scale){
-  var br=R.br,tw=112,gap=8,W=br.length*(tw+gap)+4,H=150;
-  var dPre=taxDetail(preX,br,scale),dPost=taxDetail(postX,br,scale);
-  var evc=type==='B'?'f-bonus':'f-inc';
-  var s='<svg class="ladder" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Thu nhập tính thuế lấp đầy các bậc thuế">';
-  var prevSpan=10e6*scale;
-  br.forEach(function(b,k){
-    var r=dPost.rows[k],lo=r.lo,span=isFinite(r.up)?r.up-r.lo:prevSpan;if(isFinite(r.up))prevSpan=span;
-    var x=4+k*(tw+gap),baseY=106,tankH=36+b.rate*1.4;
-    var fPre=clamp((preX-lo)/span,0,1),fPost=clamp((postX-lo)/span,0,1);
-    s+='<rect x="'+x+'" y="'+(baseY-tankH)+'" width="'+tw+'" height="'+tankH+'" rx="4" style="fill:var(--bg);stroke:var(--line)"/>';
-    if(fPre>0)s+='<rect class="f-tn" x="'+x+'" y="'+(baseY-tankH*fPre)+'" width="'+tw+'" height="'+(tankH*fPre)+'" rx="3"/>';
-    if(fPost>fPre)s+='<rect class="'+evc+'" x="'+x+'" y="'+(baseY-tankH*fPost)+'" width="'+tw+'" height="'+(tankH*(fPost-fPre))+'" rx="3"/>';
-    s+='<text x="'+(x+tw/2)+'" y="'+(baseY-tankH-6)+'" text-anchor="middle" style="font:700 13px var(--font-ui);fill:var(--ink)">'+b.rate+'%</text>';
-    var rng=isFinite(r.up)?trimNum(r.lo/1e6)+'–'+trimNum(r.up/1e6)+'tr':'trên '+trimNum(r.lo/1e6)+'tr';
-    s+='<text class="t-s" x="'+(x+tw/2)+'" y="'+(baseY+14)+'" text-anchor="middle">'+rng+'</text>';
-    var add=dPost.rows[k].tax-dPre.rows[k].tax;
-    s+='<text x="'+(x+tw/2)+'" y="'+(baseY+32)+'" text-anchor="middle" style="font:600 11.5px var(--font-mono);fill:'+(add>0?'var(--tax)':'var(--muted)')+'">'+(add>0?'+'+short(add):(dPost.rows[k].tax>0?short(dPost.rows[k].tax):'–'))+'</text>';
-  });
-  s+='</svg>';
-  return s;
+	var br=R.br,tw=112,gap=8,W=br.length*(tw+gap)+4,H=150;
+	var dPre=taxDetail(preX,br,scale),dPost=taxDetail(postX,br,scale);
+	var evc=type==='B'?'f-bonus':'f-inc';
+	var s='<svg class="ladder" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Thu nhập tính thuế lấp đầy các bậc thuế">';
+	var prevSpan=10e6*scale;
+	br.forEach(function(b,k){
+		var r=dPost.rows[k],lo=r.lo,span=isFinite(r.up)?r.up-r.lo:prevSpan;if(isFinite(r.up))prevSpan=span;
+		var x=4+k*(tw+gap),baseY=106,tankH=36+b.rate*1.4;
+		var fPre=clamp((preX-lo)/span,0,1),fPost=clamp((postX-lo)/span,0,1);
+		s+='<rect x="'+x+'" y="'+(baseY-tankH)+'" width="'+tw+'" height="'+tankH+'" rx="4" style="fill:var(--bg);stroke:var(--line)"/>';
+		if(fPre>0)s+='<rect class="f-tn" x="'+x+'" y="'+(baseY-tankH*fPre)+'" width="'+tw+'" height="'+(tankH*fPre)+'" rx="3"/>';
+		if(fPost>fPre)s+='<rect class="'+evc+'" x="'+x+'" y="'+(baseY-tankH*fPost)+'" width="'+tw+'" height="'+(tankH*(fPost-fPre))+'" rx="3"/>';
+		s+='<text x="'+(x+tw/2)+'" y="'+(baseY-tankH-6)+'" text-anchor="middle" style="font:700 13px var(--font-ui);fill:var(--ink)">'+b.rate+'%</text>';
+		var rng=isFinite(r.up)?trimNum(r.lo/1e6)+'–'+trimNum(r.up/1e6)+'tr':'trên '+trimNum(r.lo/1e6)+'tr';
+		s+='<text class="t-s" x="'+(x+tw/2)+'" y="'+(baseY+14)+'" text-anchor="middle">'+rng+'</text>';
+		var add=dPost.rows[k].tax-dPre.rows[k].tax;
+		s+='<text x="'+(x+tw/2)+'" y="'+(baseY+32)+'" text-anchor="middle" style="font:600 11.5px var(--font-mono);fill:'+(add>0?'var(--tax)':'var(--muted)')+'">'+(add>0?'+'+short(add):(dPost.rows[k].tax>0?short(dPost.rows[k].tax):'–'))+'</text>';
+	});
+	s+='</svg>';
+	return s;
 }
 
 function pipeRow(label,pre,post,cls,max,opts){
-  opts=opts||{};
-  var d=post-pre,w1=max>0?clamp(pre/max*100,0,100):0,w2=max>0?clamp(post/max*100,0,100):0;
-  var dcls=d>0?(opts.taxy?'pos':''):(d<0?'neg':'');
-  return '<tr class="'+(opts.row||'')+'"><td>'+label+'</td>'+
-    '<td><div class="v"><span>'+(opts.noPre?'–':vn(pre))+'</span>'+(opts.noPre?'':'<i class="bar '+cls+'" style="width:'+w1+'%"></i>')+'</div></td>'+
-    '<td><div class="v"><span>'+vn(post)+'</span><i class="bar '+cls+'" style="width:'+w2+'%"></i></div></td>'+
-    '<td><span class="mono '+dcls+'">'+(opts.noPre?'':(d>0?'+':d<0?'−':'')+(d?vn(Math.abs(d)):'0'))+'</span></td></tr>';
+	opts=opts||{};
+	var d=post-pre,w1=max>0?clamp(pre/max*100,0,100):0,w2=max>0?clamp(post/max*100,0,100):0;
+	var dcls=d>0?(opts.taxy?'pos':''):(d<0?'neg':'');
+	return '<tr class="'+(opts.row||'')+'"><td>'+label+'</td>'+
+		'<td><div class="v"><span>'+(opts.noPre?'–':vn(pre))+'</span>'+(opts.noPre?'':'<i class="bar '+cls+'" style="width:'+w1+'%"></i>')+'</div></td>'+
+		'<td><div class="v"><span>'+vn(post)+'</span><i class="bar '+cls+'" style="width:'+w2+'%"></i></div></td>'+
+		'<td><span class="mono '+dcls+'">'+(opts.noPre?'':(d>0?'+':d<0?'−':'')+(d?vn(Math.abs(d)):'0'))+'</span></td></tr>';
 }
 function pipeline(e){
-  var a=e.pre,b=e.post,mx=Math.max(b.tnct,1),tx=Math.max(b.thueRecalc,1);
-  var h='<table class="pipe"><thead><tr><th>Bước tính</th><th>Trước đợt này</th><th>Sau đợt này</th><th>Thay đổi</th></tr></thead><tbody>';
-  h+=pipeRow('Thu nhập chịu thuế lũy kế '+(R.mode===1?'trong tháng chi':'của kỳ lương'),a.tnct,b.tnct,'b-inc',mx);
-  if(b.bh>0||a.bh>0)h+=pipeRow('− Bảo hiểm bắt buộc',a.bh,b.bh,'b-ded',mx);
-  h+=pipeRow('− Giảm trừ bản thân (tính 1 lần / kỳ)',a.gtB,b.gtB,'b-ded',mx);
-  if(b.gtN>0||a.gtN>0)h+=pipeRow('− Giảm trừ người phụ thuộc',a.gtN,b.gtN,'b-ded',mx);
-  h+=pipeRow('= Thu nhập tính thuế',a.tntt,b.tntt,'b-tn',mx,{row:'sum'});
-  h+=pipeRow('Thuế theo biểu lũy tiến (tính lại)',a.thue,b.thueRecalc,'b-tax',tx,{taxy:1});
-  h+=pipeRow('− Đã khấu trừ ở các đợt trước',a.thue,a.thue,'b-tax',tx);
-  h+=pipeRow('= Thuế còn phải nộp, khấu trừ ở đợt này',0,e.thueEv,'b-tax',tx,{row:'res',noPre:true,taxy:1});
-  return h+'</tbody></table>';
+	var a=e.pre,b=e.post,mx=Math.max(b.tnct,1),tx=Math.max(b.thueRecalc,1);
+	var h='<table class="pipe"><thead><tr><th>Bước tính</th><th>Trước đợt này</th><th>Sau đợt này</th><th>Thay đổi</th></tr></thead><tbody>';
+	h+=pipeRow('Thu nhập chịu thuế lũy kế '+(R.mode===1?'trong tháng chi':'của kỳ lương'),a.tnct,b.tnct,'b-inc',mx);
+	if(b.bh>0||a.bh>0)h+=pipeRow('− Bảo hiểm bắt buộc',a.bh,b.bh,'b-ded',mx);
+	h+=pipeRow('− Giảm trừ bản thân (tính 1 lần / kỳ)',a.gtB,b.gtB,'b-ded',mx);
+	if(b.gtN>0||a.gtN>0)h+=pipeRow('− Giảm trừ người phụ thuộc',a.gtN,b.gtN,'b-ded',mx);
+	h+=pipeRow('= Thu nhập tính thuế',a.tntt,b.tntt,'b-tn',mx,{row:'sum'});
+	h+=pipeRow('Thuế theo biểu lũy tiến (tính lại)',a.thue,b.thueRecalc,'b-tax',tx,{taxy:1});
+	h+=pipeRow('− Đã khấu trừ ở các đợt trước',a.thue,a.thue,'b-tax',tx);
+	h+=pipeRow('= Thuế còn phải nộp, khấu trừ ở đợt này',0,e.thueEv,'b-tax',tx,{row:'res',noPre:true,taxy:1});
+	return h+'</tbody></table>';
 }
 function inspLadder(e){
-  var warn='';
-  if(e.post.gtB===0&&e.post.tnct>0)warn='<p class="note warnbox"><b>Không có giảm trừ gia cảnh:</b> kỳ thuế này nhân viên đã nghỉ việc, thu nhập chịu thuế bị đánh nguyên số vào biểu lũy tiến.</p>';
-  var rows=taxDetail(e.post.tntt,R.br,1).rows.filter(function(r){return r.amt>0});
-  var top=rows.length?rows[rows.length-1]:null;
-  var legend='<div class="legend" style="margin:6px 0 0"><span><i class="b-tn"></i>Đã tính thuế trước đó</span><span><i class="'+(e.type==='B'?'b-bonus':'b-inc')+'"></i>Phần thêm do đợt này</span></div>';
-  return '<div class="card"><h3>Thu nhập tính thuế lấp đầy các bậc thuế</h3><p class="sub">Mỗi cột là một bậc; số đỏ là tiền thuế phát sinh thêm ở bậc đó.</p>'+
-    ladderSVG(e.pre.tntt,e.post.tntt,e.type,1)+legend+
-    '<p class="note">'+(top?'TNTT sau đợt này '+vn(e.post.tntt)+' chạm bậc '+(top.k+1)+' (thuế suất '+top.rate+'%).':'Thu nhập tính thuế bằng 0, chưa phát sinh thuế.')+'</p>'+warn+'</div>';
+	var warn='';
+	if(e.post.gtB===0&&e.post.tnct>0)warn='<p class="note warnbox"><b>Không có giảm trừ gia cảnh:</b> kỳ thuế này nhân viên đã nghỉ việc, thu nhập chịu thuế bị đánh nguyên số vào biểu lũy tiến.</p>';
+	var rows=taxDetail(e.post.tntt,R.br,1).rows.filter(function(r){return r.amt>0});
+	var top=rows.length?rows[rows.length-1]:null;
+	var legend='<div class="legend" style="margin:6px 0 0"><span><i class="b-tn"></i>Đã tính thuế trước đó</span><span><i class="'+(e.type==='B'?'b-bonus':'b-inc')+'"></i>Phần thêm do đợt này</span></div>';
+	return '<div class="card"><h3>Thu nhập tính thuế lấp đầy các bậc thuế</h3><p class="sub">Mỗi cột là một bậc; số đỏ là tiền thuế phát sinh thêm ở bậc đó.</p>'+
+		ladderSVG(e.pre.tntt,e.post.tntt,e.type,1)+legend+
+		'<p class="note">'+(top?'TNTT sau đợt này '+vn(e.post.tntt)+' chạm bậc '+(top.k+1)+' (thuế suất '+top.rate+'%).':'Thu nhập tính thuế bằng 0, chưa phát sinh thuế.')+'</p>'+warn+'</div>';
 }
 function inspFast(e){
-  var suf=suffix(e.taxIdx),m1=R.mode===1,st='',late='';
-  if(m1&&e.type==='L'){
-    st='<li>Chốt bảng lương '+ymLong(e.kyIdx)+': <b>Tiền lương → Tính toán → Tính lương</b> (hs_CalculatePayroll).</li>'+
-       '<li>Ghi nhận chi lương ngày '+dfmt(e.pay)+' bằng chứng từ thực chi <code>ma_ct = CN3</code>, <code>loai_ct = 3</code> vào <code>hrt9</code>. Màn hình nhập CN3 chưa thấy trong tài liệu.</li>'+
-       '<li>Tính thuế '+ymLong(e.taxIdx)+' với <code>t_tncn_thuc_chi = 1</code>: hs_CalcPersonalIncomeTax gom hrt9 theo <code>MONTH(ngay_ct)</code>.</li>';
-  }else if(m1){
-    st='<li>Nhập khoản thưởng: <b>Cập nhật số liệu → Cập nhật thu nhập/giảm trừ lũy tiến</b> (m06$/d06$), hoặc chứng từ thực chi CN3 ngày '+dfmt(e.pay)+'.</li>'+
-       '<li>Chạy lại <b>Tính lương và thuế TNCN</b> '+ymLong(e.taxIdx)+'.</li>'+
-       '<li>Hệ thống cộng dồn thu nhập đã chi trong tháng, áp giảm trừ 1 lần, tính lại thuế lũy tiến rồi trừ thuế đã khấu trừ ở đợt trước.</li>';
-  }else if(e.type==='L'){
-    st='<li><b>Tiền lương → Tính toán → Tính lương</b> kỳ '+ymLong(e.kyIdx)+' (hs_CalculatePayroll → hs_CalcPersonalIncomeTax, <code>t_tncn_thuc_chi = 0</code>).</li>'+
-       '<li>Thuế khấu trừ theo kỳ lương, ghi hrt00$'+suf+' và hrt02$'+suf+'. Ngày chi '+dfmt(e.pay)+' không ảnh hưởng kỳ thuế.</li>';
-  }else{
-    late=e.pay.idx>e.taxIdx?'<p class="note warnbox"><b>Kỳ '+ymLabel(e.taxIdx)+' đã qua khi chi thưởng:</b> thu nhập kỳ này thay đổi sau khi đã kê khai, nên phải khai điều chỉnh. Cơ chế thực chi tránh được việc này.</p>':'';
-    st='<li>Nhập thưởng vào kỳ lương '+ymLong(e.kyIdx)+' (m06$/d06$), ngày chi '+dfmt(e.pay)+'.</li>'+
-       '<li>Chạy lại <b>Tính lương</b> kỳ '+ymLong(e.taxIdx)+': hrt00$'+suf+' và hrt02$'+suf+' được tính lại.</li>'+
-       '<li>Phần thuế chênh lệch '+vn(e.thueEv)+' khấu trừ khi chi thưởng.</li>';
-  }
-  var d='';
-  if(m1)d+='<div class="d"><b>hrt9 · INSERT</b><small>Một dòng thực chi</small><p>so_ct=CN3-'+pad(e.seq+1)+'  ngay_ct='+dfmt(e.pay)+'<br>tn_ct='+vn(e.tnct)+'  thue='+vn(e.post.thueRecalc)+'  <span class="c-tax">thue_cl='+vn(e.thueEv)+'</span></p></div>';
-  d+='<div class="d"><b>hrt00$'+suf+' · INSERT</b><small>'+(e.first?'Dòng thu nhập và các dòng giảm trừ (GT.BT'+(e.post.gtN?', GT.PT':'')+')':'Dòng thu nhập; giảm trừ đã có từ đợt đầu')+'</small><p>ma_tn='+incomeCode(e)+'  tn_ct='+vn(e.tnct)+'</p></div>';
-  d+='<div class="d"><b>hrt02$'+suf+' · '+(e.first?'INSERT':'UPDATE')+'</b><small>Tổng hợp theo nhân viên, nguồn của tờ khai</small><p>tn_ct '+vn(e.pre.tnct)+' <span class="arrow">→</span> '+vn(e.post.tnct)+'<br>tn_tt '+vn(e.pre.tntt)+' <span class="arrow">→</span> '+vn(e.post.tntt)+'<br>thue '+vn(e.pre.thue)+' <span class="arrow">→</span> <span class="c-tax">'+vn(e.post.thueRecalc)+'</span></p></div>';
-  return '<div class="card"><h3>Nhập liệu và dữ liệu FAST ghi lại</h3><p class="sub">Theo tài liệu thiết kế tính thuế thực chi và hướng dẫn sử dụng phân hệ lương.</p><ol class="steps">'+st+'</ol>'+late+'<div class="diff" style="margin-top:12px">'+d+'</div></div>';
+	var suf=suffix(e.taxIdx),m1=R.mode===1,st='',late='';
+	if(m1&&e.type==='L'){
+		st='<li>Chốt bảng lương '+ymLong(e.kyIdx)+': <b>Tiền lương → Tính toán → Tính lương</b> (hs_CalculatePayroll).</li>'+
+			 '<li>Ghi nhận chi lương ngày '+dfmt(e.pay)+' bằng chứng từ thực chi <code>ma_ct = CN3</code>, <code>loai_ct = 3</code> vào <code>hrt9</code>. Màn hình nhập CN3 chưa thấy trong tài liệu.</li>'+
+			 '<li>Tính thuế '+ymLong(e.taxIdx)+' với <code>t_tncn_thuc_chi = 1</code>: hs_CalcPersonalIncomeTax gom hrt9 theo <code>MONTH(ngay_ct)</code>.</li>';
+	}else if(m1){
+		st='<li>Nhập khoản thưởng: <b>Cập nhật số liệu → Cập nhật thu nhập/giảm trừ lũy tiến</b> (m06$/d06$), hoặc chứng từ thực chi CN3 ngày '+dfmt(e.pay)+'.</li>'+
+			 '<li>Chạy lại <b>Tính lương và thuế TNCN</b> '+ymLong(e.taxIdx)+'.</li>'+
+			 '<li>Hệ thống cộng dồn thu nhập đã chi trong tháng, áp giảm trừ 1 lần, tính lại thuế lũy tiến rồi trừ thuế đã khấu trừ ở đợt trước.</li>';
+	}else if(e.type==='L'){
+		st='<li><b>Tiền lương → Tính toán → Tính lương</b> kỳ '+ymLong(e.kyIdx)+' (hs_CalculatePayroll → hs_CalcPersonalIncomeTax, <code>t_tncn_thuc_chi = 0</code>).</li>'+
+			 '<li>Thuế khấu trừ theo kỳ lương, ghi hrt00$'+suf+' và hrt02$'+suf+'. Ngày chi '+dfmt(e.pay)+' không ảnh hưởng kỳ thuế.</li>';
+	}else{
+		late=e.pay.idx>e.taxIdx?'<p class="note warnbox"><b>Kỳ '+ymLabel(e.taxIdx)+' đã qua khi chi thưởng:</b> thu nhập kỳ này thay đổi sau khi đã kê khai, nên phải khai điều chỉnh. Cơ chế thực chi tránh được việc này.</p>':'';
+		st='<li>Nhập thưởng vào kỳ lương '+ymLong(e.kyIdx)+' (m06$/d06$), ngày chi '+dfmt(e.pay)+'.</li>'+
+			 '<li>Chạy lại <b>Tính lương</b> kỳ '+ymLong(e.taxIdx)+': hrt00$'+suf+' và hrt02$'+suf+' được tính lại.</li>'+
+			 '<li>Phần thuế chênh lệch '+vn(e.thueEv)+' khấu trừ khi chi thưởng.</li>';
+	}
+	var d='';
+	if(m1)d+='<div class="d"><b>hrt9 · INSERT</b><small>Một dòng thực chi</small><p>so_ct=CN3-'+pad(e.seq+1)+'  ngay_ct='+dfmt(e.pay)+'<br>tn_ct='+vn(e.tnct)+'  thue='+vn(e.post.thueRecalc)+'  <span class="c-tax">thue_cl='+vn(e.thueEv)+'</span></p></div>';
+	d+='<div class="d"><b>hrt00$'+suf+' · INSERT</b><small>'+(e.first?'Dòng thu nhập và các dòng giảm trừ (GT.BT'+(e.post.gtN?', GT.PT':'')+')':'Dòng thu nhập; giảm trừ đã có từ đợt đầu')+'</small><p>ma_tn='+incomeCode(e)+'  tn_ct='+vn(e.tnct)+'</p></div>';
+	d+='<div class="d"><b>hrt02$'+suf+' · '+(e.first?'INSERT':'UPDATE')+'</b><small>Tổng hợp theo nhân viên, nguồn của tờ khai</small><p>tn_ct '+vn(e.pre.tnct)+' <span class="arrow">→</span> '+vn(e.post.tnct)+'<br>tn_tt '+vn(e.pre.tntt)+' <span class="arrow">→</span> '+vn(e.post.tntt)+'<br>thue '+vn(e.pre.thue)+' <span class="arrow">→</span> <span class="c-tax">'+vn(e.post.thueRecalc)+'</span></p></div>';
+	return '<div class="card"><h3>Nhập liệu và dữ liệu FAST ghi lại</h3><p class="sub">Theo tài liệu thiết kế tính thuế thực chi và hướng dẫn sử dụng phân hệ lương.</p><ol class="steps">'+st+'</ol>'+late+'<div class="diff" style="margin-top:12px">'+d+'</div></div>';
 }
 function eventsTable(){
-  var h='<table class="ev"><thead><tr><th>Ngày chi</th><th>Khoản</th><th class="r">Số tiền</th><th>Kỳ thuế</th><th class="r">TNTT lũy kế</th><th class="r">Thuế tính lại</th><th class="r">Khấu trừ đợt này</th></tr></thead><tbody>';
-  var outs=R.evs.filter(function(e){return e.out}),before=outs.filter(function(e){return e.taxIdx<R.F}),after=outs.filter(function(e){return e.taxIdx>R.T});
-  function outRow(e){return '<tr class="out"><td>'+dfmt(e.pay)+'</td><td><span class="dot'+(e.type==='B'?' b':'')+'" style="background:var(--muted)"></span>'+esc(e.name)+'</td><td class="r">'+vn(e.tnct)+'</td><td>'+ymLabel(e.taxIdx)+' · ngoài chu kỳ</td><td class="r">–</td><td class="r">–</td><td class="r">–</td></tr>'}
-  before.forEach(function(e){h+=outRow(e)});
-  R.steps.forEach(function(e){
-    h+='<tr data-ev="'+e.id+'" tabindex="0" class="'+(e.id===sel?'hl':'')+'"><td>'+dfmt(e.pay)+'</td><td><span class="dot'+(e.type==='B'?' b':'')+'" style="background:var(--'+(e.type==='B'?'bonus':'inc')+')"></span>'+esc(e.name)+'</td><td class="r">'+vn(e.tnct)+'</td><td>'+ymLabel(e.taxIdx)+'</td><td class="r">'+vn(e.post.tntt)+'</td><td class="r">'+vn(e.post.thueRecalc)+'</td><td class="r c-tax">'+vn(e.thueEv)+'</td></tr>';
-  });
-  after.forEach(function(e){h+=outRow(e)});
-  return h+'</tbody></table>';
+	var h='<table class="ev"><thead><tr><th>Ngày chi</th><th>Khoản</th><th class="r">Số tiền</th><th>Kỳ thuế</th><th class="r">TNTT lũy kế</th><th class="r">Thuế tính lại</th><th class="r">Khấu trừ đợt này</th><th class="r">Lũy kế TNCT từ đầu CK</th><th class="r">Lũy kế thuế</th></tr></thead><tbody>';
+	var outs=R.evs.filter(function(e){return e.out}),before=outs.filter(function(e){return e.taxIdx<R.F}),after=outs.filter(function(e){return e.taxIdx>R.T});
+	function outRow(e){return '<tr class="out"><td>'+dfmt(e.pay)+'</td><td><span class="dot'+(e.type==='B'?' b':'')+'" style="background:var(--muted)"></span>'+esc(e.name)+'</td><td class="r">'+vn(e.tnct)+'</td><td>'+ymLabel(e.taxIdx)+' · ngoài chu kỳ</td><td class="r">–</td><td class="r">–</td><td class="r">–</td><td class="r">–</td><td class="r">–</td></tr>'}
+	before.forEach(function(e){h+=outRow(e)});
+	var li=R.leaveInfo,lvDone=!li||li.before;
+	function lvRow(){return '<tr class="out"><td colspan="9" style="color:var(--tax);font-weight:600;font-style:normal">Nghỉ việc ngày '+dfmt(li.leave)+' · lũy kế từ đầu chu kỳ: thu nhập chịu thuế '+vn(li.tnct)+', thuế đã khấu trừ '+vn(li.thue)+'</td></tr>'}
+	R.steps.forEach(function(e){
+		if(!lvDone&&e.pay.key>li.leave.key){h+=lvRow();lvDone=true}
+		h+='<tr data-ev="'+e.id+'" tabindex="0" class="'+(e.id===sel?'hl':'')+'"><td>'+dfmt(e.pay)+'</td><td><span class="dot'+(e.type==='B'?' b':'')+'" style="background:var(--'+(e.type==='B'?'bonus':'inc')+')"></span>'+esc(e.name)+'</td><td class="r">'+vn(e.tnct)+'</td><td>'+ymLabel(e.taxIdx)+'</td><td class="r">'+vn(e.post.tntt)+'</td><td class="r">'+vn(e.post.thueRecalc)+'</td><td class="r c-tax">'+vn(e.thueEv)+'</td><td class="r">'+vn(e.cumT)+'</td><td class="r">'+vn(e.cumX)+'</td></tr>';
+	});
+	if(!lvDone){h+=lvRow()}
+	after.forEach(function(e){h+=outRow(e)});
+	return h+'</tbody></table>';
 }
 function renderFlow(){
-  var steps=R.steps,i=steps.findIndex(function(e){return e.id===sel}),e=steps[i]||null;
-  $('#stepLabel').textContent=steps.length?('Sự kiện '+(i+1)+'/'+steps.length):'Không có sự kiện';
-  var rg=$('#stepRange');rg.max=Math.max(0,steps.length-1);rg.value=Math.max(0,i);
-  ['btnFirst','btnPrev','btnNext','btnPlay'].forEach(function(id){$('#'+id).disabled=!steps.length});
-  $('#narr').innerHTML=e?narrative(e):'Không có khoản chi nào rơi vào chu kỳ này. Kiểm tra lại ngày vào làm, ngày nghỉ việc và khoảng tháng.';
-  var wrap=$('#tlWrap'),sl=wrap.scrollLeft;
-  wrap.innerHTML=timelineSVG();wrap.scrollLeft=sl;
-  var g=wrap.querySelector('.mk.on');
-  if(g){var bb=g.getBoundingClientRect(),wb=wrap.getBoundingClientRect();if(bb.left<wb.left+20||bb.right>wb.right-20){wrap.scrollLeft+=bb.left-wb.left-wb.width/2}}
-  $('#inspector').innerHTML=e?(inspLadder(e)+'<div class="card"><h3>Cách tính tại thời điểm này</h3><p class="sub">'+esc(e.name)+' · kỳ thuế '+ymLong(e.taxIdx)+'</p>'+pipeline(e)+'</div>'+inspFast(e)):'';
-  $('#evTable').innerHTML=eventsTable();
+	var steps=R.steps,i=steps.findIndex(function(e){return e.id===sel}),e=steps[i]||null;
+	$('#stepLabel').textContent=steps.length?('Sự kiện '+(i+1)+'/'+steps.length):'Không có sự kiện';
+	var rg=$('#stepRange');rg.max=Math.max(0,steps.length-1);rg.value=Math.max(0,i);
+	['btnFirst','btnPrev','btnNext','btnPlay'].forEach(function(id){$('#'+id).disabled=!steps.length});
+	$('#narr').innerHTML=e?narrative(e):'Không có khoản chi nào rơi vào chu kỳ này. Kiểm tra lại ngày vào làm, ngày nghỉ việc và khoảng tháng.';
+	var li=R.leaveInfo,lel=$('#leaveInfo');
+	if(!li){lel.innerHTML=''}
+	else if(li.before){lel.innerHTML='<div class="leave"><h4>Nghỉ việc</h4><span>Nhân viên nghỉ việc ngày <b>'+dfmt(li.leave)+'</b>, trước khi chu kỳ bắt đầu, nên chỉ còn các khoản chi sau ngày nghỉ.</span></div>'}
+	else{
+		lel.innerHTML='<div class="leave"><h4>Nghỉ việc giữa chu kỳ</h4>'+
+			'<span>Ngày nghỉ <b>'+dfmt(li.leave)+'</b> · thời gian tính thuế từ <b>'+dfmt(li.start)+'</b> đến <b>'+dfmt(li.leave)+'</b>, có giảm trừ gia cảnh <b>'+li.gm+'</b> tháng.</span>'+
+			'<span>Tổng thu nhập chịu thuế từ đầu chu kỳ đến ngày nghỉ: <b>'+vn(li.tnct)+'</b> ('+li.n+' đợt chi) · thuế đã khấu trừ: <b>'+vn(li.thue)+'</b> · giảm trừ gia cảnh đã áp: <b>'+vn(li.gm*P.gtBT)+'</b></span>'+
+			(li.afterN?'<span>Sau ngày nghỉ còn chi <b>'+vn(li.afterT)+'</b> ('+li.afterN+' khoản), khấu trừ <b>'+vn(li.afterX)+'</b>'+(P.gtAfter?', đang tính giảm trừ ở các kỳ này.':', không còn giảm trừ gia cảnh ở các kỳ này.')+'</span>':'<span>Sau ngày nghỉ không còn khoản chi nào trong chu kỳ.</span>')+
+			'<span>Cộng cả chu kỳ: <b>'+vn(R.sett.tnct)+'</b>, thuế đã khấu trừ <b>'+vn(R.sett.thue)+'</b>.</span></div>';
+	}
+	var wrap=$('#tlWrap'),sl=wrap.scrollLeft;
+	wrap.innerHTML=timelineSVG();wrap.scrollLeft=sl;
+	var g=wrap.querySelector('.mk.on');
+	if(g){var bb=g.getBoundingClientRect(),wb=wrap.getBoundingClientRect();if(bb.left<wb.left+20||bb.right>wb.right-20){wrap.scrollLeft+=bb.left-wb.left-wb.width/2}}
+	$('#inspector').innerHTML=e?(inspLadder(e)+'<div class="card"><h3>Cách tính tại thời điểm này</h3><p class="sub">'+esc(e.name)+' · kỳ thuế '+ymLong(e.taxIdx)+'</p>'+pipeline(e)+'</div>'+inspFast(e)):'';
+	$('#evTable').innerHTML=eventsTable();
 }
 
 /* ========== Render: Bảng dữ liệu ========== */
 function colsFor(t){
-  var M=function(k,l){return {k:k,l:l,r:1,m:1}},S=function(k,l){return {k:k,l:l}};
-  if(t==='hrt9')return [S('ky','ky_thue*'),S('ngay_ct','ngay_ct'),S('so_ct','so_ct'),S('ma_ct','ma_ct'),S('loai_ct','loai_ct'),S('ma_tn','ma_tn'),M('tn_ct','tn_ct'),M('tien_gt','tien_gt'),M('tn_tt','tn_tt'),M('thue','thue'),M('thue_cl','thue_cl')];
-  if(t==='hrt00')return [S('ma_dvcs','ma_dvcs'),S('loai_ct','loai_ct'),S('ma_ct','ma_ct'),S('ngay_ct','ngay_ct'),S('so_ct','so_ct'),S('ma_tn','ma_tn'),S('loai_tn','loai_tn'),M('tn_ct','tn_ct'),M('tien_gt','tien_gt'),M('tn_tt','tn_tt'),M('thue','thue')];
-  if(t==='hrt01')return [S('stt_rec','stt_rec'),S('loai_tn','loai_tn'),S('ten','ten*'),M('tn_ct','tn_ct'),M('tien_gt','tien_gt'),M('tn_tt','tn_tt'),M('thue','thue')];
-  return [S('ma_dvcs','ma_dvcs'),S('stt_rec','stt_rec'),M('tn_ct','tn_ct'),M('tien_gt','tien_gt'),M('tn_tt','tn_tt'),M('tn_tt_sqd','tn_tt_sqd'),M('thue','thue')];
+	var M=function(k,l){return {k:k,l:l,r:1,m:1}},S=function(k,l){return {k:k,l:l}};
+	if(t==='hrt9')return [S('ky','ky_thue*'),S('ngay_ct','ngay_ct'),S('so_ct','so_ct'),S('ma_ct','ma_ct'),S('loai_ct','loai_ct'),S('ma_tn','ma_tn'),M('tn_ct','tn_ct'),M('tien_gt','tien_gt'),M('tn_tt','tn_tt'),M('thue','thue'),M('thue_cl','thue_cl')];
+	if(t==='hrt00')return [S('ma_dvcs','ma_dvcs'),S('loai_ct','loai_ct'),S('ma_ct','ma_ct'),S('ngay_ct','ngay_ct'),S('so_ct','so_ct'),S('ma_tn','ma_tn'),S('loai_tn','loai_tn'),M('tn_ct','tn_ct'),M('tien_gt','tien_gt'),M('tn_tt','tn_tt'),M('thue','thue')];
+	if(t==='hrt01')return [S('stt_rec','stt_rec'),S('loai_tn','loai_tn'),S('ten','ten*'),M('tn_ct','tn_ct'),M('tien_gt','tien_gt'),M('tn_tt','tn_tt'),M('thue','thue')];
+	return [S('ma_dvcs','ma_dvcs'),S('stt_rec','stt_rec'),M('tn_ct','tn_ct'),M('tien_gt','tien_gt'),M('tn_tt','tn_tt'),M('tn_tt_sqd','tn_tt_sqd'),M('thue','thue')];
 }
 function dtable(cols,rows){
-  if(!rows.length)return '<p class="note">Chưa có dòng dữ liệu. '+(R.mode===0?'':'Kiểm tra chu kỳ và ngày chi.')+'</p>';
-  var h='<div class="tbl-wrap"><table class="dt"><thead><tr>'+cols.map(function(c){return '<th class="'+(c.r?'r':'')+'">'+c.l+'</th>'}).join('')+'</tr></thead><tbody>';
-  rows.forEach(function(r){
-    var hl=r._ev&&r._ev.indexOf(sel)>=0;
-    h+='<tr class="'+(hl?'hl':'')+'">'+cols.map(function(c){var v=r[c.k];return '<td class="'+(c.r?'r':'')+'">'+(c.m?vn(v):esc(v))+'</td>'}).join('')+'</tr>';
-  });
-  return h+'</tbody></table></div>';
+	if(!rows.length)return '<p class="note">Chưa có dòng dữ liệu. '+(R.mode===0?'':'Kiểm tra chu kỳ và ngày chi.')+'</p>';
+	var h='<div class="tbl-wrap"><table class="dt"><thead><tr>'+cols.map(function(c){return '<th class="'+(c.r?'r':'')+'">'+c.l+'</th>'}).join('')+'</tr></thead><tbody>';
+	rows.forEach(function(r){
+		var hl=r._ev&&r._ev.indexOf(sel)>=0;
+		h+='<tr class="'+(hl?'hl':'')+'">'+cols.map(function(c){var v=r[c.k];return '<td class="'+(c.r?'r':'')+'">'+(c.m?vn(v):esc(v))+'</td>'}).join('')+'</tr>';
+	});
+	return h+'</tbody></table></div>';
 }
 function renderData(){
-  var tabs=[['hrt9','hrt9'],['hrt00','hrt00$'],['hrt01','hrt01$'],['hrt02','hrt02$'],['hrt03','hrt03$'],['hrt04','hrt04$']];
-  $('#tblPick').innerHTML=tabs.map(function(t){return '<button type="button" data-t="'+t[0]+'" aria-pressed="'+(tblSel===t[0])+'">'+t[1]+'</button>'}).join('');
-  var idxs=[];R.months.forEach(function(m){if(m.idx>=R.F&&m.idx<=R.T)idxs.push(m.idx)});idxs.sort(function(a,b){return a-b});
-  if(tblMonth==null||idxs.indexOf(tblMonth)<0){var c=curEv();tblMonth=(c&&idxs.indexOf(c.taxIdx)>=0)?c.taxIdx:idxs[0]}
-  var perMonth=(tblSel==='hrt00'||tblSel==='hrt01'||tblSel==='hrt02');
-  var ms=$('#tblMonth');ms.parentElement.hidden=!perMonth;
-  ms.innerHTML=idxs.map(function(i){return '<option value="'+i+'"'+(i===tblMonth?' selected':'')+'>'+ymLong(i)+'</option>'}).join('');
-  var body='',sub='',S=R.sett;
-  if(tblSel==='hrt9'){
-    sub='Chứng từ thực chi của cả chu kỳ (loai_ct = 3). Cột ky_thue chỉ để đối chiếu, không có trong bảng thật. Dòng sáng là sự kiện đang chọn.';
-    body=R.mode===1?'<pre class="sql">SELECT * FROM hrt9 WHERE stt_rec = \'NV_A\' ORDER BY ngay_ct</pre>'+dtable(colsFor('hrt9'),tblHrt9()):'<p class="note warnbox"><b>Cơ chế theo kỳ lương không dùng hrt9.</b> Khi t_tncn_thuc_chi = 0, thuế ghi thẳng vào hrt00$ và hrt02$ theo kỳ lương; thưởng chi sau làm kỳ gốc phải tính lại.</p>';
-    if(R.mode===1)body+='<p class="note">thue là thuế tính lại lũy kế tháng sau đợt chi; thue_cl là phần khấu trừ thêm ở đợt này (chênh lệch với các đợt trước). Đây là cách mô phỏng, cần đối chiếu với DB thật.</p>';
-  }else if(tblSel==='hrt00'){
-    sub='Chi tiết từng khoản thu nhập và giảm trừ của '+ymLong(tblMonth)+' sau khi chạy Tính lương.';
-    body='<pre class="sql">SELECT * FROM hrt00$'+suffix(tblMonth)+' WHERE stt_rec = \'NV_A\'</pre>'+dtable(colsFor('hrt00'),tblHrt00(tblMonth))+'<p class="note">Dòng giảm trừ theo cấu trúc trong thủ tục (so_ct 1GTBT, 2GTNPT; loai_tn K01). Mã loai_tn của dòng thu nhập (T01, T02) là giả định.</p>';
-  }else if(tblSel==='hrt01'){
-    sub='Thu nhập chịu thuế, giảm trừ và thu nhập tính thuế theo loại thu nhập của '+ymLong(tblMonth)+'.';
-    body='<pre class="sql">SELECT * FROM hrt01$'+suffix(tblMonth)+' WHERE stt_rec = \'NV_A\'</pre>'+dtable(colsFor('hrt01'),tblHrt01(tblMonth))+'<p class="note">Giảm trừ được trừ vào lương trước, phần còn lại trừ vào thưởng. Cách phân bổ này là minh họa; thue cộng lại bằng thuế khấu trừ của tháng.</p>';
-  }else if(tblSel==='hrt02'){
-    sub='Tổng hợp theo nhân viên của '+ymLong(tblMonth)+'. Đây là nguồn của hs_rpt02KK.';
-    body='<pre class="sql">SELECT * FROM hrt02$'+suffix(tblMonth)+' WHERE stt_rec = \'NV_A\'</pre>'+dtable(colsFor('hrt02'),tblHrt02(tblMonth));
-  }else{
-    var yr=R.year,t3=(tblSel==='hrt03');
-    sub=t3?'Kết quả quyết toán của từng nhân viên, do hs_CalcPersonalIncomeTax4Year ghi. Năm đặt tên bảng lấy theo tháng cuối chu kỳ.':'Tổng hợp cho cả công ty. Có một nhân viên nên số liệu trùng hrt03$.';
-    body='<pre class="sql">SELECT * FROM hrt0'+(t3?3:4)+'$'+yr+(t3?' WHERE stt_rec = \'NV_A\'':'')+'</pre><div class="tbl-wrap"><table class="dt fieldtbl"><thead><tr><th>Trường</th><th>Ý nghĩa</th><th class="r">Giá trị</th></tr></thead><tbody>'+
-      F03.map(function(f){return '<tr><td>'+f[0]+'</td><td style="white-space:normal">'+f[1]+'</td><td class="v r">'+vn(f[2](S))+'</td></tr>'}).join('')+'</tbody></table></div>';
-  }
-  $('#dataSub').textContent=sub;$('#dataBody').innerHTML=body;
+	var tabs=[['hrt9','hrt9'],['hrt00','hrt00$'],['hrt01','hrt01$'],['hrt02','hrt02$'],['hrt03','hrt03$'],['hrt04','hrt04$']];
+	$('#tblPick').innerHTML=tabs.map(function(t){return '<button type="button" data-t="'+t[0]+'" aria-pressed="'+(tblSel===t[0])+'">'+t[1]+'</button>'}).join('');
+	var idxs=[];R.months.forEach(function(m){if(m.idx>=R.F&&m.idx<=R.T)idxs.push(m.idx)});idxs.sort(function(a,b){return a-b});
+	if(tblMonth==null||idxs.indexOf(tblMonth)<0){var c=curEv();tblMonth=(c&&idxs.indexOf(c.taxIdx)>=0)?c.taxIdx:idxs[0]}
+	var perMonth=(tblSel==='hrt00'||tblSel==='hrt01'||tblSel==='hrt02');
+	var ms=$('#tblMonth');ms.parentElement.hidden=!perMonth;
+	ms.innerHTML=idxs.map(function(i){return '<option value="'+i+'"'+(i===tblMonth?' selected':'')+'>'+ymLong(i)+'</option>'}).join('');
+	var body='',sub='',S=R.sett;
+	if(tblSel==='hrt9'){
+		sub='Chứng từ thực chi của cả chu kỳ (loai_ct = 3). Cột ky_thue chỉ để đối chiếu, không có trong bảng thật. Dòng sáng là sự kiện đang chọn.';
+		body=R.mode===1?'<pre class="sql">SELECT * FROM hrt9 WHERE stt_rec = \'NV_A\' ORDER BY ngay_ct</pre>'+dtable(colsFor('hrt9'),tblHrt9()):'<p class="note warnbox"><b>Cơ chế theo kỳ lương không dùng hrt9.</b> Khi t_tncn_thuc_chi = 0, thuế ghi thẳng vào hrt00$ và hrt02$ theo kỳ lương; thưởng chi sau làm kỳ gốc phải tính lại.</p>';
+		if(R.mode===1)body+='<p class="note">thue là thuế tính lại lũy kế tháng sau đợt chi; thue_cl là phần khấu trừ thêm ở đợt này (chênh lệch với các đợt trước). Đây là cách mô phỏng, cần đối chiếu với DB thật.</p>';
+	}else if(tblSel==='hrt00'){
+		sub='Chi tiết từng khoản thu nhập và giảm trừ của '+ymLong(tblMonth)+' sau khi chạy Tính lương.';
+		body='<pre class="sql">SELECT * FROM hrt00$'+suffix(tblMonth)+' WHERE stt_rec = \'NV_A\'</pre>'+dtable(colsFor('hrt00'),tblHrt00(tblMonth))+'<p class="note">Dòng giảm trừ theo cấu trúc trong thủ tục (so_ct 1GTBT, 2GTNPT; loai_tn K01). Mã loai_tn của dòng thu nhập (T01, T02) là giả định.</p>';
+	}else if(tblSel==='hrt01'){
+		sub='Thu nhập chịu thuế, giảm trừ và thu nhập tính thuế theo loại thu nhập của '+ymLong(tblMonth)+'.';
+		body='<pre class="sql">SELECT * FROM hrt01$'+suffix(tblMonth)+' WHERE stt_rec = \'NV_A\'</pre>'+dtable(colsFor('hrt01'),tblHrt01(tblMonth))+'<p class="note">Giảm trừ được trừ vào lương trước, phần còn lại trừ vào thưởng. Cách phân bổ này là minh họa; thue cộng lại bằng thuế khấu trừ của tháng.</p>';
+	}else if(tblSel==='hrt02'){
+		sub='Tổng hợp theo nhân viên của '+ymLong(tblMonth)+'. Đây là nguồn của hs_rpt02KK.';
+		body='<pre class="sql">SELECT * FROM hrt02$'+suffix(tblMonth)+' WHERE stt_rec = \'NV_A\'</pre>'+dtable(colsFor('hrt02'),tblHrt02(tblMonth));
+	}else{
+		var yr=R.year,t3=(tblSel==='hrt03');
+		sub=t3?'Kết quả quyết toán của từng nhân viên, do hs_CalcPersonalIncomeTax4Year ghi. Năm đặt tên bảng lấy theo tháng cuối chu kỳ.':'Tổng hợp cho cả công ty. Có một nhân viên nên số liệu trùng hrt03$.';
+		body='<pre class="sql">SELECT * FROM hrt0'+(t3?3:4)+'$'+yr+(t3?' WHERE stt_rec = \'NV_A\'':'')+'</pre><div class="tbl-wrap"><table class="dt fieldtbl"><thead><tr><th>Trường</th><th>Ý nghĩa</th><th class="r">Giá trị</th></tr></thead><tbody>'+
+			F03.map(function(f){return '<tr><td>'+f[0]+'</td><td style="white-space:normal">'+f[1]+'</td><td class="v r">'+vn(f[2](S))+'</td></tr>'}).join('')+'</tbody></table></div>';
+	}
+	$('#dataSub').textContent=sub;$('#dataBody').innerHTML=body;
 }
 
 /* ========== Render: Tờ khai tháng ========== */
 function periods(){
-  var list=[];
-  if(fKind==='thang'){for(var i=R.F;i<=R.T;i++)list.push({key:'m'+i,label:'Tháng '+pad(idxM(i))+'/'+idxY(i),idxs:[i]})}
-  else{var map=new Map();for(var j=R.F;j<=R.T;j++){var q=Math.ceil(idxM(j)/3),k=idxY(j)+'-'+q;if(!map.has(k))map.set(k,{key:'q'+k,label:'Quý '+q+'/'+idxY(j),idxs:[]});map.get(k).idxs.push(j)}map.forEach(function(v){list.push(v)})}
-  return list;
+	var list=[];
+	if(fKind==='thang'){for(var i=R.F;i<=R.T;i++)list.push({key:'m'+i,label:'Tháng '+pad(idxM(i))+'/'+idxY(i),idxs:[i]})}
+	else{var map=new Map();for(var j=R.F;j<=R.T;j++){var q=Math.ceil(idxM(j)/3),k=idxY(j)+'-'+q;if(!map.has(k))map.set(k,{key:'q'+k,label:'Quý '+q+'/'+idxY(j),idxs:[]});map.get(k).idxs.push(j)}map.forEach(function(v){list.push(v)})}
+	return list;
 }
 function frow(code,label,val,src,cls){return '<tr class="'+(cls||'')+'"><td class="'+(cls&&cls.indexOf('i1')>=0?'ind1':(cls&&cls.indexOf('i2')>=0?'ind2':''))+'">'+label+'</td><td class="code">['+code+']</td><td class="val">'+vn(val)+'</td><td class="src">'+src+'</td></tr>'}
 function renderForms(){
-  $$('#fKind button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.k===fKind))});
-  var ps=periods(),cur=curEv();
-  var pick=ps.filter(function(p){return p.key===fPeriod})[0];
-  if(!pick){pick=ps.filter(function(p){return cur&&p.idxs.indexOf(cur.taxIdx)>=0})[0]||ps[0]}
-  fPeriod=pick.key;
-  $('#fPeriod').innerHTML=ps.map(function(p){return '<option value="'+p.key+'"'+(p.key===fPeriod?' selected':'')+'>'+p.label+'</option>'}).join('');
-  var tn=0,th=0,retro=[];
-  pick.idxs.forEach(function(i){var m=R.months.get(i);if(m){tn+=m.tnct;th+=m.thue;
-    if(R.mode===0)m.events.forEach(function(e){if(e.type==='B'&&e.pay.idx>e.taxIdx)retro.push(e)})}});
-  var emp=tn>0?1:0,wh=th>0?1:0,dk=th>0?tn:0;
-  var periodTxt=pick.label.replace('Tháng','Tháng').replace('/',' năm ');
-  var h='<div class="paper"><span class="demo">Dữ liệu minh họa · không dùng để nộp</span>'+
-    '<p class="nat">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br><span>Độc lập - Tự do - Hạnh phúc</span></p>'+
-    '<h3>TỜ KHAI KHẤU TRỪ THUẾ THU NHẬP CÁ NHÂN</h3>'+
-    '<p class="c">(Mẫu 05/KK-TNCN theo Thông tư 89/2026/TT-BTC · thủ tục FAST: hs_rpt02KK)</p>'+
-    '<div class="meta"><div>[01] Kỳ tính thuế: <b>'+periodTxt+'</b> &nbsp; [02] Lần đầu: ☒ &nbsp; [03] Bổ sung lần thứ: ☐</div>'+
-    '<div>[04] Tên người nộp thuế: <b>CÔNG TY DEMO FAST</b> &nbsp; [05] Mã số thuế: <b>0000000000</b></div></div>'+
-    '<table><thead><tr><th>Chỉ tiêu</th><th>Mã</th><th>Giá trị</th><th class="src">Nguồn trong FAST</th></tr></thead><tbody>'+
-    frow('21','Tổng số người lao động',emp,'COUNT(DISTINCT stt_rec), tn_ct &gt; 0')+
-    frow('22','Trong đó: cá nhân cư trú có hợp đồng lao động',emp,'doi_tuong = 1 và hop_dong_yn = 1','i1')+
-    frow('23','Tổng số cá nhân đã khấu trừ thuế',wh,'COUNT(DISTINCT stt_rec), thue &gt; 0')+
-    frow('24','Trong đó: cá nhân cư trú',wh,'doi_tuong = 1','i1')+
-    frow('25','Trong đó: cá nhân không cư trú',0,'doi_tuong = 0','i1')+
-    frow('26','Tổng thu nhập chịu thuế trả cho cá nhân',tn,'SUM(tn_ct) từ hrt02$')+
-    frow('27','Trong đó: cá nhân cư trú',tn,'doi_tuong = 1','i1')+
-    frow('28','Trong đó: cá nhân không cư trú',0,'doi_tuong = 0','i1')+
-    frow('29','Tổng thu nhập chịu thuế trả cho cá nhân thuộc diện phải khấu trừ',dk,'SUM(tn_ct), thue &gt; 0')+
-    frow('30','Trong đó: cá nhân cư trú',dk,'doi_tuong = 1','i1')+
-    frow('31','Trong đó: cá nhân không cư trú',0,'doi_tuong = 0','i1')+
-    frow('32','Tổng số thuế thu nhập cá nhân đã khấu trừ',th,'SUM(thue) từ hrt02$','res')+
-    frow('33','Trong đó: của cá nhân cư trú',th,'doi_tuong = 1','i1')+
-    frow('34','Trong đó: của cá nhân không cư trú',0,'doi_tuong = 0','i1')+
-    '</tbody></table>'+
-    '<p class="foot">Tôi cam đoan số liệu khai trên là đúng và chịu trách nhiệm trước pháp luật về những số liệu đã khai.</p></div>';
-  if(!tn)h+='<p class="note">Kỳ này nhân viên không được chi khoản nào nên tờ khai không có số liệu.</p>';
-  if(retro.length)h+='<p class="note warnbox"><b>Phải khai điều chỉnh:</b> '+retro.map(function(e){return esc(e.name)+' chi '+dfmt(e.pay)}).join('; ')+' làm thay đổi kỳ '+pick.label+' sau khi kỳ này đã qua. Với cơ chế thực chi, khoản này nằm đúng kỳ chi.</p>';
-  if(fKind==='quy')h+='<p class="note">Khai theo quý chỉ cộng các tháng nằm trong chu kỳ đang mô phỏng.</p>';
-  $('#formBody').innerHTML=h;
+	$$('#fKind button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.k===fKind))});
+	var ps=periods(),cur=curEv();
+	var pick=ps.filter(function(p){return p.key===fPeriod})[0];
+	if(!pick){pick=ps.filter(function(p){return cur&&p.idxs.indexOf(cur.taxIdx)>=0})[0]||ps[0]}
+	fPeriod=pick.key;
+	$('#fPeriod').innerHTML=ps.map(function(p){return '<option value="'+p.key+'"'+(p.key===fPeriod?' selected':'')+'>'+p.label+'</option>'}).join('');
+	var tn=0,th=0,retro=[];
+	pick.idxs.forEach(function(i){var m=R.months.get(i);if(m){tn+=m.tnct;th+=m.thue;
+		if(R.mode===0)m.events.forEach(function(e){if(e.type==='B'&&e.pay.idx>e.taxIdx)retro.push(e)})}});
+	var emp=tn>0?1:0,wh=th>0?1:0,dk=th>0?tn:0;
+	var periodTxt=pick.label.replace('Tháng','Tháng').replace('/',' năm ');
+	var h='<div class="paper"><span class="demo">Dữ liệu minh họa · không dùng để nộp</span>'+
+		'<p class="nat">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br><span>Độc lập - Tự do - Hạnh phúc</span></p>'+
+		'<h3>TỜ KHAI KHẤU TRỪ THUẾ THU NHẬP CÁ NHÂN</h3>'+
+		'<p class="c">(Mẫu 05/KK-TNCN theo Thông tư 89/2026/TT-BTC · thủ tục FAST: hs_rpt02KK)</p>'+
+		'<div class="meta"><div>[01] Kỳ tính thuế: <b>'+periodTxt+'</b> &nbsp; [02] Lần đầu: ☒ &nbsp; [03] Bổ sung lần thứ: ☐</div>'+
+		'<div>[04] Tên người nộp thuế: <b>CÔNG TY DEMO FAST</b> &nbsp; [05] Mã số thuế: <b>0000000000</b></div></div>'+
+		'<table><thead><tr><th>Chỉ tiêu</th><th>Mã</th><th>Giá trị</th><th class="src">Nguồn trong FAST</th></tr></thead><tbody>'+
+		frow('21','Tổng số người lao động',emp,'COUNT(DISTINCT stt_rec), tn_ct &gt; 0')+
+		frow('22','Trong đó: cá nhân cư trú có hợp đồng lao động',emp,'doi_tuong = 1 và hop_dong_yn = 1','i1')+
+		frow('23','Tổng số cá nhân đã khấu trừ thuế',wh,'COUNT(DISTINCT stt_rec), thue &gt; 0')+
+		frow('24','Trong đó: cá nhân cư trú',wh,'doi_tuong = 1','i1')+
+		frow('25','Trong đó: cá nhân không cư trú',0,'doi_tuong = 0','i1')+
+		frow('26','Tổng thu nhập chịu thuế trả cho cá nhân',tn,'SUM(tn_ct) từ hrt02$')+
+		frow('27','Trong đó: cá nhân cư trú',tn,'doi_tuong = 1','i1')+
+		frow('28','Trong đó: cá nhân không cư trú',0,'doi_tuong = 0','i1')+
+		frow('29','Tổng thu nhập chịu thuế trả cho cá nhân thuộc diện phải khấu trừ',dk,'SUM(tn_ct), thue &gt; 0')+
+		frow('30','Trong đó: cá nhân cư trú',dk,'doi_tuong = 1','i1')+
+		frow('31','Trong đó: cá nhân không cư trú',0,'doi_tuong = 0','i1')+
+		frow('32','Tổng số thuế thu nhập cá nhân đã khấu trừ',th,'SUM(thue) từ hrt02$','res')+
+		frow('33','Trong đó: của cá nhân cư trú',th,'doi_tuong = 1','i1')+
+		frow('34','Trong đó: của cá nhân không cư trú',0,'doi_tuong = 0','i1')+
+		'</tbody></table>'+
+		'<p class="foot">Tôi cam đoan số liệu khai trên là đúng và chịu trách nhiệm trước pháp luật về những số liệu đã khai.</p></div>';
+	if(!tn)h+='<p class="note">Kỳ này nhân viên không được chi khoản nào nên tờ khai không có số liệu.</p>';
+	if(retro.length)h+='<p class="note warnbox"><b>Phải khai điều chỉnh:</b> '+retro.map(function(e){return esc(e.name)+' chi '+dfmt(e.pay)}).join('; ')+' làm thay đổi kỳ '+pick.label+' sau khi kỳ này đã qua. Với cơ chế thực chi, khoản này nằm đúng kỳ chi.</p>';
+	if(fKind==='quy')h+='<p class="note">Khai theo quý chỉ cộng các tháng nằm trong chu kỳ đang mô phỏng.</p>';
+	$('#formBody').innerHTML=h;
 }
 
 /* ========== Render: Quyết toán ========== */
 function cumChart(){
-  var F=R.F,T=R.T,N=R.N,S=R.sett,W=760,H=250,L=52,Rm=16,Tp=18,B=40;
-  var mon=[],cum=[],c=0;
-  for(var i=F;i<=T;i++){var m=R.months.get(i),t=m?m.thue:0;mon.push(t);c+=t;cum.push(c)}
-  var mx=Math.max(S.thueQT,c,Math.max.apply(null,mon),1)*1.12;
-  var pw=W-L-Rm,ph=H-Tp-B,bw=pw/N;
-  var y=function(v){return Tp+ph-v/mx*ph},x=function(k){return L+bw*k+bw/2};
-  var s='<svg viewBox="0 0 '+W+' '+H+'" class="ladder" role="img" aria-label="Thuế khấu trừ lũy kế so với thuế quyết toán">';
-  [0,0.5,1].forEach(function(f){var v=mx/1.12*f;s+='<line class="ln" x1="'+L+'" x2="'+(W-Rm)+'" y1="'+y(v)+'" y2="'+y(v)+'"/><text class="t-s" x="'+(L-6)+'" y="'+(y(v)+3)+'" text-anchor="end">'+short(v)+'</text>'});
-  mon.forEach(function(v,k){
-    var h=v/mx*ph;s+='<rect class="f-tax" fill-opacity=".35" x="'+(x(k)-bw*0.32)+'" y="'+(y(v))+'" width="'+(bw*0.64)+'" height="'+h+'" rx="2"><title>'+ymLabel(F+k)+': '+vn(v)+'</title></rect>';
-    var every=Math.ceil(N/14);
-    if(k%every===0)s+='<text class="t-s" x="'+x(k)+'" y="'+(H-B+16)+'" text-anchor="middle">'+ymShort(F+k)+'</text>';
-  });
-  s+='<path d="M'+cum.map(function(v,k){return x(k)+' '+y(v)}).join(' L')+'" fill="none" style="stroke:var(--tax)" stroke-width="2.2"/>';
-  cum.forEach(function(v,k){s+='<circle class="f-tax" cx="'+x(k)+'" cy="'+y(v)+'" r="2.6"/>'});
-  s+='<line x1="'+L+'" x2="'+(W-Rm)+'" y1="'+y(S.thueQT)+'" y2="'+y(S.thueQT)+'" style="stroke:var(--ink)" stroke-width="1.6" stroke-dasharray="6 4"/>';
-  s+='<text class="t-v" x="'+(L+4)+'" y="'+(y(S.thueQT)-6)+'">Thuế quyết toán '+short(S.thueQT)+'</text>';
-  s+='<text class="t-tax" x="'+(W-Rm)+'" y="'+(y(c)-8)+'" text-anchor="end">Đã khấu trừ '+short(c)+'</text>';
-  s+='<text class="t-s" x="'+L+'" y="'+(H-6)+'">Cột: thuế khấu trừ từng kỳ thuế · đường đỏ: lũy kế · đường nét đứt: thuế theo quyết toán</text>';
-  return s+'</svg>';
+	var F=R.F,T=R.T,N=R.N,S=R.sett,W=760,H=250,L=52,Rm=16,Tp=18,B=40;
+	var mon=[],cum=[],c=0;
+	for(var i=F;i<=T;i++){var m=R.months.get(i),t=m?m.thue:0;mon.push(t);c+=t;cum.push(c)}
+	var mx=Math.max(S.thueQT,c,Math.max.apply(null,mon),1)*1.12;
+	var pw=W-L-Rm,ph=H-Tp-B,bw=pw/N;
+	var y=function(v){return Tp+ph-v/mx*ph},x=function(k){return L+bw*k+bw/2};
+	var s='<svg viewBox="0 0 '+W+' '+H+'" class="ladder" role="img" aria-label="Thuế khấu trừ lũy kế so với thuế quyết toán">';
+	[0,0.5,1].forEach(function(f){var v=mx/1.12*f;s+='<line class="ln" x1="'+L+'" x2="'+(W-Rm)+'" y1="'+y(v)+'" y2="'+y(v)+'"/><text class="t-s" x="'+(L-6)+'" y="'+(y(v)+3)+'" text-anchor="end">'+short(v)+'</text>'});
+	mon.forEach(function(v,k){
+		var h=v/mx*ph;s+='<rect class="f-tax" fill-opacity=".35" x="'+(x(k)-bw*0.32)+'" y="'+(y(v))+'" width="'+(bw*0.64)+'" height="'+h+'" rx="2"><title>'+ymLabel(F+k)+': '+vn(v)+'</title></rect>';
+		var every=Math.ceil(N/14);
+		if(k%every===0)s+='<text class="t-s" x="'+x(k)+'" y="'+(H-B+16)+'" text-anchor="middle">'+ymShort(F+k)+'</text>';
+	});
+	s+='<path d="M'+cum.map(function(v,k){return x(k)+' '+y(v)}).join(' L')+'" fill="none" style="stroke:var(--tax)" stroke-width="2.2"/>';
+	cum.forEach(function(v,k){s+='<circle class="f-tax" cx="'+x(k)+'" cy="'+y(v)+'" r="2.6"/>'});
+	s+='<line x1="'+L+'" x2="'+(W-Rm)+'" y1="'+y(S.thueQT)+'" y2="'+y(S.thueQT)+'" style="stroke:var(--ink)" stroke-width="1.6" stroke-dasharray="6 4"/>';
+	s+='<text class="t-v" x="'+(L+4)+'" y="'+(y(S.thueQT)-6)+'">Thuế quyết toán '+short(S.thueQT)+'</text>';
+	s+='<text class="t-tax" x="'+(W-Rm)+'" y="'+(y(c)-8)+'" text-anchor="end">Đã khấu trừ '+short(c)+'</text>';
+	s+='<text class="t-s" x="'+L+'" y="'+(H-6)+'">Cột: thuế khấu trừ từng kỳ thuế · đường đỏ: lũy kế · đường nét đứt: thuế theo quyết toán</text>';
+	return s+'</svg>';
 }
 function qrow(code,label,val,cls){return '<tr class="'+(cls||'')+'"><td class="'+(cls&&cls.indexOf('i1')>=0?'ind1':'')+'">'+label+'</td><td class="code">['+code+']</td><td class="val">'+vn(val)+'</td></tr>'}
 function insights(){
-  var S=R.sett,out=[],maxM=null;
-  R.months.forEach(function(m){if(m.idx>=R.F&&m.idx<=R.T&&(!maxM||m.thue>maxM.thue))maxM=m});
-  if(maxM&&maxM.events.length>1){
-    var bs=maxM.events.filter(function(e){return e.type==='B'}).length;
-    var top=taxDetail(maxM.tntt,R.br,1).rows.filter(function(r){return r.amt>0}).pop();
-    out.push('Kỳ khấu trừ nhiều nhất là '+ymLong(maxM.idx)+' với '+vn(maxM.thue)+' đ'+(bs?', vì '+bs+' khoản thưởng cộng vào lương cùng tháng đẩy thu nhập tính thuế lên '+vn(maxM.tntt)+' đ'+(top?' (chạm bậc '+(top.k+1)+', '+top.rate+'%)':''):'')+'.');
-  }
-  var tq=taxDetail(S.tntt,R.br,S.N).rows.filter(function(r){return r.amt>0}).pop();
-  out.push('Quyết toán gộp cả '+S.N+' tháng: thu nhập tính thuế '+vn(S.tntt)+' đ'+(tq?' chỉ chạm bậc '+(tq.k+1)+' ('+tq.rate+'%) của biểu đã nhân '+S.N+' tháng':'')+', nên thuế '+vn(S.thueQT)+' đ.');
-  if(S.diff<0)out.push('Khấu trừ hàng tháng cao hơn nên nộp thừa '+vn(S.thua)+' đ. Thưởng dồn vào một tháng bị tính ở bậc cao, còn quyết toán dàn đều theo cả kỳ.');
-  else if(S.diff>0)out.push('Khấu trừ hàng tháng thấp hơn nên còn phải nộp thêm '+vn(S.conNop)+' đ'+(S.mien?' (được miễn truy thu vì không quá 50.000 đ)':'')+'.');
-  else out.push('Thuế khấu trừ hàng tháng bằng thuế quyết toán.');
-  if(S.nBT<S.N)out.push('Chỉ '+S.nBT+'/'+S.N+' tháng có giảm trừ bản thân vì nhân viên chưa vào làm hoặc đã nghỉ việc.');
-  return out;
+	var S=R.sett,out=[],maxM=null;
+	R.months.forEach(function(m){if(m.idx>=R.F&&m.idx<=R.T&&(!maxM||m.thue>maxM.thue))maxM=m});
+	if(maxM&&maxM.events.length>1){
+		var bs=maxM.events.filter(function(e){return e.type==='B'}).length;
+		var top=taxDetail(maxM.tntt,R.br,1).rows.filter(function(r){return r.amt>0}).pop();
+		out.push('Kỳ khấu trừ nhiều nhất là '+ymLong(maxM.idx)+' với '+vn(maxM.thue)+' đ'+(bs?', vì '+bs+' khoản thưởng cộng vào lương cùng tháng đẩy thu nhập tính thuế lên '+vn(maxM.tntt)+' đ'+(top?' (chạm bậc '+(top.k+1)+', '+top.rate+'%)':''):'')+'.');
+	}
+	var tq=taxDetail(S.tntt,R.br,S.N).rows.filter(function(r){return r.amt>0}).pop();
+	out.push('Quyết toán gộp cả '+S.N+' tháng: thu nhập tính thuế '+vn(S.tntt)+' đ'+(tq?' chỉ chạm bậc '+(tq.k+1)+' ('+tq.rate+'%) của biểu đã nhân '+S.N+' tháng':'')+', nên thuế '+vn(S.thueQT)+' đ.');
+	if(S.diff<0)out.push('Khấu trừ hàng tháng cao hơn nên nộp thừa '+vn(S.thua)+' đ. Thưởng dồn vào một tháng bị tính ở bậc cao, còn quyết toán dàn đều theo cả kỳ.');
+	else if(S.diff>0)out.push('Khấu trừ hàng tháng thấp hơn nên còn phải nộp thêm '+vn(S.conNop)+' đ'+(S.mien?' (được miễn truy thu vì không quá 50.000 đ)':'')+'.');
+	else out.push('Thuế khấu trừ hàng tháng bằng thuế quyết toán.');
+	if(S.nBT<S.N)out.push('Chỉ '+S.nBT+'/'+S.N+' tháng có giảm trừ bản thân vì nhân viên chưa vào làm hoặc đã nghỉ việc.');
+	return out;
 }
 function renderSettle(){
-  var S=R.sett,cmp=run(Object.assign({},P,{mode:1-P.mode}));
-  var st=S.diff<0?'<span class="chip ok">Nộp thừa '+vn(S.thua)+'</span>':(S.diff>0?'<span class="chip bad">Còn phải nộp '+vn(S.conNop)+'</span>':'<span class="chip">Không chênh lệch</span>');
-  var mx=Math.max(S.tnct,1),tx=Math.max(S.thueQT,S.thue,1);
-  var pipe='<table class="pipe"><thead><tr><th>Bước quyết toán</th><th>Giá trị</th></tr></thead><tbody>'+
-   pr('Tổng thu nhập chịu thuế (f005)',S.tnct,'b-inc',mx)+
-   (S.bh?pr('− Bảo hiểm bắt buộc (f040)',S.bh,'b-ded',mx):'')+
-   pr('− Giảm trừ bản thân: '+S.nBT+' tháng × '+vn(P.gtBT)+' (f037)',S.gtBT,'b-ded',mx)+
-   (S.gtNPT?pr('− Giảm trừ NPT: '+S.nPT+' tháng × '+S.npt+' người (f038)',S.gtNPT,'b-ded',mx):'')+
-   pr('= Thu nhập tính thuế cả kỳ',S.tntt,'b-tn',mx,'sum')+
-   pr('Thuế theo biểu × '+S.N+' tháng (f008)',S.thueQT,'b-tax',tx)+
-   pr('− Thuế đã khấu trừ (f009)',S.thue,'b-tax',tx)+
-   pr(S.diff<0?'= Nộp thừa (f010)':'= Còn phải nộp thêm (f015)',Math.abs(S.diff),'b-tax',tx,'res')+'</tbody></table>';
-  function pr(l,v,c,m,row){return '<tr class="'+(row||'')+'"><td>'+l+'</td><td><div class="v"><span>'+vn(v)+'</span><i class="bar '+c+'" style="width:'+clamp(v/m*100,0,100)+'%"></i></div></td></tr>'}
-  var ins=insights().map(function(t){return '<li>'+t+'</li>'}).join('');
-  var warn=(S.N!==12)?'<p class="note warnbox"><b>Chu kỳ '+S.N+' tháng:</b> luật mặc định quyết toán theo năm dương lịch (12 tháng). Ở đây biểu thuế quyết toán được nhân với số tháng của chu kỳ để minh họa. Bấm “Năm dương lịch 2027” để xem đúng chuẩn.</p>':'';
-  var uqNote=S.uq?'':'<p class="note warnbox"><b>Nhân viên tự quyết toán:</b> '+(S.uqWanted&&!S.employedAtEnd?'đã nghỉ việc trước khi kết thúc kỳ nên không ủy quyền được; công ty chỉ cấp chứng từ khấu trừ thuế và nhân viên tự quyết toán (02/QTT-TNCN). ':'chưa chọn ủy quyền nên công ty không quyết toán thay. ')+'Các chỉ tiêu [35]-[41] của 05/QTT-TNCN bằng 0, nhưng chỉ tiêu [31] vẫn ghi thuế đã khấu trừ.</p>';
-  var rem=S.uq?S.thueQT-S.thue:0;
-  var form='<div class="paper"><span class="demo">Dữ liệu minh họa · không dùng để nộp</span>'+
-    '<p class="nat">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br><span>Độc lập - Tự do - Hạnh phúc</span></p>'+
-    '<h3>TỜ KHAI QUYẾT TOÁN THUẾ THU NHẬP CÁ NHÂN</h3>'+
-    '<p class="c">(Mẫu 05/QTT-TNCN · tổ chức trả thu nhập quyết toán thay cho cá nhân)</p>'+
-    '<div class="meta"><div>[01] Kỳ tính thuế: từ tháng <b>'+pad(idxM(R.F))+'/'+idxY(R.F)+'</b> đến tháng <b>'+pad(idxM(R.T))+'/'+idxY(R.T)+'</b> &nbsp; [02] Lần đầu: ☒</div><div>[04] Tên người nộp thuế: <b>CÔNG TY DEMO FAST</b> &nbsp; [05] Mã số thuế: <b>0000000000</b></div></div>'+
-    '<table><thead><tr><th>Chỉ tiêu</th><th>Mã</th><th>Giá trị</th></tr></thead><tbody>'+
-    qrow('21','Số cá nhân được miễn, giảm thuế theo Hiệp định',0)+
-    qrow('22','Số người phụ thuộc được giảm trừ gia cảnh',S.nPT?S.npt:0)+
-    qrow('23','Tổng thu nhập chịu thuế trả cho cá nhân',S.tnct)+
-    qrow('24','Trong đó: cá nhân cư trú',S.tnct,'i1')+
-    qrow('25','Trong đó: cá nhân không cư trú',0,'i1')+
-    qrow('26','TNCT từ phí bảo hiểm nhân thọ, bảo hiểm khác do doanh nghiệp bảo hiểm nước ngoài chi trả',0)+
-    qrow('27','Trong đó: TNCT được miễn theo Hợp đồng dầu khí',0,'i1')+
-    qrow('28','Tổng TNCT trả cho cá nhân thuộc diện khấu trừ thuế',S.thue>0?S.tnct:0)+
-    qrow('29','Trong đó: cá nhân cư trú',S.thue>0?S.tnct:0,'i1')+
-    qrow('30','Trong đó: cá nhân không cư trú',0,'i1')+
-    qrow('31','Tổng số thuế TNCN đã khấu trừ',S.thue)+
-    qrow('32','Trong đó: cá nhân cư trú',S.thue,'i1')+
-    qrow('33','Trong đó: cá nhân không cư trú',0,'i1')+
-    qrow('34','Thuế đã khấu trừ trên phí bảo hiểm nêu ở [26]',0)+
-    qrow('35','Số cá nhân ủy quyền cho tổ chức quyết toán thay',S.uq?1:0)+
-    qrow('36','Tổng số thuế đã khấu trừ của cá nhân ủy quyền',S.uq?S.thue:0)+
-    qrow('37','Trong đó: thuế đã khấu trừ tại tổ chức trước khi điều chuyển',0,'i1')+
-    qrow('38','Tổng số thuế TNCN phải nộp của cá nhân ủy quyền',S.uq?S.thueQT:0)+
-    qrow('39','Thuế được miễn do còn phải nộp sau quyết toán thay từ 50.000 đ trở xuống',S.uq?S.mien:0)+
-    qrow('40','Tổng số thuế còn phải nộp ngân sách nhà nước',S.uq&&rem>50000?rem:0,'res')+
-    qrow('41','Tổng số thuế đã nộp thừa',S.uq&&rem<0?-rem:0,'res')+
-    '</tbody></table><p class="foot">Chỉ tiêu [40] = [38] − [36] − [39] khi không âm; [41] = giá trị tuyệt đối khi âm. Mã, tên chỉ tiêu theo mẫu 05/QTT-TNCN hiện hành, cần đối chiếu với mẫu của TT 89/2026.</p></div>';
-  var bk='<div class="tbl-wrap"><table class="dt"><thead><tr><th>STT</th><th>Họ tên [07]</th><th class="r">[12] TNCT</th><th class="r">[16] NPT</th><th class="r">[17] Giảm trừ GĐ</th><th class="r">[19] Bảo hiểm</th><th class="r">[21] TNTT</th><th class="r">[22] Đã khấu trừ</th><th class="r">[24] Phải nộp</th><th class="r">[25] Nộp thừa</th><th class="r">[26] Còn phải nộp</th></tr></thead><tbody>'+
-    (S.uq?'<tr><td>1</td><td>Nhân viên A</td><td class="r">'+vn(S.tnct)+'</td><td class="r">'+(S.nPT?S.npt:0)+'</td><td class="r">'+vn(S.gtBT+S.gtNPT)+'</td><td class="r">'+vn(S.bh)+'</td><td class="r">'+vn(S.tntt)+'</td><td class="r">'+vn(S.thue)+'</td><td class="r">'+vn(S.thueQT)+'</td><td class="r">'+vn(S.thua)+'</td><td class="r">'+vn(S.conNop)+'</td></tr>':'<tr><td colspan="11" style="white-space:normal">Không có dòng: nhân viên không thuộc diện công ty quyết toán thay.</td></tr>')+
-    '</tbody></table></div>';
-  var cmpTbl='<div class="tbl-wrap"><table class="dt"><thead><tr><th>Cơ chế</th><th class="r">Thuế đã khấu trừ</th><th class="r">Kỳ khấu trừ cao nhất</th><th class="r">Thuế quyết toán</th><th class="r">Chênh lệch</th></tr></thead><tbody>'+
-    [[R,true],[cmp,false]].map(function(p){var r=p[0],mm=0;r.months.forEach(function(m){if(m.idx>=r.F&&m.idx<=r.T)mm=Math.max(mm,m.thue)});
-      return '<tr class="'+(p[1]?'hl':'')+'"><td style="white-space:normal">'+(r.mode===1?'Theo thực chi':'Theo kỳ lương')+(p[1]?' (đang xem)':'')+'</td><td class="r">'+vn(r.sett.thue)+'</td><td class="r">'+vn(mm)+'</td><td class="r">'+vn(r.sett.thueQT)+'</td><td class="r">'+(r.sett.diff<0?'nộp thừa ':'còn nộp ')+vn(Math.abs(r.sett.diff))+'</td></tr>'}).join('')+'</tbody></table></div>';
-  $('#settleBody').innerHTML=
-    '<div class="card"><h3>Từ khấu trừ hàng tháng đến quyết toán '+st+'</h3><p class="sub">Thủ tục hs_CalcPersonalIncomeTax4Year gom hrt00$ của các kỳ trong chu kỳ, tính lại thuế theo thu nhập cả kỳ rồi so với thuế đã khấu trừ.</p>'+warn+
-      '<div class="two"><div>'+pipe+'</div><div><p class="sub" style="margin:0 0 6px">Thu nhập tính thuế cả kỳ lấp đầy biểu thuế (ngưỡng nhân '+S.N+' tháng)</p>'+ladderSVG(0,S.tntt,'L',S.N)+
-      '<div class="legend" style="margin:6px 0 0"><span><i class="b-inc"></i>Thu nhập tính thuế cả kỳ</span></div></div></div></div>'+
-    '<div class="card"><h3>Thuế khấu trừ lũy kế so với thuế quyết toán</h3><p class="sub">Khoảng cách giữa đường đỏ ở tháng cuối và đường nét đứt chính là số nộp thừa hoặc còn phải nộp.</p>'+cumChart()+'<ul style="margin:10px 0 0;padding-left:18px;display:grid;gap:5px">'+ins+'</ul></div>'+
-    '<div class="card"><h3>Tờ khai quyết toán 05/QTT-TNCN</h3><p class="sub">Số liệu lấy từ hrt03$ theo logic hs_rpt05KK, đối chiếu chỉ tiêu theo mẫu hiện hành.</p>'+uqNote+form+'</div>'+
-    '<div class="card"><h3>Phụ lục 05-1/BK-QTT-TNCN</h3><p class="sub">Bảng kê cá nhân thuộc diện tính thuế theo biểu lũy tiến, chỉ gồm cá nhân ủy quyền quyết toán thay.</p>'+bk+'</div>'+
-    '<div class="card"><h3>So sánh hai cơ chế với cùng tham số</h3><p class="sub">Cùng dữ liệu, đổi t_tncn_thuc_chi giữa 1 và 0.</p>'+cmpTbl+'</div>';
+	var S=R.sett,cmp=run(Object.assign({},P,{mode:1-P.mode}));
+	var st=S.diff<0?'<span class="chip ok">Nộp thừa '+vn(S.thua)+'</span>':(S.diff>0?'<span class="chip bad">Còn phải nộp '+vn(S.conNop)+'</span>':'<span class="chip">Không chênh lệch</span>');
+	var mx=Math.max(S.tnct,1),tx=Math.max(S.thueQT,S.thue,1);
+	var pipe='<table class="pipe"><thead><tr><th>Bước quyết toán</th><th>Giá trị</th></tr></thead><tbody>'+
+	 pr('Tổng thu nhập chịu thuế (f005)',S.tnct,'b-inc',mx)+
+	 (S.bh?pr('− Bảo hiểm bắt buộc (f040)',S.bh,'b-ded',mx):'')+
+	 pr('− Giảm trừ bản thân: '+S.nBT+' tháng × '+vn(P.gtBT)+' (f037)',S.gtBT,'b-ded',mx)+
+	 (S.gtNPT?pr('− Giảm trừ NPT: '+S.nPT+' tháng × '+S.npt+' người (f038)',S.gtNPT,'b-ded',mx):'')+
+	 pr('= Thu nhập tính thuế cả kỳ',S.tntt,'b-tn',mx,'sum')+
+	 pr('Thuế theo biểu × '+S.N+' tháng (f008)',S.thueQT,'b-tax',tx)+
+	 pr('− Thuế đã khấu trừ (f009)',S.thue,'b-tax',tx)+
+	 pr(S.diff<0?'= Nộp thừa (f010)':'= Còn phải nộp thêm (f015)',Math.abs(S.diff),'b-tax',tx,'res')+'</tbody></table>';
+	function pr(l,v,c,m,row){return '<tr class="'+(row||'')+'"><td>'+l+'</td><td><div class="v"><span>'+vn(v)+'</span><i class="bar '+c+'" style="width:'+clamp(v/m*100,0,100)+'%"></i></div></td></tr>'}
+	var ins=insights().map(function(t){return '<li>'+t+'</li>'}).join('');
+	var warn=(S.N!==12)?'<p class="note warnbox"><b>Chu kỳ '+S.N+' tháng:</b> luật mặc định quyết toán theo năm dương lịch (12 tháng). Ở đây biểu thuế quyết toán được nhân với số tháng của chu kỳ để minh họa. Bấm “Năm dương lịch 2027” để xem đúng chuẩn.</p>':'';
+	var uqNote=S.uq?'':'<p class="note warnbox"><b>Nhân viên tự quyết toán:</b> '+(S.uqWanted&&!S.employedAtEnd?'đã nghỉ việc trước khi kết thúc kỳ nên không ủy quyền được; công ty chỉ cấp chứng từ khấu trừ thuế và nhân viên tự quyết toán (02/QTT-TNCN). ':'chưa chọn ủy quyền nên công ty không quyết toán thay. ')+'Các chỉ tiêu [35]-[41] của 05/QTT-TNCN bằng 0, nhưng chỉ tiêu [31] vẫn ghi thuế đã khấu trừ.</p>';
+	var rem=S.uq?S.thueQT-S.thue:0;
+	var form='<div class="paper"><span class="demo">Dữ liệu minh họa · không dùng để nộp</span>'+
+		'<p class="nat">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br><span>Độc lập - Tự do - Hạnh phúc</span></p>'+
+		'<h3>TỜ KHAI QUYẾT TOÁN THUẾ THU NHẬP CÁ NHÂN</h3>'+
+		'<p class="c">(Mẫu 05/QTT-TNCN · tổ chức trả thu nhập quyết toán thay cho cá nhân)</p>'+
+		'<div class="meta"><div>[01] Kỳ tính thuế: từ tháng <b>'+pad(idxM(R.F))+'/'+idxY(R.F)+'</b> đến tháng <b>'+pad(idxM(R.T))+'/'+idxY(R.T)+'</b> &nbsp; [02] Lần đầu: ☒</div><div>[04] Tên người nộp thuế: <b>CÔNG TY DEMO FAST</b> &nbsp; [05] Mã số thuế: <b>0000000000</b></div></div>'+
+		'<table><thead><tr><th>Chỉ tiêu</th><th>Mã</th><th>Giá trị</th></tr></thead><tbody>'+
+		qrow('21','Số cá nhân được miễn, giảm thuế theo Hiệp định',0)+
+		qrow('22','Số người phụ thuộc được giảm trừ gia cảnh',S.nPT?S.npt:0)+
+		qrow('23','Tổng thu nhập chịu thuế trả cho cá nhân',S.tnct)+
+		qrow('24','Trong đó: cá nhân cư trú',S.tnct,'i1')+
+		qrow('25','Trong đó: cá nhân không cư trú',0,'i1')+
+		qrow('26','TNCT từ phí bảo hiểm nhân thọ, bảo hiểm khác do doanh nghiệp bảo hiểm nước ngoài chi trả',0)+
+		qrow('27','Trong đó: TNCT được miễn theo Hợp đồng dầu khí',0,'i1')+
+		qrow('28','Tổng TNCT trả cho cá nhân thuộc diện khấu trừ thuế',S.thue>0?S.tnct:0)+
+		qrow('29','Trong đó: cá nhân cư trú',S.thue>0?S.tnct:0,'i1')+
+		qrow('30','Trong đó: cá nhân không cư trú',0,'i1')+
+		qrow('31','Tổng số thuế TNCN đã khấu trừ',S.thue)+
+		qrow('32','Trong đó: cá nhân cư trú',S.thue,'i1')+
+		qrow('33','Trong đó: cá nhân không cư trú',0,'i1')+
+		qrow('34','Thuế đã khấu trừ trên phí bảo hiểm nêu ở [26]',0)+
+		qrow('35','Số cá nhân ủy quyền cho tổ chức quyết toán thay',S.uq?1:0)+
+		qrow('36','Tổng số thuế đã khấu trừ của cá nhân ủy quyền',S.uq?S.thue:0)+
+		qrow('37','Trong đó: thuế đã khấu trừ tại tổ chức trước khi điều chuyển',0,'i1')+
+		qrow('38','Tổng số thuế TNCN phải nộp của cá nhân ủy quyền',S.uq?S.thueQT:0)+
+		qrow('39','Thuế được miễn do còn phải nộp sau quyết toán thay từ 50.000 đ trở xuống',S.uq?S.mien:0)+
+		qrow('40','Tổng số thuế còn phải nộp ngân sách nhà nước',S.uq&&rem>50000?rem:0,'res')+
+		qrow('41','Tổng số thuế đã nộp thừa',S.uq&&rem<0?-rem:0,'res')+
+		'</tbody></table><p class="foot">Chỉ tiêu [40] = [38] − [36] − [39] khi không âm; [41] = giá trị tuyệt đối khi âm. Mã, tên chỉ tiêu theo mẫu 05/QTT-TNCN hiện hành, cần đối chiếu với mẫu của TT 89/2026.</p></div>';
+	var bk='<div class="tbl-wrap"><table class="dt"><thead><tr><th>STT</th><th>Họ tên [07]</th><th class="r">[12] TNCT</th><th class="r">[16] NPT</th><th class="r">[17] Giảm trừ GĐ</th><th class="r">[19] Bảo hiểm</th><th class="r">[21] TNTT</th><th class="r">[22] Đã khấu trừ</th><th class="r">[24] Phải nộp</th><th class="r">[25] Nộp thừa</th><th class="r">[26] Còn phải nộp</th></tr></thead><tbody>'+
+		(S.uq?'<tr><td>1</td><td>Nhân viên A</td><td class="r">'+vn(S.tnct)+'</td><td class="r">'+(S.nPT?S.npt:0)+'</td><td class="r">'+vn(S.gtBT+S.gtNPT)+'</td><td class="r">'+vn(S.bh)+'</td><td class="r">'+vn(S.tntt)+'</td><td class="r">'+vn(S.thue)+'</td><td class="r">'+vn(S.thueQT)+'</td><td class="r">'+vn(S.thua)+'</td><td class="r">'+vn(S.conNop)+'</td></tr>':'<tr><td colspan="11" style="white-space:normal">Không có dòng: nhân viên không thuộc diện công ty quyết toán thay.</td></tr>')+
+		'</tbody></table></div>';
+	var cmpTbl='<div class="tbl-wrap"><table class="dt"><thead><tr><th>Cơ chế</th><th class="r">Thuế đã khấu trừ</th><th class="r">Kỳ khấu trừ cao nhất</th><th class="r">Thuế quyết toán</th><th class="r">Chênh lệch</th></tr></thead><tbody>'+
+		[[R,true],[cmp,false]].map(function(p){var r=p[0],mm=0;r.months.forEach(function(m){if(m.idx>=r.F&&m.idx<=r.T)mm=Math.max(mm,m.thue)});
+			return '<tr class="'+(p[1]?'hl':'')+'"><td style="white-space:normal">'+(r.mode===1?'Theo thực chi':'Theo kỳ lương')+(p[1]?' (đang xem)':'')+'</td><td class="r">'+vn(r.sett.thue)+'</td><td class="r">'+vn(mm)+'</td><td class="r">'+vn(r.sett.thueQT)+'</td><td class="r">'+(r.sett.diff<0?'nộp thừa ':'còn nộp ')+vn(Math.abs(r.sett.diff))+'</td></tr>'}).join('')+'</tbody></table></div>';
+	$('#settleBody').innerHTML=
+		'<div class="card"><h3>Từ khấu trừ hàng tháng đến quyết toán '+st+'</h3><p class="sub">Thủ tục hs_CalcPersonalIncomeTax4Year gom hrt00$ của các kỳ trong chu kỳ, tính lại thuế theo thu nhập cả kỳ rồi so với thuế đã khấu trừ.</p>'+warn+
+			'<div class="two"><div>'+pipe+'</div><div><p class="sub" style="margin:0 0 6px">Thu nhập tính thuế cả kỳ lấp đầy biểu thuế (ngưỡng nhân '+S.N+' tháng)</p>'+ladderSVG(0,S.tntt,'L',S.N)+
+			'<div class="legend" style="margin:6px 0 0"><span><i class="b-inc"></i>Thu nhập tính thuế cả kỳ</span></div></div></div></div>'+
+		'<div class="card"><h3>Thuế khấu trừ lũy kế so với thuế quyết toán</h3><p class="sub">Khoảng cách giữa đường đỏ ở tháng cuối và đường nét đứt chính là số nộp thừa hoặc còn phải nộp.</p>'+cumChart()+'<ul style="margin:10px 0 0;padding-left:18px;display:grid;gap:5px">'+ins+'</ul></div>'+
+		'<div class="card"><h3>Tờ khai quyết toán 05/QTT-TNCN</h3><p class="sub">Số liệu lấy từ hrt03$ theo logic hs_rpt05KK, đối chiếu chỉ tiêu theo mẫu hiện hành.</p>'+uqNote+form+'</div>'+
+		'<div class="card"><h3>Phụ lục 05-1/BK-QTT-TNCN</h3><p class="sub">Bảng kê cá nhân thuộc diện tính thuế theo biểu lũy tiến, chỉ gồm cá nhân ủy quyền quyết toán thay.</p>'+bk+'</div>'+
+		'<div class="card"><h3>So sánh hai cơ chế với cùng tham số</h3><p class="sub">Cùng dữ liệu, đổi t_tncn_thuc_chi giữa 1 và 0.</p>'+cmpTbl+'</div>';
 }
 
 function renderAll(){renderKpi();renderFlow();renderData();renderForms();renderSettle()}
 
 /* ========== Điều hướng và tương tác ========== */
 function showTab(t){
-  if(['dien-tien','du-lieu','to-khai-thang','quyet-toan'].indexOf(t)<0)t='dien-tien';
-  tab=t;
-  $$('.tab').forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.tab===t));b.tabIndex=b.dataset.tab===t?0:-1});
-  $$('main section[role=tabpanel]').forEach(function(s){s.hidden=(s.id!=='panel-'+t)});
-  if(t==='to-khai-thang')renderForms();
-  if(t==='du-lieu'){tblMonth=null;renderData()}
+	if(['dien-tien','du-lieu','to-khai-thang','quyet-toan'].indexOf(t)<0)t='dien-tien';
+	tab=t;
+	$$('.tab').forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.tab===t));b.tabIndex=b.dataset.tab===t?0:-1});
+	$$('main section[role=tabpanel]').forEach(function(s){s.hidden=(s.id!=='panel-'+t)});
+	if(t==='to-khai-thang')renderForms();
+	if(t==='du-lieu'){tblMonth=null;renderData()}
 }
 function stepTo(i){if(!R.steps.length)return;i=clamp(i,0,R.steps.length-1);sel=R.steps[i].id;tblMonth=null;fPeriod=null;renderFlow();renderData();renderForms()}
 function stepIdx(){return R.steps.findIndex(function(e){return e.id===sel})}
 function stopPlay(){if(playTimer){clearInterval(playTimer);playTimer=null}$('#btnPlay').textContent='▶ Phát'}
 function wireUI(){
-  $$('.tab').forEach(function(b){b.addEventListener('click',function(){showTab(b.dataset.tab);try{history.replaceState(null,'','#'+b.dataset.tab)}catch(e){location.hash=b.dataset.tab}})});
-  window.addEventListener('hashchange',function(){showTab(location.hash.slice(1))});
-  $('#btnFirst').addEventListener('click',function(){stopPlay();stepTo(0)});
-  $('#btnPrev').addEventListener('click',function(){stopPlay();stepTo(stepIdx()-1)});
-  $('#btnNext').addEventListener('click',function(){stopPlay();stepTo(stepIdx()+1)});
-  $('#stepRange').addEventListener('input',function(e){stopPlay();stepTo(+e.target.value)});
-  $('#btnPlay').addEventListener('click',function(){
-    if(playTimer){stopPlay();return}
-    if(stepIdx()>=R.steps.length-1)stepTo(0);
-    $('#btnPlay').textContent='❚❚ Dừng';
-    playTimer=setInterval(function(){var i=stepIdx();if(i>=R.steps.length-1){stopPlay();return}stepTo(i+1)},1700);
-  });
-  function pickEv(e){
-    var t=e.target.closest('[data-ev]');if(!t)return;
-    var id=t.getAttribute('data-ev');if(!R.steps.some(function(x){return x.id===id}))return;
-    stopPlay();sel=id;tblMonth=null;fPeriod=null;renderFlow();renderData();renderForms();
-  }
-  $('#tlWrap').addEventListener('click',pickEv);
-  $('#tlWrap').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pickEv(e)}});
-  $('#evTable').addEventListener('click',pickEv);
-  $('#evTable').addEventListener('keydown',function(e){if(e.key==='Enter'){pickEv(e)}});
-  $('#tblPick').addEventListener('click',function(e){var b=e.target.closest('[data-t]');if(!b)return;tblSel=b.dataset.t;renderData()});
-  $('#tblMonth').addEventListener('change',function(e){tblMonth=+e.target.value;renderData()});
-  $('#fKind').addEventListener('click',function(e){var b=e.target.closest('[data-k]');if(!b)return;fKind=b.dataset.k;fPeriod=null;renderForms()});
-  $('#fPeriod').addEventListener('change',function(e){fPeriod=e.target.value;renderForms()});
+	$$('.tab').forEach(function(b){b.addEventListener('click',function(){showTab(b.dataset.tab);try{history.replaceState(null,'','#'+b.dataset.tab)}catch(e){location.hash=b.dataset.tab}})});
+	window.addEventListener('hashchange',function(){showTab(location.hash.slice(1))});
+	$('#btnFirst').addEventListener('click',function(){stopPlay();stepTo(0)});
+	$('#btnPrev').addEventListener('click',function(){stopPlay();stepTo(stepIdx()-1)});
+	$('#btnNext').addEventListener('click',function(){stopPlay();stepTo(stepIdx()+1)});
+	$('#stepRange').addEventListener('input',function(e){stopPlay();stepTo(+e.target.value)});
+	$('#btnPlay').addEventListener('click',function(){
+		if(playTimer){stopPlay();return}
+		if(stepIdx()>=R.steps.length-1)stepTo(0);
+		$('#btnPlay').textContent='❚❚ Dừng';
+		playTimer=setInterval(function(){var i=stepIdx();if(i>=R.steps.length-1){stopPlay();return}stepTo(i+1)},1700);
+	});
+	function pickEv(e){
+		var t=e.target.closest('[data-ev]');if(!t)return;
+		var id=t.getAttribute('data-ev');if(!R.steps.some(function(x){return x.id===id}))return;
+		stopPlay();sel=id;tblMonth=null;fPeriod=null;renderFlow();renderData();renderForms();
+	}
+	$('#tlWrap').addEventListener('click',pickEv);
+	$('#tlWrap').addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();pickEv(e)}});
+	$('#evTable').addEventListener('click',pickEv);
+	$('#evTable').addEventListener('keydown',function(e){if(e.key==='Enter'){pickEv(e)}});
+	$('#tblPick').addEventListener('click',function(e){var b=e.target.closest('[data-t]');if(!b)return;tblSel=b.dataset.t;renderData()});
+	$('#tblMonth').addEventListener('change',function(e){tblMonth=+e.target.value;renderData()});
+	$('#fKind').addEventListener('click',function(e){var b=e.target.closest('[data-k]');if(!b)return;fKind=b.dataset.k;fPeriod=null;renderForms()});
+	$('#fPeriod').addEventListener('change',function(e){fPeriod=e.target.value;renderForms()});
 }
 
 /* ========== Khởi động ========== */
