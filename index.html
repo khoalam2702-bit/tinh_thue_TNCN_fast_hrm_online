@@ -118,7 +118,7 @@ h1{margin:0;font-size:clamp(20px,2.5vw,29px);line-height:1.2;font-weight:700;let
 .note.warnbox{border:1px solid var(--warn);color:var(--ink);border-radius:8px;padding:8px 10px;background:var(--bg)}
 .note.warnbox b{color:var(--warn)}
 .leave{margin:0 0 12px;padding:12px 14px;border:1px solid var(--tax);border-radius:10px;background:var(--surface);font-size:13.5px;display:grid;gap:4px}.leave b{font-family:var(--font-mono);font-weight:600;white-space:nowrap}.leave h4{margin:0 0 2px;font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--tax)}
-.sal{display:grid;grid-template-columns:1fr 1fr;gap:6px}.sal label{display:grid;gap:2px;font-size:11px;color:var(--muted);min-width:0}.sal input{width:100%;min-width:0;border:1px solid var(--line);border-radius:6px;background:var(--bg);padding:6px 8px;font-size:12.5px}.sal input[data-ov]{border-color:var(--inc);background:var(--surface)}
+.sal{display:grid;grid-template-columns:1fr;gap:6px}.sal .sr{display:grid;grid-template-columns:64px 1fr 1fr;gap:6px;align-items:center;font-size:11.5px;color:var(--muted)}.sal .sr.h{font-weight:600;font-size:11px}.sal input{width:100%;min-width:0;border:1px solid var(--line);border-radius:6px;background:var(--bg);padding:6px 8px;font-size:12.5px}.sal input[data-ov]{border-color:var(--inc);background:var(--surface)}
 ol.steps{margin:0;padding-left:20px;display:grid;gap:6px;font-size:13px}
 code,.code{font-family:var(--font-mono);font-size:12px;background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:0 4px}
 pre.sql{margin:0 0 10px;padding:9px 11px;background:var(--bg);border:1px solid var(--line);border-radius:8px;font:12px/1.5 var(--font-mono);overflow-x:auto;color:var(--ink)}
@@ -262,12 +262,12 @@ footer li b{color:var(--ink)}
 	<div class="grp">
 		<h3>Lương</h3>
 		<label class="f"><span>Lương mặc định mỗi tháng (đ)</span><input class="num" id="p-salary" inputmode="numeric"></label>
-		<label class="f"><span>Bảo hiểm bắt buộc NLĐ đóng / tháng (đ)</span><input class="num" id="p-bh" inputmode="numeric"></label>
+		<label class="f"><span>Tỷ lệ BHXH, BHYT, BHTN người lao động đóng (%)</span><input type="number" id="p-bhrate" min="0" max="30" step="0.1"></label>
 		<div class="row2">
 			<label class="f"><span>Ngày chi lương</span><input class="num" type="number" id="p-payday" min="1" max="31"></label>
 			<label class="f"><span>Chi vào</span><select id="p-delay"><option value="0">Cùng tháng</option><option value="1">Tháng sau</option><option value="2">2 tháng sau</option></select></label>
 		</div>
-		<details id="salDet" open><summary style="cursor:pointer;font-weight:600;font-size:13px;margin-bottom:8px">Lương từng tháng</summary><div class="sal" id="salGrid"></div><div class="btns" style="margin-top:8px"><button class="btn" type="button" id="salReset">Đặt lại về mặc định</button></div><p class="hint" style="margin-top:8px">Ô viền xanh là tháng đã sửa riêng. Tháng ghi là tháng phát sinh lương, không phải tháng chi.</p></details>
+		<details id="salDet" open><summary style="cursor:pointer;font-weight:600;font-size:13px;margin-bottom:8px">Lương và lương đóng BH từng tháng</summary><div class="sal" id="salGrid"></div><div class="btns" style="margin-top:8px"><button class="btn" type="button" id="salReset">Đặt lại về mặc định</button></div><p class="hint" style="margin-top:8px">Ô viền xanh là tháng đã sửa riêng. Lương đóng BH mặc định bằng lương chính của tháng; giảm trừ BH của tháng = lương đóng BH × tỷ lệ. Tháng ghi là tháng phát sinh lương, không phải tháng chi.</p></details>
 	</div>
 	<div class="grp">
 		<h3>Nhân viên &amp; giảm trừ</h3>
@@ -374,7 +374,7 @@ footer li b{color:var(--ink)}
 			<li><b>Có trong tài liệu dự án:</b> luật 109/2025/QH15, NĐ 253/2026, TT 87/2026 (hiệu lực 01/07/2026); giảm trừ 15,5tr và 6,2tr; thuế suất 5-10-20-30-35%; bảng options, hrt00$/hrt01$/hrt02$/hrt03$/hrt9; luồng hs_CalcPersonalIncomeTax, hs_CalcPersonalIncomeTax4Year; chỉ tiêu của hs_rpt02KK và hs_rpt05KK.</li>
 			<li><b>Ngưỡng bậc thuế:</b> tài liệu dự án chưa ghi ngưỡng. Lấy từ Điều 9 Luật 2025 (tra cứu web): đến 10, trên 10-30, 30-60 triệu/tháng; bậc 60-100 triệu (30%) và trên 100 triệu (35%) suy ra từ biểu năm. Cần kiểm tra lại trong tdmthuelt của khách.</li>
 			<li><b>Cách ghi bảng hrt9 (hrt09):</b> tên cột theo tài liệu thiết kế thực chi (tn_ct, tien_gt, tn_tt, thue, thue_cl). Ý nghĩa thue = thuế tính lại lũy kế tháng, thue_cl = thuế khấu trừ thêm ở đợt chi là cách mô phỏng. Source thủ tục xử lý thực chi chưa có trong tài liệu, cần đối chiếu với DB thật. Phân bổ giảm trừ trong hrt01$ cũng là minh họa.</li>
-			<li><b>Mẫu tờ khai:</b> hồ sơ khai thuế dùng mẫu theo TT 89/2026/TT-BTC (thay TT 80/2021 từ 01/07/2026). Tổ chức trả thu nhập khai bằng mẫu 05/KK-TNCN; tài liệu dự án gọi thủ tục hs_rpt02KK là mẫu 02/KK-TNCN, trong khi 02/KK-TNCN là mẫu cá nhân tự khai. Mã chỉ tiêu trên trang theo thủ tục trong tài liệu và mẫu 05/QTT-TNCN hiện hành; chưa đối chiếu được file mẫu chính thức của TT 89 nên cần kiểm tra trước khi dùng với khách.</li>
+			<li><b>Mẫu tờ khai:</b> hai tờ khai và bảng kê trên trang bám theo kết quả các thủ tục trong tài liệu dự án: hs_rpt02KK (gọi là 02/KK-TNCN, chỉ tiêu [21]-[34]), hs_rpt05KK (05/QTT-TNCN, [21]-[40]) và hs_rpt05ABK (05-1/BK-QTT-TNCN, cột [07]-[23]). Các thủ tục ghi theo TT 80/2021. Chưa đối chiếu được file mẫu chính thức theo TT 89/2026 (mẫu tổ chức trả thu nhập có thể là 05/KK-TNCN) nên cần kiểm tra trước khi dùng với khách.</li>
 			<li><b>Kỳ quyết toán:</b> theo luật mặc định là năm dương lịch (dùng nút “Năm dương lịch 2027”). Chu kỳ 14 tháng ở cấu hình mặc định chỉ để minh họa: biểu quyết toán được nhân với số tháng của chu kỳ.</li>
 			<li><b>Đơn giản hóa:</b> cá nhân cư trú, HĐLĐ từ 3 tháng, một nơi trả thu nhập; chưa có khoản miễn thuế, giảm trừ y tế, giáo dục, từ thiện; lương tháng vào làm hoặc nghỉ việc chia theo ngày lịch. Dữ liệu NV A, đơn vị, mã số thuế là giả định để minh họa, không dùng để nộp.</li>
 		</ul>
@@ -410,14 +410,14 @@ var monthEnd=function(i){var y=idxY(i),m=idxM(i);return mkDate(y,m,dim(y,m))};
 /* ========== Tham số mặc định ========== */
 function defaults(){
 	return {
-		from:'2026-11', to:'2027-12', mode:1,
-		salary:20000000, salMap:{}, bh:0, payDay:5, delay:1,
-		join:'2025-03-01', leave:'', gtBT:15500000, gtNPT:6200000, npt:0, nptFrom:'2026-11', gtAfter:false, uq:true,
+		from:'2026-12', to:'2027-11', mode:1,
+		salary:20000000, salMap:{}, bhMap:{}, bhRate:10.5, payDay:5, delay:1,
+		join:'2025-03-01', leave:'', gtBT:15500000, gtNPT:6200000, npt:0, nptFrom:'2026-12', gtAfter:false, uq:true,
 		bonuses:[
 			{id:1,on:true,name:'Thưởng phép năm 2026',amount:6000000,date:'2026-12-25',period:'2026-12'},
 			{id:2,on:true,name:'Lương tháng 13 (2026)',amount:20000000,date:'2027-01-20',period:'2026-12'},
 			{id:3,on:true,name:'Thưởng SXKD quý 4/2026',amount:25000000,date:'2027-01-28',period:'2026-12'},
-			{id:4,on:true,name:'Thưởng phép năm 2027',amount:6000000,date:'2027-12-25',period:'2027-12'}
+			{id:4,on:true,name:'Thưởng phép năm 2027',amount:6000000,date:'2027-11-25',period:'2027-11'}
 		],
 		brackets:[{to:10e6,rate:5},{to:30e6,rate:10},{to:60e6,rate:20},{to:100e6,rate:30},{to:null,rate:35}]
 	};
@@ -442,6 +442,7 @@ function empDays(i,J,L){
 	if(L&&(!J||L.key>=J.key)){if(L.idx<i)return 0;if(L.idx===i)b=L.d}
 	return Math.max(0,b-a+1);
 }
+function bhSalOf(P,i){var k=idxY(i)+'-'+pad(idxM(i));var v=P.bhMap&&P.bhMap[k];return (v===undefined||v===null)?salOf(P,i):v}
 function salOf(P,i){var k=idxY(i)+'-'+pad(idxM(i));var v=P.salMap&&P.salMap[k];return (v===undefined||v===null)?P.salary:v}
 function run(P){
 	var F=parseYM(P.from),T=parseYM(P.to);
@@ -463,7 +464,7 @@ function run(P){
 		var pay=mkDate(py,pm,Math.min(clamp(+P.payDay||1,1,31),dim(py,pm)));
 		var taxIdx=P.mode===1?pIdx:i;
 		var taxKey=P.mode===1?pay.key:(y*10000+m*100+n);
-		add({type:'L',name:'Lương '+ymLabel(i),tnct:amt,bh:Math.round(P.bh*days/n),pay:pay,kyIdx:i,taxIdx:taxIdx,taxKey:taxKey,partial:days<n});
+		add({type:'L',name:'Lương '+ymLabel(i),tnct:amt,bh:Math.round(bhSalOf(P,i)*(+P.bhRate||0)/100*days/n),bhSal:bhSalOf(P,i),pay:pay,kyIdx:i,taxIdx:taxIdx,taxKey:taxKey,partial:days<n});
 	}
 	P.bonuses.forEach(function(b,k){
 		if(!b.on||!b.date||!(b.amount>0))return;
@@ -526,7 +527,7 @@ function run(P){
 }
 
 /* ========== Trạng thái ========== */
-var P=defaults(),R=null,sel=null,tab='dien-tien',tblSel='hrt9',tblMonth=null,fKind='thang',fPeriod=null,playTimer=null,nextId=10;
+var P=defaults(),R=null,sel=null,tab='dien-tien',tblSel='hrt9',tblMonth=null,tblAll=true,fKind='thang',fPeriod=null,playTimer=null,nextId=10;
 
 function recompute(){R=run(P);ensureSel();renderAll()}
 function ensureSel(){
@@ -541,7 +542,7 @@ function setMoney(el,n){el.value=n?n.toLocaleString('vi-VN'):'0'}
 function syncInputs(){
 	$('#p-from').value=P.from;$('#p-to').value=P.to;
 	$$('input[name=mode]').forEach(function(r){r.checked=(+r.value===P.mode)});
-	setMoney($('#p-salary'),P.salary);setMoney($('#p-bh'),P.bh);
+	setMoney($('#p-salary'),P.salary);$('#p-bhrate').value=P.bhRate;
 	$('#p-payday').value=P.payDay;$('#p-delay').value=String(P.delay);
 	$('#p-join').value=P.join;$('#p-leave').value=P.leave;
 	setMoney($('#p-gtbt'),P.gtBT);setMoney($('#p-gtnpt'),P.gtNPT);
@@ -555,9 +556,10 @@ function salMonths(){
 	for(var i=a;i<=b;i++)out.push(i);return out;
 }
 function renderSalGrid(){
-	$('#salGrid').innerHTML=salMonths().map(function(i){
-		var k=idxY(i)+'-'+pad(idxM(i)),ov=P.salMap[k]!==undefined;
-		return '<label>Lương '+ymLabel(i)+'<input type="text" class="num sal-in" inputmode="numeric" data-k="'+k+'"'+(ov?' data-ov="1"':'')+' value="'+vn(ov?P.salMap[k]:P.salary)+'"></label>';
+	$('#salGrid').innerHTML='<div class="sr h"><span>Tháng</span><span>Lương (đ)</span><span>Lương đóng BH (đ)</span></div>'+salMonths().map(function(i){
+		var k=idxY(i)+'-'+pad(idxM(i)),ov=P.salMap[k]!==undefined,ob=P.bhMap[k]!==undefined;
+		return '<div class="sr" data-k="'+k+'"><span>'+ymLabel(i)+'</span><input type="text" class="num sal-in" inputmode="numeric" aria-label="Lương '+ymLabel(i)+'" data-k="'+k+'"'+(ov?' data-ov="1"':'')+' value="'+vn(ov?P.salMap[k]:P.salary)+'">'+
+			'<input type="text" class="num bh-in" inputmode="numeric" aria-label="Lương đóng BH '+ymLabel(i)+'" data-k="'+k+'"'+(ob?' data-ov="1"':'')+' value="'+vn(ob?P.bhMap[k]:(ov?P.salMap[k]:P.salary))+'"></div>';
 	}).join('');
 }
 function renderBonuses(){
@@ -595,14 +597,16 @@ function wireParams(){
 	$('#p-from').addEventListener('input',function(e){if(e.target.value){P.from=e.target.value;renderSalGrid();recompute()}});
 	$('#p-to').addEventListener('input',function(e){if(e.target.value){P.to=e.target.value;renderSalGrid();recompute()}});
 	$$('input[name=mode]').forEach(function(r){r.addEventListener('change',function(){P.mode=+r.value;renderSalGrid();recompute()})});
-	moneyInput($('#p-salary'),function(n){P.salary=n;$$('#salGrid .sal-in').forEach(function(x){if(!x.dataset.ov)x.value=vn(n)})});
+	moneyInput($('#p-salary'),function(n){P.salary=n;$$('#salGrid .sr[data-k]').forEach(function(r){var si=r.querySelector('.sal-in'),bi=r.querySelector('.bh-in');if(!si.dataset.ov){si.value=vn(n);if(!bi.dataset.ov)bi.value=vn(n)}})});
 	$('#salGrid').addEventListener('input',function(e){
-		var t=e.target;if(!t.classList.contains('sal-in'))return;
+		var t=e.target,isS=t.classList.contains('sal-in'),isB=t.classList.contains('bh-in');if(!isS&&!isB)return;
 		var raw=t.value.replace(/\D/g,''),n=raw?Number(raw):0;
-		P.salMap[t.dataset.k]=n;t.dataset.ov='1';t.value=raw?n.toLocaleString('vi-VN'):'';recompute();
+		(isS?P.salMap:P.bhMap)[t.dataset.k]=n;t.dataset.ov='1';t.value=raw?n.toLocaleString('vi-VN'):'';
+		if(isS){var bi=t.closest('.sr').querySelector('.bh-in');if(!bi.dataset.ov)bi.value=t.value}
+		recompute();
 	});
-	$('#salReset').addEventListener('click',function(){P.salMap={};renderSalGrid();recompute()});
-	moneyInput($('#p-bh'),function(n){P.bh=n});
+	$('#salReset').addEventListener('click',function(){P.salMap={};P.bhMap={};renderSalGrid();recompute()});
+	$('#p-bhrate').addEventListener('input',function(e){P.bhRate=clamp(parseFloat(e.target.value)||0,0,30);recompute()});
 	moneyInput($('#p-gtbt'),function(n){P.gtBT=n});
 	moneyInput($('#p-gtnpt'),function(n){P.gtNPT=n});
 	$('#p-payday').addEventListener('input',function(e){P.payDay=clamp(+e.target.value||1,1,31);recompute()});
@@ -975,9 +979,15 @@ function renderData(){
 	if(tblMonth==null||idxs.indexOf(tblMonth)<0){var c=curEv();tblMonth=(c&&idxs.indexOf(c.taxIdx)>=0)?c.taxIdx:idxs[0]}
 	var perMonth=(tblSel==='hrt00'||tblSel==='hrt01'||tblSel==='hrt02');
 	var ms=$('#tblMonth');ms.parentElement.hidden=!perMonth;
-	ms.innerHTML=idxs.map(function(i){return '<option value="'+i+'"'+(i===tblMonth?' selected':'')+'>'+ymLong(i)+'</option>'}).join('');
+	ms.innerHTML='<option value="all"'+(tblAll?' selected':'')+'>Tất cả các kỳ trong chu kỳ</option>'+idxs.map(function(i){return '<option value="'+i+'"'+(!tblAll&&i===tblMonth?' selected':'')+'>'+ymLong(i)+'</option>'}).join('');
 	var body='',sub='',S=R.sett;
-	if(tblSel==='hrt9'){
+	var allMode=perMonth&&tblAll;
+	if(allMode){
+		var fn={hrt00:tblHrt00,hrt01:tblHrt01,hrt02:tblHrt02}[tblSel],nm={hrt00:'hrt00',hrt01:'hrt01',hrt02:'hrt02'}[tblSel],rows=[],tt=0,tx=0;
+		idxs.forEach(function(i){fn(i).forEach(function(r){r.ky=nm+'$'+suffix(i);rows.push(r);if(tblSel==='hrt02'){tt+=r.tn_ct;tx+=r.thue}})});
+		sub='Gộp dữ liệu '+nm+'$ của '+idxs.length+' kỳ thuế trong chu kỳ. Trong FAST mỗi kỳ là một bảng riêng '+nm+'$YYYYMM; cột "bảng" chỉ để đối chiếu. Chọn một kỳ ở ô bên cạnh để xem từng bảng.';
+		body='<pre class="sql">-- '+nm+'$YYYYMM của '+idxs.length+' kỳ, stt_rec = \'NV_A\'</pre>'+dtable([{k:'ky',l:'bảng'}].concat(colsFor(tblSel)),rows)+(tblSel==='hrt02'?'<p class="note">Cộng các kỳ: tn_ct '+vn(tt)+', thue '+vn(tx)+', khớp số liệu đầu trang.</p>':'');
+	}else if(tblSel==='hrt9'){
 		sub='Chứng từ thực chi của cả chu kỳ (loai_ct = 3). Cột ky_thue chỉ để đối chiếu, không có trong bảng thật. Dòng sáng là sự kiện đang chọn.';
 		body=R.mode===1?'<pre class="sql">SELECT * FROM hrt9 WHERE stt_rec = \'NV_A\' ORDER BY ngay_ct</pre>'+dtable(colsFor('hrt9'),tblHrt9()):'<p class="note warnbox"><b>Cơ chế theo kỳ lương không dùng hrt9.</b> Khi t_tncn_thuc_chi = 0, thuế ghi thẳng vào hrt00$ và hrt02$ theo kỳ lương; thưởng chi sau làm kỳ gốc phải tính lại.</p>';
 		if(R.mode===1)body+='<p class="note">thue là thuế tính lại lũy kế tháng sau đợt chi; thue_cl là phần khấu trừ thêm ở đợt này (chênh lệch với các đợt trước). Đây là cách mô phỏng, cần đối chiếu với DB thật.</p>';
@@ -1006,7 +1016,7 @@ function periods(){
 	else{var map=new Map();for(var j=R.F;j<=R.T;j++){var q=Math.ceil(idxM(j)/3),k=idxY(j)+'-'+q;if(!map.has(k))map.set(k,{key:'q'+k,label:'Quý '+q+'/'+idxY(j),idxs:[]});map.get(k).idxs.push(j)}map.forEach(function(v){list.push(v)})}
 	return list;
 }
-function frow(code,label,val,src,cls){return '<tr class="'+(cls||'')+'"><td class="'+(cls&&cls.indexOf('i1')>=0?'ind1':(cls&&cls.indexOf('i2')>=0?'ind2':''))+'">'+label+'</td><td class="code">['+code+']</td><td class="val">'+vn(val)+'</td><td class="src">'+src+'</td></tr>'}
+function frow(code,label,val,src,cls){return '<tr class="'+(cls||'')+'"><td class="code">['+code+']</td><td class="'+(cls&&cls.indexOf('i1')>=0?'ind1':'')+'">'+label+'</td><td class="val">'+vn(val)+'</td><td class="src">'+src+'</td></tr>'}
 function renderForms(){
 	$$('#fKind button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.k===fKind))});
 	var ps=periods(),cur=curEv();
@@ -1019,29 +1029,30 @@ function renderForms(){
 		if(R.mode===0)m.events.forEach(function(e){if(e.type==='B'&&e.pay.idx>e.taxIdx)retro.push(e)})}});
 	var emp=tn>0?1:0,wh=th>0?1:0,dk=th>0?tn:0;
 	var periodTxt=pick.label.replace('Tháng','Tháng').replace('/',' năm ');
+	var kyTxt=(fKind==='thang'?'Khai theo tháng':'Khai theo quý');
 	var h='<div class="paper"><span class="demo">Dữ liệu minh họa · không dùng để nộp</span>'+
 		'<p class="nat">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br><span>Độc lập - Tự do - Hạnh phúc</span></p>'+
-		'<h3>TỜ KHAI KHẤU TRỪ THUẾ THU NHẬP CÁ NHÂN</h3>'+
-		'<p class="c">(Mẫu 05/KK-TNCN theo Thông tư 89/2026/TT-BTC · thủ tục FAST: hs_rpt02KK)</p>'+
-		'<div class="meta"><div>[01] Kỳ tính thuế: <b>'+periodTxt+'</b> &nbsp; [02] Lần đầu: ☒ &nbsp; [03] Bổ sung lần thứ: ☐</div>'+
-		'<div>[04] Tên người nộp thuế: <b>CÔNG TY DEMO FAST</b> &nbsp; [05] Mã số thuế: <b>0000000000</b></div></div>'+
-		'<table><thead><tr><th>Chỉ tiêu</th><th>Mã</th><th>Giá trị</th><th class="src">Nguồn trong FAST</th></tr></thead><tbody>'+
-		frow('21','Tổng số người lao động',emp,'COUNT(DISTINCT stt_rec), tn_ct &gt; 0')+
-		frow('22','Trong đó: cá nhân cư trú có hợp đồng lao động',emp,'doi_tuong = 1 và hop_dong_yn = 1','i1')+
-		frow('23','Tổng số cá nhân đã khấu trừ thuế',wh,'COUNT(DISTINCT stt_rec), thue &gt; 0')+
-		frow('24','Trong đó: cá nhân cư trú',wh,'doi_tuong = 1','i1')+
-		frow('25','Trong đó: cá nhân không cư trú',0,'doi_tuong = 0','i1')+
-		frow('26','Tổng thu nhập chịu thuế trả cho cá nhân',tn,'SUM(tn_ct) từ hrt02$')+
-		frow('27','Trong đó: cá nhân cư trú',tn,'doi_tuong = 1','i1')+
-		frow('28','Trong đó: cá nhân không cư trú',0,'doi_tuong = 0','i1')+
-		frow('29','Tổng thu nhập chịu thuế trả cho cá nhân thuộc diện phải khấu trừ',dk,'SUM(tn_ct), thue &gt; 0')+
-		frow('30','Trong đó: cá nhân cư trú',dk,'doi_tuong = 1','i1')+
-		frow('31','Trong đó: cá nhân không cư trú',0,'doi_tuong = 0','i1')+
-		frow('32','Tổng số thuế thu nhập cá nhân đã khấu trừ',th,'SUM(thue) từ hrt02$','res')+
-		frow('33','Trong đó: của cá nhân cư trú',th,'doi_tuong = 1','i1')+
-		frow('34','Trong đó: của cá nhân không cư trú',0,'doi_tuong = 0','i1')+
+		'<h3>TỜ KHAI KHẤU TRỪ THUẾ TNCN</h3>'+
+		'<p class="c">(Mẫu 02/KK-TNCN theo tên báo cáo trên phần mềm · thủ tục hs_rpt02KK · bộ chỉ tiêu [21]-[34])</p>'+
+		'<div class="meta"><div>Kỳ tính thuế: <b>'+periodTxt+'</b> &nbsp; Loại kỳ (@Type): <b>'+(fKind==='thang'?'1 - Tháng':'2 - Quý')+'</b> &nbsp; Đơn vị (@Ma_dvcs): <b>DEMO</b></div>'+
+		'<div>Người nộp thuế: <b>CÔNG TY DEMO FAST</b> &nbsp; Mã số thuế: <b>0000000000</b></div></div>'+
+		'<table><thead><tr><th>Mã</th><th>Chỉ tiêu (ten_chi_tieu)</th><th>Giá trị (gia_tri)</th><th class="src">Điều kiện trong hs_rpt02KK</th></tr></thead><tbody>'+
+		frow('21','Tổng số người lao động',emp,'COUNT(DISTINCT stt_rec) WHERE tn_ct &gt; 0')+
+		frow('22','Trong đó: Cá nhân cư trú có HĐLĐ',emp,'tn_ct &gt; 0, doi_tuong = 1, hop_dong_yn = 1','i1')+
+		frow('23','Tổng số cá nhân đã khấu trừ thuế',wh,'COUNT(DISTINCT stt_rec) WHERE thue &gt; 0')+
+		frow('24','Cá nhân cư trú đã khấu trừ thuế',wh,'thue &gt; 0, doi_tuong = 1','i1')+
+		frow('25','Cá nhân không cư trú đã khấu trừ thuế',0,'thue &gt; 0, doi_tuong = 0','i1')+
+		frow('26','Tổng thu nhập chịu thuế trả cho cá nhân',tn,'SUM(tn_ct) từ hrt02$YYYYMM')+
+		frow('27','TNCT trả cho cá nhân cư trú',tn,'doi_tuong = 1','i1')+
+		frow('28','TNCT trả cho cá nhân không cư trú',0,'doi_tuong = 0','i1')+
+		frow('29','Tổng TNCT thuộc diện phải khấu trừ thuế',dk,'SUM(tn_ct) WHERE thue &gt; 0')+
+		frow('30','TNCT diện khấu trừ của cá nhân cư trú',dk,'thue &gt; 0, doi_tuong = 1','i1')+
+		frow('31','TNCT diện khấu trừ của cá nhân không cư trú',0,'thue &gt; 0, doi_tuong = 0','i1')+
+		frow('32','Tổng số thuế TNCN đã khấu trừ',th,'SUM(thue) từ hrt02$YYYYMM','res')+
+		frow('33','Số thuế TNCN khấu trừ của cá nhân cư trú',th,'doi_tuong = 1','i1')+
+		frow('34','Số thuế TNCN khấu trừ của cá nhân không cư trú',0,'doi_tuong = 0','i1')+
 		'</tbody></table>'+
-		'<p class="foot">Tôi cam đoan số liệu khai trên là đúng và chịu trách nhiệm trước pháp luật về những số liệu đã khai.</p></div>';
+		'<p class="foot">Bảng trên là kết quả hs_rpt02KK (chi_tieu_id, ten_chi_tieu, gia_tri) trên dữ liệu hrt02$ của các kỳ được chọn; doi_tuong và hop_dong_yn lấy từ hrtttncn, mặc định 1 (cư trú, có HĐLĐ từ 3 tháng).</p></div>';
 	if(!tn)h+='<p class="note">Kỳ này nhân viên không được chi khoản nào nên tờ khai không có số liệu.</p>';
 	if(retro.length)h+='<p class="note warnbox"><b>Phải khai điều chỉnh:</b> '+retro.map(function(e){return esc(e.name)+' chi '+dfmt(e.pay)}).join('; ')+' làm thay đổi kỳ '+pick.label+' sau khi kỳ này đã qua. Với cơ chế thực chi, khoản này nằm đúng kỳ chi.</p>';
 	if(fKind==='quy')h+='<p class="note">Khai theo quý chỉ cộng các tháng nằm trong chu kỳ đang mô phỏng.</p>';
@@ -1104,39 +1115,38 @@ function renderSettle(){
 	function pr(l,v,c,m,row){return '<tr class="'+(row||'')+'"><td>'+l+'</td><td><div class="v"><span>'+vn(v)+'</span><i class="bar '+c+'" style="width:'+clamp(v/m*100,0,100)+'%"></i></div></td></tr>'}
 	var ins=insights().map(function(t){return '<li>'+t+'</li>'}).join('');
 	var warn=(S.N!==12)?'<p class="note warnbox"><b>Chu kỳ '+S.N+' tháng:</b> luật mặc định quyết toán theo năm dương lịch (12 tháng). Ở đây biểu thuế quyết toán được nhân với số tháng của chu kỳ để minh họa. Bấm “Năm dương lịch 2027” để xem đúng chuẩn.</p>':'';
-	var uqNote=S.uq?'':'<p class="note warnbox"><b>Nhân viên tự quyết toán:</b> '+(S.uqWanted&&!S.employedAtEnd?'đã nghỉ việc trước khi kết thúc kỳ nên không ủy quyền được; công ty chỉ cấp chứng từ khấu trừ thuế và nhân viên tự quyết toán (02/QTT-TNCN). ':'chưa chọn ủy quyền nên công ty không quyết toán thay. ')+'Các chỉ tiêu [35]-[41] của 05/QTT-TNCN bằng 0, nhưng chỉ tiêu [31] vẫn ghi thuế đã khấu trừ.</p>';
-	var rem=S.uq?S.thueQT-S.thue:0;
+	var uqNote=S.uq?'':'<p class="note warnbox"><b>Nhân viên tự quyết toán:</b> '+(S.uqWanted&&!S.employedAtEnd?'đã nghỉ việc trước khi kết thúc kỳ nên không ủy quyền được; công ty chỉ cấp chứng từ khấu trừ thuế và nhân viên tự quyết toán (02/QTT-TNCN). ':'chưa chọn ủy quyền nên công ty không quyết toán thay. ')+'Các chỉ tiêu [26] và [37]-[40] của hs_rpt05KK bằng 0, nhưng chỉ tiêu [34] vẫn ghi thuế đã khấu trừ.</p>';
+	var emp=S.tnct>0?1:0,wh=S.thue>0?1:0,u=S.uq?1:0,nop=(S.uq&&!S.mien)?S.conNop:0;
 	var form='<div class="paper"><span class="demo">Dữ liệu minh họa · không dùng để nộp</span>'+
 		'<p class="nat">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM<br><span>Độc lập - Tự do - Hạnh phúc</span></p>'+
-		'<h3>TỜ KHAI QUYẾT TOÁN THUẾ THU NHẬP CÁ NHÂN</h3>'+
-		'<p class="c">(Mẫu 05/QTT-TNCN · tổ chức trả thu nhập quyết toán thay cho cá nhân)</p>'+
-		'<div class="meta"><div>[01] Kỳ tính thuế: từ tháng <b>'+pad(idxM(R.F))+'/'+idxY(R.F)+'</b> đến tháng <b>'+pad(idxM(R.T))+'/'+idxY(R.T)+'</b> &nbsp; [02] Lần đầu: ☒</div><div>[04] Tên người nộp thuế: <b>CÔNG TY DEMO FAST</b> &nbsp; [05] Mã số thuế: <b>0000000000</b></div></div>'+
-		'<table><thead><tr><th>Chỉ tiêu</th><th>Mã</th><th>Giá trị</th></tr></thead><tbody>'+
-		qrow('21','Số cá nhân được miễn, giảm thuế theo Hiệp định',0)+
-		qrow('22','Số người phụ thuộc được giảm trừ gia cảnh',S.nPT?S.npt:0)+
-		qrow('23','Tổng thu nhập chịu thuế trả cho cá nhân',S.tnct)+
-		qrow('24','Trong đó: cá nhân cư trú',S.tnct,'i1')+
-		qrow('25','Trong đó: cá nhân không cư trú',0,'i1')+
-		qrow('26','TNCT từ phí bảo hiểm nhân thọ, bảo hiểm khác do doanh nghiệp bảo hiểm nước ngoài chi trả',0)+
-		qrow('27','Trong đó: TNCT được miễn theo Hợp đồng dầu khí',0,'i1')+
-		qrow('28','Tổng TNCT trả cho cá nhân thuộc diện khấu trừ thuế',S.thue>0?S.tnct:0)+
-		qrow('29','Trong đó: cá nhân cư trú',S.thue>0?S.tnct:0,'i1')+
-		qrow('30','Trong đó: cá nhân không cư trú',0,'i1')+
-		qrow('31','Tổng số thuế TNCN đã khấu trừ',S.thue)+
-		qrow('32','Trong đó: cá nhân cư trú',S.thue,'i1')+
-		qrow('33','Trong đó: cá nhân không cư trú',0,'i1')+
-		qrow('34','Thuế đã khấu trừ trên phí bảo hiểm nêu ở [26]',0)+
-		qrow('35','Số cá nhân ủy quyền cho tổ chức quyết toán thay',S.uq?1:0)+
-		qrow('36','Tổng số thuế đã khấu trừ của cá nhân ủy quyền',S.uq?S.thue:0)+
-		qrow('37','Trong đó: thuế đã khấu trừ tại tổ chức trước khi điều chuyển',0,'i1')+
-		qrow('38','Tổng số thuế TNCN phải nộp của cá nhân ủy quyền',S.uq?S.thueQT:0)+
-		qrow('39','Thuế được miễn do còn phải nộp sau quyết toán thay từ 50.000 đ trở xuống',S.uq?S.mien:0)+
-		qrow('40','Tổng số thuế còn phải nộp ngân sách nhà nước',S.uq&&rem>50000?rem:0,'res')+
-		qrow('41','Tổng số thuế đã nộp thừa',S.uq&&rem<0?-rem:0,'res')+
-		'</tbody></table><p class="foot">Chỉ tiêu [40] = [38] − [36] − [39] khi không âm; [41] = giá trị tuyệt đối khi âm. Mã, tên chỉ tiêu theo mẫu 05/QTT-TNCN hiện hành, cần đối chiếu với mẫu của TT 89/2026.</p></div>';
-	var bk='<div class="tbl-wrap"><table class="dt"><thead><tr><th>STT</th><th>Họ tên [07]</th><th class="r">[12] TNCT</th><th class="r">[16] NPT</th><th class="r">[17] Giảm trừ GĐ</th><th class="r">[19] Bảo hiểm</th><th class="r">[21] TNTT</th><th class="r">[22] Đã khấu trừ</th><th class="r">[24] Phải nộp</th><th class="r">[25] Nộp thừa</th><th class="r">[26] Còn phải nộp</th></tr></thead><tbody>'+
-		(S.uq?'<tr><td>1</td><td>Nhân viên A</td><td class="r">'+vn(S.tnct)+'</td><td class="r">'+(S.nPT?S.npt:0)+'</td><td class="r">'+vn(S.gtBT+S.gtNPT)+'</td><td class="r">'+vn(S.bh)+'</td><td class="r">'+vn(S.tntt)+'</td><td class="r">'+vn(S.thue)+'</td><td class="r">'+vn(S.thueQT)+'</td><td class="r">'+vn(S.thua)+'</td><td class="r">'+vn(S.conNop)+'</td></tr>':'<tr><td colspan="11" style="white-space:normal">Không có dòng: nhân viên không thuộc diện công ty quyết toán thay.</td></tr>')+
-		'</tbody></table></div>';
+		'<h3>TỜ KHAI QUYẾT TOÁN THUẾ TNCN</h3>'+
+		'<p class="c">(Mẫu 05/QTT-TNCN theo tên báo cáo trên phần mềm · thủ tục hs_rpt05KK · bộ chỉ tiêu [21]-[40])</p>'+
+		'<div class="meta"><div>Năm quyết toán (@Year): <b>'+R.year+'</b> &nbsp; Chu kỳ mô phỏng: <b>'+pad(idxM(R.F))+'/'+idxY(R.F)+' - '+pad(idxM(R.T))+'/'+idxY(R.T)+'</b></div><div>Người nộp thuế: <b>CÔNG TY DEMO FAST</b> &nbsp; Mã số thuế: <b>0000000000</b></div></div>'+
+		'<table><thead><tr><th>Mã</th><th>Chỉ tiêu (ten_chi_tieu)</th><th>Giá trị (gia_tri)</th><th class="src">Điều kiện trong hs_rpt05KK</th></tr></thead><tbody>'+
+		frow('21','Tổng số người lao động',emp,'COUNT(DISTINCT stt_rec) WHERE f005 &gt; 0')+
+		frow('22','Trong đó: Cá nhân cư trú có HĐLĐ',emp,'f005 &gt; 0, f003 = 1, f004 = 1','i1')+
+		frow('23','Tổng số cá nhân đã khấu trừ thuế',wh,'COUNT(DISTINCT stt_rec) WHERE f009 &gt; 0')+
+		frow('24','Cá nhân cư trú đã khấu trừ thuế',wh,'f009 &gt; 0, f003 = 1','i1')+
+		frow('25','Cá nhân không cư trú đã khấu trừ thuế',0,'f009 &gt; 0, f003 = 0','i1')+
+		frow('26','Cá nhân ủy quyền quyết toán thay',u,'COUNT(DISTINCT stt_rec) WHERE f022 = 1')+
+		frow('27','Tổng thu nhập chịu thuế trả cho cá nhân',S.tnct,'SUM(f005) từ hrt03$'+R.year)+
+		frow('28','TNCT trả cho cá nhân cư trú',S.tnct,'f003 = 1','i1')+
+		frow('29','TNCT trả cho cá nhân không cư trú',0,'f003 = 0','i1')+
+		frow('30','Tổng TNCT thuộc diện phải khấu trừ thuế',S.thue>0?S.tnct:0,'SUM(f005) WHERE f009 &gt; 0')+
+		frow('31','TNCT diện khấu trừ của cá nhân cư trú',S.thue>0?S.tnct:0,'f009 &gt; 0, f003 = 1','i1')+
+		frow('32','TNCT diện khấu trừ của cá nhân không cư trú',0,'f009 &gt; 0, f003 = 0','i1')+
+		frow('33','Tổng TNCT miễn thuế theo Hiệp định',0,'mặc định 0, thủ tục không theo dõi riêng')+
+		frow('34','Tổng số thuế TNCN đã khấu trừ',S.thue,'SUM(f009)')+
+		frow('35','Số thuế TNCN khấu trừ của cá nhân cư trú',S.thue,'f003 = 1','i1')+
+		frow('36','Số thuế TNCN khấu trừ của cá nhân không cư trú',0,'f003 = 0','i1')+
+		frow('37','Tổng số thuế TNCN phát sinh của cá nhân ủy quyền',S.uq?S.thueQT:0,'SUM(f008) WHERE f022 = 1')+
+		frow('38','Số thuế TNCN đã khấu trừ của cá nhân ủy quyền',S.uq?S.thue:0,'SUM(f009) WHERE f022 = 1')+
+		frow('39','Số thuế TNCN nộp thừa của cá nhân ủy quyền',S.uq?S.thua:0,'SUM(f010) WHERE f022 = 1','res')+
+		frow('40','Số thuế TNCN còn phải nộp của cá nhân ủy quyền',nop,'SUM(f015) WHERE f022 = 1','res')+
+		'</tbody></table><p class="foot">Bảng trên là kết quả hs_rpt05KK trên hrt03$'+R.year+': [37] = f008, [38] = f009, [39] = f010, [40] = f015. Thủ tục chỉ cộng f015 của cá nhân ủy quyền'+(S.mien?'; khoản còn phải nộp '+vn(S.conNop)+' đ không quá 50.000 đ nên được miễn và f015 = 0 (giả định mô hình)':'')+'.</p></div>';
+	var bk='<div class="tbl-wrap"><table class="dt"><thead><tr><th>stt</th><th>ma_nv</th><th>ho_ten [07]</th><th>mst [08]</th><th>so_cmnd [09]</th><th class="r">uy_quyen [10]</th><th class="r">tong_tnct [11]</th><th class="r">tnct_mien [12]</th><th class="r">tong_gt [13]</th><th class="r">gt_ban_than [14]</th><th class="r">gt_nguoi_pt [15]</th><th class="r">gt_tu_thien [16]</th><th class="r">gt_bao_hiem [17]</th><th class="r">gt_huu_tri [18]</th><th class="r">tn_tinh_thue [19]</th><th class="r">thue_phat_sinh [20]</th><th class="r">thue_da_khau_tru [21]</th><th class="r">thue_nop_thua [22]</th><th class="r">thue_nop_them [23]</th></tr></thead><tbody>'+
+		'<tr><td>1</td><td>NV_A</td><td>Nhân viên A</td><td>8000000001</td><td>048000000001</td><td class="r">'+u+'</td><td class="r">'+vn(S.tnct)+'</td><td class="r">0</td><td class="r">'+vn(S.gtBT+S.gtNPT+S.bh)+'</td><td class="r">'+vn(S.gtBT)+'</td><td class="r">'+vn(S.gtNPT)+'</td><td class="r">0</td><td class="r">'+vn(S.bh)+'</td><td class="r">0</td><td class="r">'+vn(S.tntt)+'</td><td class="r">'+vn(S.thueQT)+'</td><td class="r">'+vn(S.thue)+'</td><td class="r">'+vn(S.thua)+'</td><td class="r">'+vn(S.conNop)+'</td></tr>'+
+		'</tbody></table></div><p class="note">hs_rpt05ABK lấy hrt03$'+R.year+' nối hrnv và hrtttncn, lọc f003 = 1 và f004 = 1 (cư trú, HĐLĐ từ 3 tháng) và không lọc theo ủy quyền; cột uy_quyen [10] chỉ cho biết có ủy quyền hay không. Mã số thuế, số CMND và ma_nv là dữ liệu giả.</p>';
 	var cmpTbl='<div class="tbl-wrap"><table class="dt"><thead><tr><th>Cơ chế</th><th class="r">Thuế đã khấu trừ</th><th class="r">Kỳ khấu trừ cao nhất</th><th class="r">Thuế quyết toán</th><th class="r">Chênh lệch</th></tr></thead><tbody>'+
 		[[R,true],[cmp,false]].map(function(p){var r=p[0],mm=0;r.months.forEach(function(m){if(m.idx>=r.F&&m.idx<=r.T)mm=Math.max(mm,m.thue)});
 			return '<tr class="'+(p[1]?'hl':'')+'"><td style="white-space:normal">'+(r.mode===1?'Theo thực chi':'Theo kỳ lương')+(p[1]?' (đang xem)':'')+'</td><td class="r">'+vn(r.sett.thue)+'</td><td class="r">'+vn(mm)+'</td><td class="r">'+vn(r.sett.thueQT)+'</td><td class="r">'+(r.sett.diff<0?'nộp thừa ':'còn nộp ')+vn(Math.abs(r.sett.diff))+'</td></tr>'}).join('')+'</tbody></table></div>';
@@ -1145,8 +1155,8 @@ function renderSettle(){
 			'<div class="two"><div>'+pipe+'</div><div><p class="sub" style="margin:0 0 6px">Thu nhập tính thuế cả kỳ lấp đầy biểu thuế (ngưỡng nhân '+S.N+' tháng)</p>'+ladderSVG(0,S.tntt,'L',S.N)+
 			'<div class="legend" style="margin:6px 0 0"><span><i class="b-inc"></i>Thu nhập tính thuế cả kỳ</span></div></div></div></div>'+
 		'<div class="card"><h3>Thuế khấu trừ lũy kế so với thuế quyết toán</h3><p class="sub">Khoảng cách giữa đường đỏ ở tháng cuối và đường nét đứt chính là số nộp thừa hoặc còn phải nộp.</p>'+cumChart()+'<ul style="margin:10px 0 0;padding-left:18px;display:grid;gap:5px">'+ins+'</ul></div>'+
-		'<div class="card"><h3>Tờ khai quyết toán 05/QTT-TNCN</h3><p class="sub">Số liệu lấy từ hrt03$ theo logic hs_rpt05KK, đối chiếu chỉ tiêu theo mẫu hiện hành.</p>'+uqNote+form+'</div>'+
-		'<div class="card"><h3>Phụ lục 05-1/BK-QTT-TNCN</h3><p class="sub">Bảng kê cá nhân thuộc diện tính thuế theo biểu lũy tiến, chỉ gồm cá nhân ủy quyền quyết toán thay.</p>'+bk+'</div>'+
+		'<div class="card"><h3>Tờ khai quyết toán 05/QTT-TNCN (hs_rpt05KK)</h3><p class="sub">Bộ chỉ tiêu [21]-[40] đúng theo kết quả thủ tục trên phần mềm, số liệu lấy từ hrt03$.</p>'+uqNote+form+'</div>'+
+		'<div class="card"><h3>Bảng kê chi tiết 05-1/BK-QTT-TNCN (hs_rpt05ABK)</h3><p class="sub">Tên cột đúng theo thủ tục trên phần mềm, kèm số chỉ tiêu [07]-[23] trong chú thích của thủ tục.</p>'+bk+'</div>'+
 		'<div class="card"><h3>So sánh hai cơ chế với cùng tham số</h3><p class="sub">Cùng dữ liệu, đổi t_tncn_thuc_chi giữa 1 và 0.</p>'+cmpTbl+'</div>';
 }
 
@@ -1187,7 +1197,7 @@ function wireUI(){
 	$('#evTable').addEventListener('click',pickEv);
 	$('#evTable').addEventListener('keydown',function(e){if(e.key==='Enter'){pickEv(e)}});
 	$('#tblPick').addEventListener('click',function(e){var b=e.target.closest('[data-t]');if(!b)return;tblSel=b.dataset.t;renderData()});
-	$('#tblMonth').addEventListener('change',function(e){tblMonth=+e.target.value;renderData()});
+	$('#tblMonth').addEventListener('change',function(e){if(e.target.value==='all'){tblAll=true}else{tblAll=false;tblMonth=+e.target.value}renderData()});
 	$('#fKind').addEventListener('click',function(e){var b=e.target.closest('[data-k]');if(!b)return;fKind=b.dataset.k;fPeriod=null;renderForms()});
 	$('#fPeriod').addEventListener('change',function(e){fPeriod=e.target.value;renderForms()});
 }
